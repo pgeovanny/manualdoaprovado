@@ -4,294 +4,179 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Manual do Aprovado – Iniciante</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --primary: #2276be;
-      --accent: #38d5e8;
-      --light: #f5fbff;
-      --white: #fff;
-      --gray: #1f2837;
-      --radius: 19px;
-      --shadow: 0 4px 16px #2276be18;
+      --primary:#2276be;
+      --accent:#38d5e8;
+      --bg:#f0faff;
+      --gray:#1f2837;
+      --radius:16px;
+      --shadow:0 4px 12px rgba(0,0,0,0.06);
     }
-    body, html {
-      min-height:100vh; margin:0;padding:0;
-      font-family:'Inter',sans-serif;
-      background: linear-gradient(120deg, #e2f3fd 0%, #eafaff 100%);
-      color:var(--gray);
-      overflow-x:hidden;
-    }
-    #center { min-height:100vh; display:flex; align-items:center; justify-content:center;}
-    .shell {
-      max-width:410px; width:100%;
-      padding: 32px 0 0 0; margin: 0 auto;
-      z-index:10;
-    }
-    .card, .manual-card {
-      background:var(--white);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      border:1px solid #e7eef3;
-      padding:42px 28px 26px 28px;
-      margin-bottom:26px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      position:relative;
-      animation: fadeIn .7s cubic-bezier(.6,0,.3,1);
-    }
-    @keyframes fadeIn {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-    /* ------------------- INÍCIO ------------------ */
-    .logo-title {
-      font-family:'Montserrat',sans-serif;
-      font-weight:900;
-      font-size:2.05rem;
-      color:var(--primary);
-      text-align:center;
-      margin-bottom:9px;
-      letter-spacing:.01em;
-      line-height:1.1;
-    }
-    .badge-iniciante {
-      display:inline-block;
-      font-family:'Montserrat',sans-serif;
-      font-weight:900;
-      font-size:1.01rem;
-      padding:6px 21px 6px 21px;
-      background:linear-gradient(90deg,var(--accent) 30%,var(--primary) 100%);
-      color:#fff;
-      border-radius:16px;
-      margin-bottom:14px;
-      box-shadow:0 0 8px #38d5e845;
-    }
-    .intro-blur {
-      background:rgba(34,118,190,0.08);
-      color:var(--gray);
-      border-radius:11px;
-      padding:18px 13px 16px 13px;
-      text-align:center;
-      font-size:1.14rem;
-      margin:8px 0 19px 0;
-      font-weight:600;
-      line-height:1.38;
-    }
-    .frase-chave {
-      color:var(--accent);
-      font-family:'Montserrat',sans-serif;
-      font-size:1.04rem;
-      font-weight:700;
-      margin:13px 0 17px 0;
-      padding-left:9px;
-      border-left:3px solid var(--accent);
-      background:rgba(34,118,190,0.06);
-      border-radius:8px;
-      display:block;
-      width:100%;
-    }
-    .btn-main {
-      font-size:1.19rem;
-      font-weight:900;
-      border:none; outline:none;
-      border-radius:38px;
-      cursor:pointer;
-      box-shadow:0 2px 12px #38d5e820;
-      padding:19px 0;
-      width:94%;
-      margin:19px 0 0 0;
-      background:linear-gradient(92deg,var(--primary),var(--accent) 92%);
-      color:#fff;
-      letter-spacing:.5px;
-      transition:background .17s, color .13s, transform .15s, box-shadow .16s;
-    }
-    .btn-main:hover {
-      background:linear-gradient(94deg,var(--accent),var(--primary) 90%);
-      color:var(--primary);
-      box-shadow:0 2px 17px #38d5e870;
-      transform:scale(1.04);
-    }
-    .visitantes {text-align:center;font-size:.94rem;opacity:.74;margin:14px 0 0 0;}
-    /* ------------------- MANUAL ------------------ */
-    .manual-card {
-      align-items:center;
-      text-align:center;
-    }
-    .manual-capa {
-      margin:0 auto 17px auto;
-      width:113px;
-      height:146px;
-      border-radius:14px;
-      background: linear-gradient(125deg,#38d5e8 66%,#fff 100%);
-      box-shadow:0 0 18px #38d5e8a8;
-      display:flex; align-items:center; justify-content:center;
-      position:relative;
-      animation: manualCapa .7s cubic-bezier(.7,0,.3,1);
-    }
-    @keyframes manualCapa {from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
-    .manual-capa-inner {
-      width:84%; height:88%; background:#fff;
-      border-radius:10px; box-shadow:0 3px 12px #38d5e814;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      position:relative;
-    }
-    .manual-capa-txt1 {
-      color:var(--primary); font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.01rem; margin:10px 0 0 0;
-      letter-spacing:.7px;
-    }
-    .manual-capa-txt2 {
-      color:var(--accent); font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.92rem; margin:6px 0 0 0;
-      letter-spacing:.2px;
-    }
-    .manual-title {
-      font-size:1.25rem;
-      font-weight:900;
-      color:var(--primary);
-      font-family:'Montserrat',sans-serif;
-      margin:7px 0 4px 0;
-      letter-spacing:.01em;
-      text-align:center;
-    }
-    .manual-badge {
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent),var(--primary) 95%);
-      color:#fff;
-      font-family:'Montserrat',sans-serif;
-      font-weight:900;
-      border-radius:13px;
-      font-size:.97rem;
-      padding:3px 15px 3px 15px;
-      margin-bottom:7px;
-    }
-    .manual-list {
-      text-align:left;
-      margin: 19px 0 23px 0;
-      padding: 0 0 0 0;
-      list-style:none;
-      width:100%;
-      max-width:335px;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    .manual-list li {
-      display:flex; align-items:center; gap:10px; font-size:1.09rem; color:var(--gray);
-      padding:9px 0 6px 0; margin-bottom:0;
-      opacity:0; transform:translateX(-17px); transition:all .7s;
-    }
-    .manual-list li.visible{opacity:1;transform:translateX(0);}
-    .manual-list li:before{
-      content:'✔';
-      color:var(--accent);
-      font-size:1.22rem;
-      margin-right:7px;
-      font-weight:900;
-    }
-    .manual-final {
-      text-align:center;
-      margin:21px 0 13px 0;
-      font-weight:800;
-      color:var(--primary);
-      font-size:1.06rem;
-    }
-    .btns-cta {
-      display:flex; gap:19px; margin:10px 0 13px 0; justify-content:center; width:100%;
-    }
-    .btns-cta a {
-      display:inline-block; width:49%; text-align:center;
-      background:linear-gradient(90deg,var(--primary),var(--accent) 100%);
-      color:#fff; border-radius:30px; font-weight:800; font-size:1.04rem;
-      text-decoration:none; padding:14px 0; box-shadow:0 1px 9px #38d5e818;
-      transition:background .16s, color .14s, transform .14s;
-      letter-spacing:.4px;
-    }
-    .btns-cta a:hover{background:linear-gradient(95deg,var(--accent),var(--primary)); color:var(--primary); box-shadow:0 2px 16px #38d5e859; transform:scale(1.04);}
-    .btn-final {
-      background:#f5fbff;
-      color:var(--primary);
-      border:1px solid #dbeaf5;
-      border-radius:11px;
-      padding:9px 0;
-      font-size:1rem;
-      font-weight:700;
-      width:99%;
-      margin: 7px auto 0 auto;
-      cursor:pointer;
-      transition:background .12s, color .12s;
-      display:block;
-    }
-    .btn-final:hover{background:var(--accent); color:#fff;}
-    footer{margin-top:23px;text-align:center;font-size:.98rem;opacity:.53;}
-    @media(max-width:520px){
-      .shell{padding:0 0;}
-      .card, .manual-card{padding:20px 4vw;}
-      .logo-title{font-size:1.25rem;}
-    }
+    *{box-sizing:border-box;}
+    body,html{margin:0;padding:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--gray);}
+    #wrapper{max-width:400px;margin:0 auto;padding:24px;}
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:24px;}
+    .hidden{display:none;}
+    h1{font-size:1.9rem;margin:0 0 12px;text-align:center;color:var(--primary);}
+    .badge{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--primary));color:#fff;padding:4px 12px;border-radius:12px;font-weight:700;font-size:.9rem;margin:0 auto 16px auto;}
+    .subtitle{text-align:center;font-size:1rem;margin-bottom:20px;}
+    .btn{width:100%;padding:14px;border:none;border-radius:24px;color:#fff;font-size:1.05rem;font-weight:700;cursor:pointer;background:linear-gradient(90deg,var(--primary),var(--accent));transition:transform .2s;}
+    .btn:hover{transform:scale(1.03);}
+    /* Quiz */
+    .progress{height:4px;width:100%;background:#dcecff;border-radius:2px;overflow:hidden;}
+    .progress-inner{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .3s;}
+    .question{font-size:1.1rem;min-height:48px;margin:20px 0;}
+    .btn-group{display:flex;gap:8px;justify-content:center;}
+    .btn-sml{flex:1;padding:10px;border:none;border-radius:20px;font-size:.95rem;font-weight:600;cursor:pointer;}
+    .btn-sim{background:var(--accent);color:#fff;}
+    .btn-nao{background:var(--primary);color:#fff;}
+    .btn-back{background:#e0f3fd;color:var(--primary);}
+    .persuade{background:#e0faff;border-left:4px solid var(--accent);padding:12px;margin:16px 0;border-radius:8px;font-size:.95rem;}
+    /* Manual */
+    .capamock{width:100px;height:140px;background:linear-gradient(125deg,var(--accent),#fff);border-radius:12px;margin:0 auto 16px;}
+    .man-list{list-style:none;padding:0;font-size:1rem;line-height:1.4;}
+    .man-list li{margin:8px 0;padding-left:22px;position:relative;}
+    .man-list li:before{content:'✔';position:absolute;left:0;color:var(--accent);}
+    .cta-group{display:flex;gap:12px;margin-top:20px;}
+    .cta-group a{flex:1;text-align:center;padding:12px;border-radius:20px;color:#fff;text-decoration:none;font-weight:600;background:var(--primary);}
+    .cta-group a:nth-child(2){background:var(--accent);}
+    .visit{font-size:.85rem;text-align:center;margin-top:12px;color:#567;}
   </style>
 </head>
 <body>
-  <div id="center">
-    <div class="shell">
-      <!-- TELA 1: Boas-vindas -->
-      <div class="card" id="screen-intro">
-        <div class="logo-title">Manual do<br>Aprovado</div>
-        <div class="badge-iniciante">INICIANTE</div>
-        <div class="intro-blur">
-          Chegou a sua vez de estudar com inteligência.<br>
-          <b>Parabéns!</b> Você acaba de encurtar seu tempo de estudos para concurso.<br>
-          <span style="font-weight:500;color:#1976d2;">Se você é iniciante e quer passar rápido, está no lugar certo.</span>
-        </div>
-        <button class="btn-main" id="btnStart">Quero Começar</button>
-        <span class="frase-chave">O segredo dos aprovados está na estratégia, não no tempo.</span>
-        <div class="visitantes" id="visitantes"></div>
+  <div id="wrapper">
+    <!-- 1. Intro -->
+    <div id="screen-intro" class="card">
+      <h1>Manual do Aprovado</h1>
+      <div class="badge">INICIANTE</div>
+      <div class="subtitle">Estude com estratégia e avance rápido.</div>
+      <button class="btn" onclick="startQuiz()">Começar</button>
+    </div>
+
+    <!-- 2. Quiz -->
+    <div id="screen-quiz" class="card hidden">
+      <div class="progress"><div class="progress-inner" id="prog"></div></div>
+      <div class="question" id="qtext"></div>
+      <div id="persuade" class="persuade hidden"></div>
+      <div class="btn-group" id="qbtns">
+        <button class="btn-sml btn-sim" onclick="answer('sim')">Sim</button>
+        <button class="btn-sml btn-nao" onclick="answer('nao')">Não</button>
+        <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
       </div>
-      <!-- TELA FINAL: Manual -->
-      <div class="manual-card" id="screen-manual" style="display:none;">
-        <div class="manual-capa">
-          <div class="manual-capa-inner">
-            <div class="manual-capa-txt1">INICIANTE</div>
-            <div class="manual-capa-txt2">Manual do Aprovado</div>
-          </div>
-        </div>
-        <div class="manual-title">Manual do Aprovado</div>
-        <span class="manual-badge">INICIANTE</span>
-        <ul class="manual-list" id="featureList">
-          <li>Como montar um ciclo de estudos estratégico e flexível.</li>
-          <li>Como revisar de forma simples e eficiente.</li>
-          <li>Como controlar seu tempo e evoluir de verdade.</li>
-          <li>Como usar questões para fixar e avançar.</li>
-          <li>Por que não fazer resumos à mão e como grifar com inteligência.</li>
-          <li>Como, quando e por que ler a lei seca.</li>
-          <li>Visão de longo prazo, eficiência no curto prazo.</li>
-        </ul>
-        <div class="manual-final">
-          Seu tempo de estudo vai finalmente render! Baixe uma amostra gratuita ou garanta já o seu.
-        </div>
-        <div class="btns-cta">
-          <a href="LINK_DA_AMOSTRA" target="_blank">Baixar Amostra</a>
-          <a href="LINK_DE_AQUISICAO" target="_blank">Adquirir Agora</a>
-        </div>
-        <button class="btn-final" onclick="restart()">Voltar ao início</button>
+      <div class="visit" id="visit-quiz"></div>
+    </div>
+
+    <!-- 3. Desafios -->
+    <div id="screen-dor" class="card hidden">
+      <div class="subtitle"><b>Você não está sozinho:</b></div>
+      <ul class="man-list">
+        <li>Falta de direção no estudo.</li>
+        <li>Esquece o conteúdo rapidamente.</li>
+        <li>Não sabe revisar a lei seca.</li>
+        <li>Medo de perder tempo com métodos errados.</li>
+      </ul>
+      <button class="btn" onclick="showManual()">Ver Solução</button>
+      <button class="btn btn-back" onclick="quizBack()">Voltar</button>
+    </div>
+
+    <!-- 4. Manual -->
+    <div id="screen-manual" class="card hidden">
+      <div class="capamock"></div>
+      <h1 style="font-size:1.5rem;color:var(--primary);">Manual do Aprovado</h1>
+      <div class="badge">INICIANTE</div>
+      <ul class="man-list" id="featureList">
+        <li>Como montar um ciclo estratégico e flexível.</li>
+        <li>Como revisar de forma simples e eficiente.</li>
+        <li>Como controlar seu tempo e evoluir de verdade.</li>
+        <li>Como usar questões para fixar e avançar.</li>
+        <li>Por que não fazer resumos à mão com inteligência.</li>
+        <li>Como, quando e por que ler a lei seca.</li>
+        <li>Visão de longo prazo e eficiência.</li>
+      </ul>
+      <div class="subtitle">Seu tempo vai finalmente render!</div>
+      <div class="cta-group">
+        <a href="LINK_DA_AMOSTRA" target="_blank">Baixar Amostra</a>
+        <a href="LINK_DE_AQUISICAO" target="_blank">Adquirir Agora</a>
       </div>
-      <footer>© 2025 Manual do Aprovado • Todos os direitos reservados.</footer>
+      <button class="btn btn-back" onclick="restart()">Voltar ao Início</button>
+      <div class="visit" id="visit-manual"></div>
     </div>
   </div>
+
   <script>
-    // VISITOR COUNTER - countapi.xyz (gratuito)
-    const visitorsBox = document.getElementById('visitantes');
+    // Visitantes
     fetch('https://api.countapi.xyz/hit/manualdoaprovado/iniciante')
-      .then(res=>res.json())
-      .then(data=>{
-        visitorsBox.innerHTML = "👀 Visitantes neste site: <b>"+data.value+"</b>";
+      .then(r=>r.json()).then(d=>{
+        document.getElementById('visit-quiz').innerText = `👀 ${d.value} pessoas já passaram por aqui`;
+        document.getElementById('visit-manual').innerText = `👀 ${d.value} visitantes navegando`;
       });
-    // INÍCIO -> Manual (simulando)
-    document.getElementById("btnStart").onclick = function() {
-      document.getElementById("screen-intro").style.display = "none";
-      document.getElementById("screen-manual").style.display = "flex";
-      document.querySelectorAll('#featureList li')
-        .forEach((li,i)=>{li.classList.remove('visible'); setTimeout(()=>li.classList.add('visible'), i*120);});
-    };
-    function restart() {
-      document.getElementById("screen-manual").style.display = "none";
-      document.getElementById("screen-intro").style.display = "flex";
+
+    // Quiz lógica
+    const qs = [
+      "Você já se perdeu sem saber por onde começar?",
+      "Tem dificuldade para revisar e acaba esquecendo?",
+      "Sabe usar questões para fixar o conteúdo?",
+      "Sente que estuda sozinho demais?"
+    ];
+    const ps = [
+      "Muita gente passa por isso! Quer avançar e ver a solução?",
+      "Revisar pode ser simples. Quer aprender como?",
+      "Questões são poderosas! Quer descobrir o método?",
+      "Ninguém precisa estudar sozinho. Avançar?"
+    ];
+    let idx=0;
+    function startQuiz(){
+      document.getElementById('screen-intro').classList.add('hidden');
+      document.getElementById('screen-quiz').classList.remove('hidden');
+      idx=0; showQuestion();
+    }
+    function showQuestion(){
+      document.getElementById('qtext').innerText = qs[idx];
+      document.getElementById('persuade').classList.add('hidden');
+      document.getElementById('qbtns').classList.remove('hidden');
+      updateProg();
+    }
+    function updateProg(){
+      document.getElementById('prog').style.width = ((idx/qs.length)*100)+'%';
+    }
+    function answer(res){
+      if(res==='nao'){
+        document.getElementById('persuade').innerText = ps[idx];
+        document.getElementById('persuade').classList.remove('hidden');
+        document.getElementById('qbtns').classList.add('hidden');
+      } else {
+        idx++;
+        if(idx<qs.length){
+          showQuestion();
+        } else {
+          document.getElementById('screen-quiz').classList.add('hidden');
+          document.getElementById('screen-dor').classList.remove('hidden');
+        }
+      }
+    }
+    function quizBack(){
+      if(idx>0){
+        idx--; showQuestion();
+      } else {
+        document.getElementById('screen-quiz').classList.add('hidden');
+        document.getElementById('screen-intro').classList.remove('hidden');
+      }
+    }
+    function showManual(){
+      document.getElementById('screen-dor').classList.add('hidden');
+      document.getElementById('screen-manual').classList.remove('hidden');
+      // anima features
+      document.querySelectorAll('#featureList li').forEach((li,i)=>{
+        li.style.opacity=0; setTimeout(()=>{
+          li.style.transition='opacity .6s'; li.style.opacity=1;
+        }, i*120);
+      });
+    }
+    function restart(){
+      document.getElementById('screen-manual').classList.add('hidden');
+      document.getElementById('screen-intro').classList.remove('hidden');
     }
   </script>
 </body>
