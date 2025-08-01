@@ -7,188 +7,221 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --dark: #181e2b;
-      --blue: #3557e1;
-      --cyan: #51d1f6;
-      --lilac: #9386f4;
-      --white: #f5f7fd;
-      --glass: rgba(255,255,255,0.09);
+      --main-bg: #f7faff;
+      --main-bg2: #e3e9f5;
+      --blue: #3761c8;
+      --cyan: #67b9e9;
+      --blue-light: #dde9fc;
+      --gray-dark: #232c3e;
+      --gray: #6a7686;
+      --white: #fff;
+      --glass: rgba(255,255,255,0.9);
       --radius: 22px;
-      --shadow: 0 8px 32px 0 rgba(53,87,225,0.10), 0 2px 8px #22366370;
-      --neon: 0 0 12px #51d1f6,0 0 22px #3557e144;
-      --frost: linear-gradient(115deg,rgba(81,209,246,0.15) 22%,rgba(147,134,244,0.09) 84%);
+      --shadow: 0 8px 30px 0 rgba(55,97,200,0.12), 0 2px 8px #aac2e170;
+      --shadow-neon: 0 0 18px #67b9e952, 0 0 6px #3761c820;
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     body,html {
       min-height:100vh; width:100vw; overflow-x:hidden;
-      background:
-        radial-gradient(circle at 52% 36%,#e5f2fd 0%,#f4f7fe 38%,#e6e8f1 100%),
-        linear-gradient(120deg,#181e2b 55%, #242249 100%);
-      background-size:140% 140%,100% 100%;
-      animation:bgAnim 16s ease-in-out infinite;
-      font-family:'Inter',sans-serif; color:var(--dark);
-    }
-    @keyframes bgAnim {
-      0%{background-position:50% 45%,0 0;}
-      50%{background-position:54% 53%,0 0;}
-      100%{background-position:50% 45%,0 0;}
-    }
-    .frost {
-      position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:var(--frost);
-      backdrop-filter:blur(1.3px);
+      background: radial-gradient(circle at 51% 32%, var(--main-bg) 0%, var(--main-bg2) 76%, #dde9fc 100%);
+      font-family:'Inter',sans-serif; color:var(--gray-dark);
     }
     #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
-    .shell { position:relative; z-index:1; width:100%; max-width:410px; margin:34px auto; padding:32px 0 32px 0; }
+    .shell { position:relative; z-index:1; width:100%; max-width:420px; margin:0 auto; padding:34px 0 32px 0; }
     /* Boas-vindas */
     .card-glass {
-      background:var(--glass),var(--frost);
+      background:var(--glass);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:44px 28px 37px 28px;
+      padding:44px 24px 35px 24px;
       text-align:center;
-      margin-bottom:34px;
-      border:2.2px solid #d7e9fc;
-      box-shadow:var(--neon);
+      margin-bottom:36px;
+      border:1.2px solid #d8e3f7;
+      box-shadow:var(--shadow-neon);
       position:relative;
       animation:fadeIn 1s both;
     }
-    @keyframes fadeIn {
-      from{opacity:0;transform:translateY(24px) scale(0.97);}
-      to{opacity:1;transform:translateY(0) scale(1);}
-    }
+    @keyframes fadeIn {from{opacity:0;transform:translateY(24px) scale(0.97);} to{opacity:1;transform:translateY(0) scale(1);}}
     .neon-title {
-      font-family:'Montserrat',sans-serif;font-size:2.1rem;font-weight:900;
+      font-family:'Montserrat',sans-serif;
+      font-size:2.2rem;
+      font-weight:900;
       color:var(--blue);
-      letter-spacing:1.3px; text-shadow:0 0 10px #51d1f6bb,0 4px 17px #3557e1bb,0 0 2px #fff;
-      margin-bottom:14px; position:relative; display:inline-block;
-      background: linear-gradient(90deg,#3557e1 5%,#51d1f6 56%,#9386f4 99%);
-      background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      letter-spacing:1.3px;
+      margin-bottom:15px;
+      text-shadow:0 2px 14px #67b9e922, 0 0 2px #fff;
+      background: linear-gradient(90deg,var(--blue) 5%, var(--cyan) 70%);
+      background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      display:inline-block;
     }
     .intro-blur {
-      font-size:1.17rem;font-weight:600;
-      background:linear-gradient(90deg,#eaf7ffcc,#f7f2ff 75%);
-      color:#3557e1;text-shadow:0 0 8px #b1e3f7b9,0 0 1px #fff;
-      border-radius:16px;
-      padding:8px 18px 9px 18px;
-      margin:11px 0 7px 0;
+      font-size:1.16rem;
+      font-weight:600;
+      background:linear-gradient(90deg,#eef4fb,#d9eaf8 75%);
+      color:var(--blue);
+      border-radius:14px;
+      padding:9px 16px 11px 16px;
+      margin:9px 0 10px 0;
       display:inline-block;
-      box-shadow:0 0 10px #51d1f61b;
+      box-shadow:0 0 6px #d6e9fa0c;
     }
     .frase-chave {
-      margin:18px 0 12px 0;
-      color:#534be8;
+      margin:16px 0 13px 0;
+      color:var(--cyan);
       font-family:'Montserrat',sans-serif;
       font-size:1.05rem;
       font-weight:700;
-      border-left:3.5px solid #51d1f6;
+      border-left:3.5px solid var(--cyan);
       padding-left:13px;
-      background:rgba(147,134,244,0.07);
-      border-radius:10px;
+      background:rgba(103,185,233,0.07);
+      border-radius:8px;
       text-align:left;
       display:inline-block;
     }
     .btn-main {
-      margin-top:32px; font-size:1.12rem; font-weight:800;
+      margin-top:28px; font-size:1.12rem; font-weight:700;
       border:none; outline:none;
-      color:#fff; background:linear-gradient(95deg,#51d1f6,#3557e1 65%);
-      padding:15px 44px; border-radius:48px; cursor:pointer;
-      box-shadow:0 0 15px #51d1f668,0 0 5px #9386f444;
+      color:#fff; background:linear-gradient(95deg,var(--blue),var(--cyan) 85%);
+      padding:15px 42px; border-radius:42px; cursor:pointer;
+      box-shadow:0 0 13px #67b9e952;
       letter-spacing:0.5px;
       position:relative; overflow:hidden; z-index:2;
-      transition:transform 0.18s, box-shadow 0.20s;
-      animation:btnPulse 2.3s ease-in-out infinite alternate;
+      transition:transform 0.17s, box-shadow 0.20s;
+      animation:btnPulse 2.4s ease-in-out infinite alternate;
     }
-    @keyframes btnPulse {
-      0%{ box-shadow:0 0 7px #51d1f688,0 0 0px #9386f488;}
-      50%{ box-shadow:0 0 15px #3557e1aa,0 0 7px #9386f4bb;}
-      100%{ box-shadow:0 0 7px #51d1f688,0 0 0px #9386f488;}
-    }
-    .btn-main:hover{ transform:translateY(-2px) scale(1.045);}
-    /* Pop-up Pensamento */
+    @keyframes btnPulse {0%{box-shadow:0 0 6px #67b9e96a;}50%{box-shadow:0 0 17px #67b9e994;}100%{box-shadow:0 0 6px #67b9e96a;}}
+    .btn-main:hover{ transform:translateY(-2px) scale(1.03);}
+    /* Quiz */
+    .typewriter{font-family:'Inter',sans-serif;font-size:1.09rem;min-height:44px;margin-bottom:13px;letter-spacing:0.04em;display:inline-block;white-space:pre-line;background:rgba(103,185,233,0.08);border-radius:10px;padding:13px 9px 11px 13px;box-shadow:0 0 2px #aac2e1;text-align:justify;}
+    .btn-group{margin-top:8px;display:flex;gap:15px;justify-content:center;}
+    .btn-opt,.btn-back{font-size:1.03rem;font-weight:700;border:none;outline:none;border-radius:40px;cursor:pointer;transition:background .14s,transform .1s;position:relative;overflow:hidden;padding:12px 0;box-shadow:0 0 8px #aac2e133;min-width:77px;}
+    .btn-opt{flex:1 1 0;background:linear-gradient(90deg,#67b9e9 30%,#3761c8 100%);color:#fff;}
+    .btn-opt:hover{background:linear-gradient(90deg,#fff,#67b9e9);color:var(--blue);transform:scale(1.04);box-shadow:0 0 11px #67b9e9bb;}
+    .btn-back{background:linear-gradient(90deg,#f3f6fc,#dde9fc 100%);color:#3761c8;margin-left:2px;min-width:61px;box-shadow:0 0 5px #67b9e931;}
+    .btn-back:hover{background:linear-gradient(90deg,#67b9e966,#3761c8);color:#fff;transform:scale(1.05);}
+    /* Robo */
+    .robot{width:104px;height:104px;margin:0 auto 14px auto;position:relative;z-index:1;border-radius:50%;background:radial-gradient(circle at 28% 35%,#e6f3fc 22%,#67b9e9 70%,#3761c8 100%);box-shadow:0 0 18px #67b9e9,0 0 11px #3761c888;animation:robotPop 1.1s both;}
+    @keyframes robotPop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .robot .eye{position:absolute;width:13px;height:13px;background:#fff;border-radius:50%;top:36%;box-shadow:0 0 7px #fff2;animation:blink 5s infinite steps(1);}
+    .robot .eye.left{left:30%;}.robot .eye.right{right:30%;}
+    @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
+    .robot .antenna{position:absolute;width:4px;height:21px;background:#fff;top:-11px;left:50%;transform:translateX(-50%);}
+    .robot .antenna::after{content:'';position:absolute;width:8px;height:8px;background:#67b9e9;border-radius:50%;top:-6px;left:-2px;box-shadow:0 0 6px #67b9e9;}
+    .robot .smile {position:absolute;width:32px;height:13px;left:50%;top:63%;transform:translate(-50%,0);border-bottom:2px solid #fff;border-radius:0 0 17px 17px;opacity:.65;}
+    /* Pensamento */
     .pop-thought-wrap {
-      position:fixed; left:16px; bottom:34px; z-index:25; width:112px; height:109px; pointer-events:none;
+      position:fixed; left:16px; bottom:36px; z-index:25; width:108px; height:99px; pointer-events:none;
       display:none; flex-direction:column; align-items:center; justify-content:flex-end;
     }
     .pop-persona {
-      width:54px;height:54px;margin-bottom:7px;
+      width:46px;height:46px;margin-bottom:5px;
     }
     .pop-bubble {
-      min-width:140px; max-width:220px;
-      padding:11px 18px 9px 17px;
-      background:linear-gradient(96deg,#e5f2fd 0 25%,#c7bbfc 100%);
-      color:#222;
-      border-radius:32px 18px 27px 17px;
-      font-size:.98rem;
-      font-weight:700;
-      box-shadow:0 4px 15px #3557e144,0 0 7px #51d1f688;
+      min-width:130px; max-width:210px;
+      padding:11px 16px 9px 14px;
+      background:linear-gradient(96deg,#f7faff 0 25%,#dde9fc 100%);
+      color:var(--blue);
+      border-radius:24px 15px 21px 15px;
+      font-size:.97rem;
+      font-weight:600;
+      box-shadow:0 4px 12px #67b9e934,0 0 6px #3761c87a;
       opacity:0;
       pointer-events:none;
-      animation:popThoughtUp 2.9s linear forwards;
+      animation:popThoughtUp 2.3s linear forwards;
       margin-bottom:8px;
       position:absolute;
-      left:54px; bottom:13px;
+      left:48px; bottom:12px;
       text-align:left;
       filter:blur(0);
       transition:filter .3s;
     }
     @keyframes popThoughtUp {
-      0%{transform:translateY(24px) scale(.96);opacity:0;}
-      13%{opacity:.9;}
-      40%{transform:translateY(-6px) scale(1.01);}
+      0%{transform:translateY(19px) scale(.97);opacity:0;}
+      13%{opacity:.8;}
+      60%{transform:translateY(-3px) scale(1.01);}
       93%{opacity:1;}
-      100%{transform:translateY(-53px) scale(.92);opacity:0;}
+      100%{transform:translateY(-34px) scale(.94);opacity:0;}
     }
-    /* ---- Restante igual (quiz, robô, manual, etc) ---- */
-    .card,.manual-card{background:var(--glass);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 22px 24px 22px;text-align:center;margin-bottom:32px;animation:fadeIn 1s both;}
-    .manual-card {background:rgba(237,243,255,0.97);border:2px solid #51d1f6;text-align:justify;color:#223663;}
-    .manual-card h2 {font-family:'Montserrat',sans-serif;font-size:1.33rem;font-weight:900;color:#3557e1;margin-bottom:3px;}
-    .manual-card .version {color:#6a62db;font-weight:600;margin-bottom:10px;}
-    .manual-card ul {list-style:none;text-align:left;margin:16px 0 20px 0;}
-    .manual-card li{display:flex;align-items:center;gap:10px;font-size:1.04rem;opacity:0;transform:translateX(-13px);transition:all .5s;padding:6px 0;}
+    /* Manual Card */
+    .manual-card {
+      background:var(--white);
+      border:1.7px solid var(--cyan);
+      border-radius:21px;
+      box-shadow:0 0 15px #67b9e91c;
+      padding:30px 18px 30px 18px;
+      position:relative;overflow:hidden;
+      margin-top:8px;
+      text-align:justify;
+      color:var(--gray-dark);
+      animation:fadeInManual .7s cubic-bezier(.7,0,.3,1);
+    }
+    @keyframes fadeInManual{from{opacity:0;transform:translateY(30px) scale(.97);} to{opacity:1;transform:translateY(0) scale(1);}}
+    .manual-title-anim {
+      text-align:center;
+      font-size:1.15rem;
+      color:var(--blue);
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      letter-spacing:.01em;
+      margin-bottom:19px;
+      min-height:40px;
+      opacity:0;
+      animation:manualAnim 1.2s .2s forwards;
+    }
+    @keyframes manualAnim{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    .manual-card h2 {
+      font-family:'Montserrat',sans-serif;
+      font-size:1.23rem;
+      font-weight:900;
+      color:var(--cyan);
+      margin-bottom:3px;
+      text-align:center;
+    }
+    .manual-card .version {
+      color:#3761c8;font-weight:700;margin-bottom:11px;text-align:center;
+    }
+    .manual-card ul {
+      list-style:none; text-align:left; margin:11px 0 16px 0; padding:0 0 0 2px;
+    }
+    .manual-card li{
+      display:flex; align-items:center; gap:9px;
+      font-size:1.01rem;
+      opacity:0; transform:translateX(-10px);
+      transition:all .5s;
+      padding:5px 0 5px 0;
+    }
     .manual-card li.visible{opacity:1;transform:translateX(0);}
-    .manual-card li::before{content:'✦';color:#51d1f6;font-size:1.12rem;text-shadow:0 0 1px #fff,0 0 3px #51d1f6;}
-    .manual-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
-    .manual-cta a{flex:1 1 47%;padding:13px 0;border-radius:44px;font-weight:700;text-decoration:none;text-align:center;font-size:1.01rem;background:linear-gradient(95deg,#51d1f6,#3557e1 75%);color:#fff;box-shadow:0 0 9px #3557e111,0 0 5px #51d1f644;transition:transform .15s,box-shadow .21s;}
-    .manual-cta a:hover{transform:scale(1.06);box-shadow:0 0 14px #3557e1bb,0 0 8px #51d1f6cc;color:#223663;}
-    .typewriter{font-family:'Inter',sans-serif;font-size:1.09rem;min-height:44px;margin-bottom:13px;letter-spacing:0.04em;display:inline-block;white-space:pre-line;background:rgba(100,120,168,0.07);border-radius:11px;padding:12px 8px 10px 12px;box-shadow:0 0 3px #51d1f625;text-align:justify;}
-    .btn-group{margin-top:8px;display:flex;gap:15px;justify-content:center;}
-    .btn-opt,.btn-back{font-size:1.03rem;font-weight:700;border:none;outline:none;border-radius:40px;cursor:pointer;transition:background .14s,transform .1s;position:relative;overflow:hidden;padding:11px 0;box-shadow:0 0 8px #3557e133;min-width:77px;}
-    .btn-opt{flex:1 1 0;background:linear-gradient(90deg,#51d1f6 30%,#3557e1 100%);color:#fff;}
-    .btn-opt:hover{background:linear-gradient(90deg,#fff,#51d1f6);color:var(--blue);transform:scale(1.04);box-shadow:0 0 11px #51d1f6bb;}
-    .btn-back{background:linear-gradient(90deg,#f3f6fc,#c6cbfa 100%);color:#223663;margin-left:2px;min-width:61px;box-shadow:0 0 5px #9386f431;}
-    .btn-back:hover{background:linear-gradient(90deg,#51d1f666,#3557e1);color:#fff;transform:scale(1.05);}
-    .robot{width:110px;height:110px;margin:0 auto 14px auto;position:relative;z-index:1;border-radius:50%;background:radial-gradient(circle at 28% 35%,#e0efff 22%,#9386f4 70%,#3557e1 100%);box-shadow:0 0 21px #51d1f6,0 0 11px #3557e1bb;animation:robotPop 1.1s both;}
-    @keyframes robotPop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
-    .robot .eye{position:absolute;width:15px;height:15px;background:#fff;border-radius:50%;top:37%;box-shadow:0 0 7px #fff4;animation:blink 5s infinite steps(1);}
-    .robot .eye.left{left:29%;}.robot .eye.right{right:29%;}
-    @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
-    .robot .antenna{position:absolute;width:4px;height:23px;background:#fff;top:-13px;left:50%;transform:translateX(-50%);}
-    .robot .antenna::after{content:'';position:absolute;width:9px;height:9px;background:#51d1f6;border-radius:50%;top:-7px;left:-3px;box-shadow:0 0 6px #51d1f6;}
-    .robot .smile {position:absolute;width:33px;height:13px;left:50%;top:64%;transform:translate(-50%,0);border-bottom:2px solid #fff;border-radius:0 0 17px 17px;opacity:.7;}
-    /* Justifica textos */
-    #qtext, .manual-card, .card-glass, #desafiosList, #featureList { text-align:justify; }
-    /* Footer */
-    footer{margin-top:14px;text-align:center;font-size:.91rem;opacity:.56;}
-    @media(max-width:480px){.shell{padding:6px 0;}.card{padding:9px 2vw;}}
+    .manual-card li::before{
+      content:'•';color:var(--cyan);font-size:1.4rem;font-weight:900;line-height:.9;
+      margin-right:6px;
+    }
+    .manual-cta{
+      display:flex;gap:9px;justify-content:center;flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .manual-cta a{
+      flex:1 1 47%;padding:12px 0;border-radius:38px;font-weight:700;text-decoration:none;text-align:center;font-size:1.01rem;background:linear-gradient(95deg,#67b9e9,#3761c8 80%);color:#fff;box-shadow:0 0 6px #aac2e144;transition:transform .15s,box-shadow .19s;
+    }
+    .manual-cta a:hover{transform:scale(1.05);box-shadow:0 0 11px #67b9e9cc;color:#3761c8;background:linear-gradient(95deg,#dde9fc,#67b9e9);}
+    footer{margin-top:17px;text-align:center;font-size:.91rem;opacity:.55;}
+    @media(max-width:480px){.shell{padding:3px 0;}.card,.manual-card{padding:8px 2vw;}}
   </style>
 </head>
 <body>
-  <div class="frost"></div>
   <div id="center">
     <div class="shell">
-      <!-- TELA 1: INTRO -->
+      <!-- Tela 1: Boas-vindas -->
       <div class="card-glass" id="screen-intro">
         <span class="neon-title">Manual do Aprovado</span>
         <div class="intro-blur">
-          A fórmula para sair do zero e conquistar o seu cargo público.
+          A forma mais inteligente de sair do zero e conquistar seu cargo público.
         </div>
         <div class="frase-chave">
           Estudar com estratégia é metade do caminho para a aprovação.
         </div>
         <button class="btn-main" id="btnStart">Quero começar agora</button>
       </div>
-      <!-- TELA 2: QUIZ -->
+      <!-- Tela 2: Quiz -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="typewriter" id="qtext"></div>
         <div class="btn-group" id="qbtns" style="display:none;">
@@ -197,7 +230,7 @@
           <button class="btn-back" onclick="quizBack()">Voltar</button>
         </div>
       </div>
-      <!-- TELA 3: ROBÔ -->
+      <!-- Tela 3: Robô -->
       <div class="card" id="screen-robo" style="display:none;">
         <div class="robot">
           <div class="eye left"></div>
@@ -205,61 +238,60 @@
           <div class="antenna"></div>
           <div class="smile"></div>
         </div>
-        <h1 style="font-size:1.12rem;font-weight:700;color:#3557e1;margin:9px 0 0 0;letter-spacing:.01em;text-align:center;">Parabéns!</h1>
+        <h1 style="font-size:1.12rem;font-weight:700;color:#3761c8;margin:9px 0 0 0;letter-spacing:.01em;text-align:center;">Parabéns!</h1>
         <p style="font-size:1.01rem;opacity:.93;margin-bottom:6px;margin-top:4px;text-align:justify;">
           Só de buscar orientação, você já está na frente de milhares de iniciantes.<br>
-          <span style="color:#51d1f6;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
+          <span style="color:#67b9e9;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
         </p>
         <button class="btn-main" onclick="showChallenges()">Quero avançar!</button>
         <button class="btn-back" onclick="backToQuiz()">Voltar</button>
       </div>
-      <!-- TELA 4: DESAFIOS -->
+      <!-- Tela 4: Desafios -->
       <div class="card-glass" id="screen-desafios" style="display:none;">
-        <div style="font-family:'Montserrat',sans-serif;font-size:1.14rem;font-weight:700;color:#3557e1;margin-bottom:11px;text-align:center;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:1.13rem;font-weight:700;color:#3761c8;margin-bottom:11px;text-align:center;">
           Antes do Manual, olha só se você já sentiu isso:
         </div>
         <div>
           <ul id="desafiosList" style="margin-bottom:0;">
-            <li>Fico perdido sem um plano de estudo claro</li>
-            <li>Desanimo quando vejo que outros já estão mais avançados</li>
-            <li>Não consigo revisar o que aprendo, esqueço rápido</li>
-            <li>Não sei como usar questões para aprender de verdade</li>
-            <li>Tenho medo de perder tempo com métodos errados</li>
+            <li>Fico perdido sem um plano de estudo claro.</li>
+            <li>Desanimo ao ver que outros já estão mais avançados.</li>
+            <li>Não consigo revisar o que aprendo e esqueço rápido.</li>
+            <li>Não sei como usar questões para aprender de verdade.</li>
+            <li>Tenho medo de perder tempo com métodos errados.</li>
           </ul>
         </div>
         <button class="btn-main" onclick="showManual()">Quero meu Manual!</button>
         <button class="btn-back" onclick="backToRobo()">Voltar</button>
       </div>
-      <!-- TELA 5: MANUAL DO APROVADO -->
+      <!-- Tela 5: Manual -->
       <div class="manual-card" id="screen-manual" style="display:none;">
+        <div class="manual-title-anim" id="manualTitleAnim"></div>
         <h2>Manual do Aprovado</h2>
         <div class="version">Versão do Iniciante</div>
         <ul id="featureList">
-          <li>Como montar um ciclo de estudos estratégico e flexível</li>
-          <li>Como fazer revisões de forma prática e contínua</li>
-          <li>Como controlar suas horas líquidas e estudar com qualidade</li>
-          <li>Como usar questões no dia a dia pra fixar e avançar</li>
-          <li>Por que não fazer resumos à mão e como grifar com inteligência</li>
-          <li>Como, quando e por que ler a lei seca</li>
-          <li>Visão de longo prazo + eficiência no curto prazo</li>
+          <li>Como montar um ciclo de estudos estratégico e flexível.</li>
+          <li>Como fazer revisões de forma prática e contínua.</li>
+          <li>Como controlar suas horas líquidas e estudar com qualidade.</li>
+          <li>Como usar questões no dia a dia para fixar e avançar.</li>
+          <li>Por que não fazer resumos à mão e como grifar com inteligência.</li>
+          <li>Como, quando e por que ler a lei seca.</li>
+          <li>Visão de longo prazo e eficiência no curto prazo.</li>
         </ul>
         <div class="manual-cta">
           <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_blank">📥 Baixar Amostra</a>
           <a class="cta-buy" href="ADQUIRIR_AGORA_LINK" target="_blank">💳 Adquirir Agora</a>
         </div>
       </div>
-      <footer>© 2025 Manual do Aprovado • Todos os direitos reservados</footer>
+      <footer>© 2025 Manual do Aprovado • Todos os direitos reservados.</footer>
       <!-- Pop-up de pensamento animado -->
       <div class="pop-thought-wrap" id="popWrap" style="display:none;">
         <svg class="pop-persona" viewBox="0 0 70 70">
-          <ellipse cx="35" cy="36" rx="29" ry="28" fill="#fff" stroke="#51d1f6" stroke-width="3"/>
-          <ellipse cx="35" cy="57" rx="17" ry="7" fill="#c9e8f7"/>
-          <ellipse cx="25" cy="37" rx="4.3" ry="6.7" fill="#fff"/>
-          <ellipse cx="45" cy="37" rx="4.3" ry="6.7" fill="#fff"/>
-          <ellipse cx="25" cy="39" rx="2" ry="2.3" fill="#3557e1"/>
-          <ellipse cx="45" cy="39" rx="2" ry="2.3" fill="#3557e1"/>
-          <ellipse cx="35" cy="47" rx="6.3" ry="3.2" fill="#fff"/>
-          <ellipse cx="35" cy="50.2" rx="4.3" ry="1.1" fill="#c6e7ff"/>
+          <ellipse cx="35" cy="36" rx="20" ry="18" fill="#fff" stroke="#67b9e9" stroke-width="2"/>
+          <ellipse cx="25" cy="37" rx="3.5" ry="5.5" fill="#fff"/>
+          <ellipse cx="45" cy="37" rx="3.5" ry="5.5" fill="#fff"/>
+          <ellipse cx="25" cy="39" rx="1.2" ry="2" fill="#3761c8"/>
+          <ellipse cx="45" cy="39" rx="1.2" ry="2" fill="#3761c8"/>
+          <ellipse cx="35" cy="47" rx="5" ry="2" fill="#dde9fc"/>
         </svg>
       </div>
     </div>
@@ -269,25 +301,25 @@
     const perguntas = [
       "Você já tentou estudar para concurso, mas ficou sem saber por onde começar de verdade?",
       "Você sente que se perde com tantas matérias e métodos diferentes?",
-      "Você já tentou montar um cronograma mas não conseguiu seguir por muito tempo?",
+      "Você já tentou montar um cronograma, mas não conseguiu seguir por muito tempo?",
       "Você tem dificuldade para revisar e acaba esquecendo o que estudou semanas depois?",
       "Já sentiu medo de escolher o caminho errado e desperdiçar meses (ou anos) de estudo?",
       "Sabe como transformar teoria em resultado usando questões e revisões inteligentes?"
     ];
     const persuasaoNao = [
-      "Muitos sentem isso e desistem cedo. Com orientação certa, é possível começar do zero!",
-      "Se organizar e saber por onde ir é 50% do caminho. O Manual mostra esse mapa.",
-      "Persistência é importante, mas método é fundamental. Você não precisa tentar sozinho!",
-      "Sem revisão estruturada, a memória falha mesmo. Aprenda a revisar em ciclos e mude o jogo!",
+      "Muitos sentem isso e desistem cedo. Com orientação certa, é possível começar do zero.",
+      "Se organizar e saber por onde ir é metade do caminho. O Manual mostra esse mapa.",
+      "Persistência é importante, mas método é fundamental. Você não precisa tentar sozinho.",
+      "Sem revisão estruturada, a memória falha mesmo. Aprenda a revisar em ciclos e mude o jogo.",
       "O maior erro é insistir sem rumo. Melhor seguir um plano já validado.",
-      "Resolver questões do jeito certo faz você evoluir muito mais rápido. Esse é o segredo dos aprovados!"
+      "Resolver questões do jeito certo faz você evoluir muito mais rápido. Esse é o segredo dos aprovados."
     ];
-    // Pensamentos motivacionais - vão aparecer SÓ nas perguntas 1, 3 e 5
+    // Pensamentos motivacionais - só nas perguntas 1, 3 e 5
     const popupIndices = [0,2,4];
     const popups = [
-      "Estabilidade e tranquilidade pra sua família.",
-      "Salários competitivos e oportunidades reais de crescimento.",
+      "Estabilidade e tranquilidade para sua família.",
       "A aprovação muda seu futuro. Você merece isso!",
+      "Salários competitivos e crescimento real."
     ];
     let perguntaIdx = 0, answeredNo = false, quizStarted = false;
 
@@ -295,7 +327,6 @@
     function showPopPersona(msg) {
       let wrap = document.getElementById('popWrap');
       wrap.style.display = "flex";
-      // Remove antigos
       let old = document.querySelector('.pop-bubble');
       if(old) old.remove();
       let bubble = document.createElement('div');
@@ -303,10 +334,9 @@
       bubble.innerHTML = msg;
       wrap.appendChild(bubble);
       setTimeout(()=>{ bubble.style.filter = 'blur(0)'; }, 60);
-      setTimeout(()=>{ bubble.remove(); wrap.style.display='none'; }, 2700);
+      setTimeout(()=>{ bubble.remove(); wrap.style.display='none'; }, 2300);
     }
     function maybePopup() {
-      // Exibe só nas perguntas-chave
       if(popupIndices.includes(perguntaIdx)) {
         let msg = popups[popupIndices.indexOf(perguntaIdx)] || popups[0];
         showPopPersona(msg);
@@ -386,7 +416,7 @@
           answeredNo = true;
           let t = document.getElementById("qtext");
           let fr = persuasaoNao[perguntaIdx]||persuasaoNao[0];
-          t.innerHTML += `<br><span style="color:#3557e1;font-weight:700;display:block;margin-top:8px;">${fr}</span>`;
+          t.innerHTML += `<br><span style="color:#3761c8;font-weight:700;display:block;margin-top:8px;">${fr}</span>`;
           maybePopup();
         } else {
           perguntaIdx++;
@@ -405,13 +435,30 @@
       hideAll();
       document.getElementById("screen-desafios").style.display = "block";
       document.querySelectorAll('#desafiosList li')
-        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*110));
+        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*100));
     }
+
+    // Apresentação animada do manual
     function showManual(){
       hideAll();
       document.getElementById("screen-manual").style.display = "block";
+      const title = document.getElementById('manualTitleAnim');
+      title.innerHTML = "";
+      setTimeout(() => {
+        let frase = "Com o Manual do Aprovado — Versão do Iniciante, você vai aprender:";
+        let i = 0;
+        function typeAnim() {
+          if(i<frase.length) {
+            title.innerHTML += frase[i];
+            i++;
+            setTimeout(typeAnim, 19+Math.random()*12);
+          }
+        }
+        typeAnim();
+      }, 250);
+      // Anima itens
       document.querySelectorAll('#featureList li')
-        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*90));
+        .forEach((li,i)=>{li.classList.remove('visible'); setTimeout(()=>li.classList.add('visible'), i*150+1100);});
     }
   </script>
 </body>
