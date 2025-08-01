@@ -7,63 +7,122 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
 :root {
-  --azul1: #1e36e9;
-  --azul2: #34d1fe;
-  --azul-hover: #1522b1;
-  --cinza-bg: #f6faff;
-  --glass: rgba(255,255,255,0.97);
-  --radius: 2.1rem;
-  --shadow: 0 12px 40px 0 rgba(34,54,233,0.11);
-  --max-card: 470px;
+  --azul1: #3386ff;
+  --azul2: #57dbff;
+  --azul3: #172345;
+  --glass: rgba(245,249,255,0.96);
+  --glass-blur: 18px;
+  --glass-border: rgba(51,134,255,0.14);
+  --shadow: 0 16px 48px 0 rgba(51,134,255,0.14);
+  --radius: 2.2rem;
+  --max-card: 440px;
+  --duration: .38s;
 }
 
 html, body {
-  background: linear-gradient(135deg, #f4f8ff 0%, #e4edfc 80%, #e3f6ff 100%);
-  font-family: 'Inter', Arial, sans-serif;
-  margin: 0;
   min-height: 100vh;
-  color: #172343;
+  background: linear-gradient(135deg, #eaf3ff 0%, #c3e6ff 100%);
+  animation: futurismo-bg 18s linear infinite alternate;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--azul3);
+  margin: 0;
+}
+
+@keyframes futurismo-bg {
+  0% { background-position: 0 0; }
+  100% { background-position: 400px 220px; }
 }
 
 body {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.futuristic-glow {
+  filter: drop-shadow(0 0 16px #57dbff77) drop-shadow(0 0 20px #3386ff60);
 }
 
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 36px 0 22px 0;
+  padding: 32px 0 16px 0;
   z-index: 2;
+  width: 100vw;
 }
 
 .header-glass {
   background: var(--glass);
   border-radius: 2rem;
-  box-shadow: 0 4px 32px #1e36e915;
-  padding: 1.5rem 2.5rem;
-  border: 1.3px solid #eaf2fa;
+  box-shadow: 0 6px 32px #3386ff15;
+  padding: 1.7rem 2.5rem;
+  border: 1.4px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  animation: glassIn .9s cubic-bezier(.61,0,.26,1);
+}
+
+@keyframes glassIn {
+  from { opacity: 0; transform: scale(.92) translateY(-50px);}
+  70% { opacity: 0.7; }
+  to   { opacity: 1; transform: scale(1) translateY(0);}
+}
+
+.logo-svg {
+  width: 46px; height: 46px;
+  display: block;
+  margin: 0 auto 7px auto;
+  filter: drop-shadow(0 0 16px #57dbff77);
+  animation: flutuaLogo 2.6s infinite alternate cubic-bezier(.43,0,.52,1);
+}
+@keyframes flutuaLogo {
+  from { transform: translateY(0);}
+  to { transform: translateY(-14px);}
 }
 
 h1 {
   font-weight: 900;
-  font-size: 1.65rem;
+  font-size: 1.48rem;
+  letter-spacing: 1.5px;
   color: var(--azul1);
-  margin: 0 0 6px 0;
-  letter-spacing: 1.4px;
+  margin: 0 0 4px 0;
   text-align: center;
+  text-shadow: 0 0 12px #57dbff22;
+  animation: glowTitle .9s cubic-bezier(.82,0,.38,1);
+}
+@keyframes glowTitle {
+  from { color: #a2e6ff; text-shadow: 0 0 80px #57dbff;}
+  to   { color: var(--azul1);}
 }
 
 .subtitle {
-  color: #24a7e3;
-  font-size: 1.06rem;
+  color: #39b4e4;
+  font-size: 1.1rem;
   font-weight: 600;
-  text-align: center;
-  display: block;
-  margin-bottom: 2px;
   letter-spacing: .02em;
+  margin-bottom: 1px;
+}
+
+.visitor-counter {
+  margin: 7px auto 0 auto;
+  font-size: 0.99rem;
+  color: #0c3d6e;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, #c5e7fd 60%, #e5f8ff 100%);
+  border-radius: 1rem;
+  padding: 3px 18px;
+  box-shadow: 0 1px 5px #3386ff13;
+  display: inline-block;
+  user-select: none;
+  animation: fadeInCounter .5s .7s backwards;
+}
+@keyframes fadeInCounter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 main {
@@ -71,7 +130,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 70vh;
 }
 
 .quiz-outer {
@@ -80,6 +138,11 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: quizIn 1.08s cubic-bezier(.6,0,.31,1);
+}
+@keyframes quizIn {
+  from { opacity: 0; transform: scale(.93) translateY(90px);}
+  to   { opacity: 1; transform: scale(1) translateY(0);}
 }
 
 .card-glass {
@@ -89,12 +152,12 @@ main {
   max-width: var(--max-card);
   width: 95vw;
   margin: 0 auto;
-  padding: 2.7rem 2rem 2.1rem 2rem;
+  padding: 2.6rem 2.1rem 1.8rem 2.1rem;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeInCard .36s cubic-bezier(.77,0,.18,1);
+  animation: fadeInCard .7s cubic-bezier(.77,0,.18,1);
 }
 
 @keyframes fadeInCard {
@@ -103,52 +166,82 @@ main {
 }
 
 .pergunta {
-  font-size: 1.20rem;
+  font-size: 1.15rem;
   font-weight: 900;
-  color: var(--azul1);
-  margin-bottom: 1.8rem;
-  line-height: 1.45;
+  color: var(--azul3);
+  margin-bottom: 1.6rem;
+  line-height: 1.52;
   width: 100%;
   text-align: center;
   min-height: 2.5rem;
+  animation: fadeInPerg .39s;
+}
+
+@keyframes fadeInPerg {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
 .opcoes {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.08rem;
   width: 100%;
   align-items: center;
   margin-bottom: 0.5rem;
+  animation: fadeInBtns .39s cubic-bezier(.8,0,.18,1);
+}
+@keyframes fadeInBtns {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
 .btn-quiz {
-  width: 92%;
-  max-width: 380px;
-  background: linear-gradient(90deg, var(--azul1) 60%, var(--azul2) 100%);
+  width: 96%;
+  max-width: 340px;
+  background: linear-gradient(90deg, var(--azul1) 70%, var(--azul2) 100%);
   color: #fff;
   border: none;
-  border-radius: 2.1rem;
-  font-size: 1.13rem;
+  border-radius: 2.3rem;
+  font-size: 1.11rem;
   font-weight: 800;
-  padding: 1.1rem 0;
+  padding: 1.05rem 0;
   margin: 0 auto;
   cursor: pointer;
-  transition: background .18s, box-shadow .18s, transform .14s;
-  box-shadow: 0 6px 24px #1e36e922;
+  box-shadow: 0 6px 28px #3386ff22;
   outline: none;
-  display: block;
   text-align: center;
-  letter-spacing: .02em;
+  position: relative;
+  overflow: hidden;
+  transition: background .16s, transform .11s, box-shadow .19s;
+  letter-spacing: 0.01em;
+}
+.btn-quiz:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  background: radial-gradient(circle, #fff8 5%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width .28s, height .28s, opacity .28s;
+}
+.btn-quiz:active:before {
+  width: 220px; height: 220px;
+  opacity: .17;
+  transition: 0s;
 }
 .btn-quiz:hover, .btn-quiz:focus {
-  background: linear-gradient(90deg, var(--azul-hover) 75%, #20e3ff 100%);
-  transform: translateY(-1.5px) scale(1.04);
-  box-shadow: 0 14px 30px #34d1fe22;
+  background: linear-gradient(90deg, #3fa8ff 85%, #b0f1ff 100%);
+  transform: translateY(-1.5px) scale(1.035);
+  box-shadow: 0 16px 44px #57dbff33;
 }
 
 .btn-quiz[disabled] {
-  background: #e7ecf6;
+  background: #dde3ee;
   color: #b5bed2;
   cursor: not-allowed;
 }
@@ -158,7 +251,7 @@ main {
   border: none;
   color: var(--azul1);
   font-weight: 900;
-  font-size: 1.06rem;
+  font-size: 1.03rem;
   margin-top: 18px;
   cursor: pointer;
   text-align: center;
@@ -168,11 +261,11 @@ main {
 input[type="text"] {
   width: 90%;
   border-radius: 1.2rem;
-  border: 1.8px solid #cfe0fa;
+  border: 1.7px solid #b9dafe;
   padding: 1.02rem 1rem;
-  margin-bottom: 1.3rem;
-  font-size: 1.08rem;
-  background: #f8fbffbb;
+  margin-bottom: 1.25rem;
+  font-size: 1.06rem;
+  background: #f7fcffbb;
   font-family: inherit;
   color: #2a3455;
   transition: border-color .19s;
@@ -182,7 +275,6 @@ input[type="text"] {
   margin-left: auto;
   margin-right: auto;
 }
-
 input[type="text"]:focus {
   border-color: var(--azul1);
   outline: 1.2px solid #e3f0ff;
@@ -195,16 +287,16 @@ ul {
   display: inline-block;
 }
 li {
-  font-size: 1.08rem;
-  margin-bottom: 0.29rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.24rem;
   line-height: 1.38;
   font-weight: 600;
-  color: #193474;
+  color: #174fa8;
 }
 
 .cta-final-expl {
-  color: var(--azul1);
-  font-size: 1.12rem;
+  color: var(--azul3);
+  font-size: 1.09rem;
   font-weight: 700;
   text-align: center;
   margin: 0 auto 2.2rem auto;
@@ -212,7 +304,7 @@ li {
   padding: 0 0.5rem 0.4rem 0.5rem;
   line-height: 1.6;
   border-radius: 1rem;
-  max-width: 440px;
+  max-width: 430px;
 }
 
 .cta-bar {
@@ -225,27 +317,28 @@ li {
 }
 .cta-final, .cta-demo {
   display: inline-block;
-  min-width: 155px;
+  min-width: 142px;
   padding: 1.09rem 0;
   border-radius: 2rem;
-  font-size: 1.13rem;
+  font-size: 1.1rem;
   font-weight: 900;
   text-decoration: none;
-  transition: background .17s, color .17s, transform .12s, box-shadow .16s;
-  letter-spacing: .03em;
+  transition: background .13s, color .13s, transform .11s, box-shadow .12s;
+  letter-spacing: .02em;
   text-align: center;
-  box-shadow: 0 4px 18px #1e36e91c;
+  box-shadow: 0 3px 11px #3386ff11;
   outline: none;
   border: none;
 }
 .cta-final {
-  background: linear-gradient(90deg, var(--azul1) 60%, var(--azul2) 100%);
+  background: linear-gradient(90deg, var(--azul1) 55%, var(--azul2) 100%);
   color: #fff;
+  box-shadow: 0 10px 36px #57dbff24;
 }
 .cta-final:hover {
-  background: linear-gradient(90deg, var(--azul-hover) 80%, #12e3ff 100%);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 10px 38px #34d1fe22;
+  background: linear-gradient(90deg, #2f71c8 90%, #68e0fd 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 38px #57dbff39;
 }
 .cta-demo {
   background: #fff;
@@ -253,21 +346,21 @@ li {
   border: 2px solid var(--azul1);
 }
 .cta-demo:hover {
-  background: #d8f3fa;
+  background: #dbf3ff;
   color: var(--azul1);
-  border-color: #24c7fd;
-  transform: translateY(-1.5px) scale(1.03);
-  box-shadow: 0 2px 11px #1e36e915;
+  border-color: #38c6ff;
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: 0 2px 7px #3386ff12;
 }
 
 #progress-bar-container {
   width: 95vw;
   max-width: var(--max-card);
   height: 8px;
-  margin: 0 auto 9px auto;
-  background: #e3eafd;
+  margin: 0 auto 10px auto;
+  background: #d3eafd;
   border-radius: 12px;
-  box-shadow: 0 1px 4px #1e36e90e;
+  box-shadow: 0 1px 4px #3386ff0e;
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -275,53 +368,54 @@ li {
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--azul1) 50%, var(--azul2) 100%);
+  background: linear-gradient(90deg, var(--azul1) 60%, var(--azul2) 100%);
   border-radius: 12px;
-  transition: width .33s cubic-bezier(.66,0,.28,1);
+  transition: width .32s cubic-bezier(.66,0,.28,1);
 }
 
 footer {
   z-index: 2;
   text-align: center;
-  font-size: 1.06rem;
-  padding: 19px 0 11px 0;
-  color: #415277;
+  font-size: 1.05rem;
+  padding: 19px 0 13px 0;
+  color: #3a426a;
   font-weight: 800;
   background: #fff8;
-  border-top: 1.4px solid #e3eafd;
-  box-shadow: 0 -2px 16px #1e36e911;
+  border-top: 1.2px solid #e3eafd;
+  box-shadow: 0 -2px 10px #3386ff0d;
   letter-spacing: .01em;
 }
 @media (max-width: 650px) {
-  .header-glass {
-    padding: 1.3rem 1vw;
-    font-size: 1em;
-  }
+  .header-glass { padding: 1.1rem 3vw; }
   .card-glass, #progress-bar-container {
-    margin-top: 6vw;
-    margin-bottom: 7vw;
-    min-width: 97vw;
+    min-width: 98vw;
     max-width: 99vw;
-    border-radius: 2.2rem;
-    padding: 6vw 2vw 6vw 2vw;
+    border-radius: 2.1rem;
+    padding: 7vw 2vw 7vw 2vw;
   }
-  .cta-bar {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .pergunta {
-    font-size: 1.06rem;
-  }
+  .cta-bar { flex-direction: column; gap: 1rem; }
+  .pergunta { font-size: 1.01rem; }
 }
   </style>
 </head>
 <body>
   <header>
     <div class="header-glass">
-      <div>
-        <h1>Manual do Aprovado</h1>
-        <span class="subtitle">Diagnóstico Inteligente</span>
-      </div>
+      <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#3386ff"/><stop offset="1" stop-color="#57dbff"/>
+          </linearGradient>
+        </defs>
+        <circle cx="30" cy="30" r="28" fill="url(#g1)" opacity=".18"/>
+        <path d="M16 44V18a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v26l-14-5-14 5z" fill="url(#g1)" stroke="#3386ff" stroke-width="2.3"/>
+        <circle cx="23" cy="24" r="2" fill="#fff" />
+        <circle cx="30" cy="24" r="2" fill="#fff" />
+        <circle cx="37" cy="24" r="2" fill="#fff" />
+      </svg>
+      <h1 class="futuristic-glow">Manual do Aprovado</h1>
+      <span class="subtitle">Diagnóstico Inteligente</span>
+      <div class="visitor-counter" id="counter"></div>
     </div>
   </header>
   <main>
@@ -336,7 +430,19 @@ footer {
     © 2025 Manual do Aprovado
   </footer>
   <script>
-    // FLUXO (com explicação do manual no final e CTA após convencimento!)
+    // CONTADOR DE VISITAS (simula visitas)
+    function startCounter() {
+      let base = 392 + Math.floor(Math.random()*16);
+      let el = document.getElementById('counter');
+      let now = base + Math.floor(performance.now()/3700);
+      el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje`;
+      setInterval(()=>{
+        now++;
+        el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje`;
+      }, 6200);
+    }
+
+    // FLUXO DO QUIZ
     const steps = [
       {
         id: 0,
@@ -356,7 +462,7 @@ footer {
       },
       {
         id: 2,
-        question: "Fique tranquilo(a), você não está sozinho(a)! Mais de 80% dos iniciantes sentem o mesmo.<br><br>Qual seu maior desafio atualmente?",
+        question: "Qual é o seu maior desafio hoje?",
         options: [
           { text: "Não tenho rotina de estudos", next: 5 },
           { text: "Não reviso direito", next: 6 },
@@ -374,7 +480,7 @@ footer {
       },
       {
         id: 5,
-        question: "Estudar sem rotina é como correr sem direção.<br><br>Montar um ciclo de estudos é o divisor de águas para quem quer sair do zero e realmente evoluir. Você já tentou revisar de verdade o que estudou?",
+        question: "Montar um ciclo de estudos é o divisor de águas para quem quer sair do zero e realmente evoluir. <br>Você já tentou revisar de verdade o que estudou?",
         options: [
           { text: "Sim, mas não fixo nada", next: 6 },
           { text: "Nunca tentei revisar", next: 6 }
@@ -382,7 +488,7 @@ footer {
       },
       {
         id: 6,
-        question: "Revisão é o maior segredo para a memória de longo prazo.<br><br>Você costuma resolver questões TODO DIA ou só quando sobra tempo?",
+        question: "Revisão é o segredo da memória de longo prazo. <br>Você resolve questões TODO DIA ou só quando sobra tempo?",
         options: [
           { text: "Todo dia", next: 10 },
           { text: "Só às vezes", next: 10 },
@@ -391,7 +497,7 @@ footer {
       },
       {
         id: 7,
-        question: "Errar na escolha dos materiais é uma das maiores causas de reprovação.<br><br>Hoje você se sente seguro(a) com o material que usa?",
+        question: "Errar na escolha dos materiais é uma das maiores causas de reprovação. <br>Hoje você se sente seguro(a) com o material que usa?",
         options: [
           { text: "Sim, seguro(a)", next: 11 },
           { text: "Tenho dúvidas", next: 11 }
@@ -399,7 +505,7 @@ footer {
       },
       {
         id: 8,
-        question: "A falta de clareza na área de foco faz você rodar em círculos.<br><br>Já definiu um cargo ou área dos seus sonhos?",
+        question: "A falta de clareza na área de foco faz você rodar em círculos. <br>Já definiu um cargo ou área dos seus sonhos?",
         options: [
           { text: "Já defini", next: 12 },
           { text: "Ainda não", next: 12 }
@@ -407,7 +513,7 @@ footer {
       },
       {
         id: 9,
-        question: "Perfeito!<br>Você já faz revisões com estratégia e resolve questões todo dia?",
+        question: "Perfeito! <br>Você já faz revisões com estratégia e resolve questões todo dia?",
         options: [
           { text: "Sim, faço tudo", next: 11 },
           { text: "Falta revisão", next: 6 },
@@ -416,7 +522,7 @@ footer {
       },
       {
         id: 10,
-        question: "Resolver questões é o que faz o conteúdo grudar de verdade.<br><br>Já definiu uma área/cargo para focar?",
+        question: "Resolver questões é o que faz o conteúdo grudar. <br>Já definiu uma área/cargo para focar?",
         options: [
           { text: "Já tenho", next: 12 },
           { text: "Ainda não", next: 12 }
@@ -424,7 +530,7 @@ footer {
       },
       {
         id: 11,
-        question: "Show!<br>Última pergunta: você já definiu área/cargo e sabe exatamente o que vai cair na sua prova?",
+        question: "Show! <br>Você já sabe exatamente o que vai cair na sua prova?",
         options: [
           { text: "Já sei", next: 13 },
           { text: "Tenho dúvida ainda", next: 13 }
@@ -445,19 +551,19 @@ footer {
             É o atalho para quem quer sair do básico, parar de rodar em círculos e estudar com clareza, direção e estratégia.<br>
             Você vai aprender:
             <ul>
-              <li>Como montar um ciclo de estudos de verdade</li>
-              <li>Revisar com inteligência, sem enrolação</li>
-              <li>Escolher materiais certos para sua realidade</li>
-              <li>Definir sua área/foco com segurança</li>
-              <li>Como criar hábitos de resolução de questões que mudam seu resultado</li>
+              <li>Como montar um ciclo de estudos eficiente.</li>
+              <li>Como revisar com inteligência, sem enrolação.</li>
+              <li>Como escolher materiais certos para sua realidade.</li>
+              <li>Como definir sua área/foco com segurança.</li>
+              <li>Como criar hábitos de resolução de questões que mudam seu resultado.</li>
             </ul>
             <b>Bônus:</b> Dicas práticas, modelos prontos e apoio direto para iniciantes.
           </div>
           <div class="cta-bar">
-            <a href="LINK_KIWIFY" class="cta-final" target="_blank">ADQUIRIR AGORA</a>
-            <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">VER AMOSTRA</a>
+            <a href="LINK_KIWIFY" class="cta-final" target="_blank">Adquirir Agora</a>
+            <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">Ver Amostra</a>
           </div>
-          <div style="color:#217; margin-top:1.3rem;font-size:1.04rem">
+          <div style="color:#217; margin-top:1.2rem;font-size:1.03rem">
             Dê o próximo passo inteligente e estude como quem já foi aprovado.
           </div>
         `,
@@ -549,6 +655,7 @@ footer {
     window.onload = () => {
       renderStep(0);
       document.getElementById("quiz-card").classList.add("show");
+      startCounter();
     };
   </script>
 </body>
