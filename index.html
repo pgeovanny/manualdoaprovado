@@ -1,69 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual do Aprovado | Página de Vendas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manual do Aprovado - Diagnóstico Interativo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="background"></div>
   <header>
-    <div class="container header-container">
-      <span class="logo">📘</span>
-      <h1>MANUAL DO APROVADO</h1>
+    <div class="header-glass">
+      <span class="avatar">📘</span>
+      <h1>Manual do Aprovado</h1>
+      <span class="subtitle">Diagnóstico Interativo</span>
     </div>
   </header>
   <main>
-    <section class="hero">
-      <h2>Pare de estudar errado!</h2>
-      <p>O método direto ao ponto que já APROVOU em concursos reais.<br>
-      <span class="destaque">Transforme sua rotina e chegue à aprovação mais rápido.</span></p>
-      <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO GARANTIR O MEU!</a>
-      <p class="preco">Apenas <b>R$ XX,90</b> (promoção de lançamento)</p>
-    </section>
-    <section class="beneficios">
-      <h3>O que você vai receber:</h3>
-      <ul>
-        <li>✔️ Método validado por aprovados</li>
-        <li>✔️ Ciclo de estudos prático (modelo preenchível)</li>
-        <li>✔️ Revisão inteligente (sem enrolação)</li>
-        <li>✔️ Como usar questões para aprender de verdade</li>
-        <li>✔️ Indicações de sites e apps grátis</li>
-        <li>✔️ Guia para escolher a área certa pra VOCÊ</li>
-        <li>✔️ Estratégia para acelerar a aprovação</li>
-      </ul>
-    </section>
-    <section class="depoimento">
-      <blockquote>
-        <p>“Comecei a aplicar o método do Manual e, em 2 meses, já senti diferença real. Estudar ficou mais leve e finalmente vi progresso!”</p>
-        <cite>— Concurseiro(a) Real</cite>
-      </blockquote>
-    </section>
-    <section class="faq">
-      <h3>Perguntas frequentes</h3>
-      <details>
-        <summary>O Manual serve pra qualquer concurso?</summary>
-        <p>Sim! O método é adaptável para concursos de nível médio ou superior, em qualquer área.</p>
-      </details>
-      <details>
-        <summary>É digital? Vou receber na hora?</summary>
-        <p>Sim! Após a confirmação do pagamento, o Manual é enviado no seu e-mail/WhatsApp em minutos.</p>
-      </details>
-      <details>
-        <summary>Tem suporte caso eu tenha dúvidas?</summary>
-        <p>Tem sim! É só chamar no WhatsApp que eu te ajudo pessoalmente.</p>
-      </details>
-    </section>
-    <section class="cta-section">
-      <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO GARANTIR O MEU AGORA!</a>
-    </section>
+    <div class="card-glass" id="quiz-card">
+      <!-- Fluxo renderizado aqui -->
+    </div>
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
   </main>
   <footer>
-    <div class="container footer-container">
-      <p>© 2025 Manual do Aprovado | Feito por Paulo Geovanny</p>
-      <p><a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a></p>
-    </div>
+    <span>© 2025 Manual do Aprovado</span>
+    <a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a>
   </footer>
-</body>
-</html>
+  <script>
+    // ================= FLUXO LÓGICO ======================
+    const steps = [
+      // STEP 0: Nome
+      {
+        id: 0,
+        question: "Antes de começar: qual seu nome?",
+        type: "input",
+        inputPlaceholder: "Digite seu nome aqui",
+        next: 1,
+      },
+      // STEP 1: PROBLEMA CENTRAL
+      {
+        id: 1,
+        question: (state) => `Olá, ${state.nome || "concurseiro(a)"}! Você sente que estuda muito, mas não vê evolução real nos seus resultados?`,
+        options: [
+          { text: "Sim, sinto isso", next: 2 },
+          { text: "Não, estou progredindo", next: 10 },
+        ],
+      },
+      // STEP 2: Tentou mudar método?
+      {
+        id: 2,
+        question: "Você já tentou mudar o método de estudo pra resolver esse problema?",
+        options: [
+          { text: "Já tentei, mas não adiantou", next: 3 },
+          { text: "Nunca tentei", next: 4 },
+        ],
+      },
+      // STEP 3: Tem um plano CLARO?
+      {
+        id: 3,
+        feedback: "Entendi. Às vezes o problema está no método, não só no esforço.",
+        question: "Hoje, você segue um plano claro de estudos (como ciclo, rotina, planejamento)?",
+        options: [
+          { text: "Sim, tenho um plano", next: 5 },
+          { text: "Não, estudo meio perdido", next: 6 },
+        ],
+      },
+      // STEP 4: Organiza estudo de alguma forma?
+      {
+        id: 4,
+        feedback: "Quase todo mundo começa tentando na força bruta, sem método. Mas há solução!",
+        question: "Hoje, você organiza seus estudos de alguma forma, ou só vai fazendo o que dá?",
+        options: [
+          { text: "Tenho alguma organização", next: 5 },
+          { text: "Não, faço tudo sem ordem", next: 6 },
+        ],
+      },
+      // STEP 5: Faz revisões realmente eficientes?
+      {
+        id: 5,
+        feedback: "Ótimo! Ter um plano já é metade do caminho. Agora, me diz:",
+        question: "Você revisa o conteúdo de forma realmente eficiente, sem bagunça?",
+        options: [
+          { text: "Sim, reviso bem", next: 7 },
+          { text: "Não, revisão é problema pra mim", next: 7 },
+        ],
+      },
+      // STEP 6: O caos...
+      {
+        id: 6,
+        feedback: "Tá tudo bem, muita gente começa assim! Mas olha só:",
+        question: "Você já ouviu falar em Ciclo de Estudos (o método que mais aprova hoje)?",
+        options: [
+          { text: "Já ouvi, mas nunca usei", next: 7 },
+          { text: "Nunca ouvi falar", next: 7 },
+        ],
+      },
+      // STEP 7: Questões
+      {
+        id: 7,
+        feedback: "Questão polêmica entre os iniciantes...",
+        question: "Você resolve questões TODO DIA ou só quando sobra tempo?",
+        options: [
+          { text: "Todo dia!", next: 8 },
+          { text: "Só quando dá", next: 8 },
+          { text: "Quase nunca faço questões", next: 8 },
+        ],
+      },
+      // STEP 8: Dúvida sobre material
+      {
+        id: 8,
+        feedback: "E na hora de escolher material para estudar?",
+        question: "Você se sente seguro(a) ou fica perdido(a) com tanta opção de apostilas, PDFs, videoaulas?",
+        options: [
+          { text: "Consigo escolher bem", next: 9 },
+          { text: "Fico totalmente perdido(a)", next: 9 },
+        ],
+      },
+      // STEP 9: Definiu área/objetivo?
+      {
+        id: 9,
+        question: "Você já definiu sua área ou cargo dos sonhos, ou ainda está meio perdido(a)?",
+        options: [
+          { text: "Já defini", next: "final" },
+          { text: "Ainda estou meio perdido(a)", next: "final" },
+        ],
+      },
+      // STEP 10: Usuário que está progredindo
+      {
+        id: 10,
+        feedback: "Excelente! Mesmo assim, deixa eu perguntar mais algumas coisas:",
+        question: "Você já foi aprovado em algum concurso ou ainda está na luta?",
+        options: [
+          { text: "Já fui aprovado", next: "final_pro" },
+          { text: "Ainda não fui aprovado", next: 11 },
+        ],
+      },
+      // STEP 11: Usuário progredindo mas sem aprovação
+      {
+        id: 11,
+        question: "Você sente que poderia avançar ainda mais se tivesse uma rotina mais clara, revisão eficiente e um método pronto?",
+        options: [
+          { text: "Sim, acho que sim", next: "final" },
+          { text: "Não, já estou satisfeito", next: "final_pro" },
+        ],
+      },
+      // ==== FINAIS ====
+      // FINAL: Manual como solução natural
+      {
+        id: "final",
+        type: "final",
+        message: (state) => `
+          <div class="final-mensagem">
+            <h2>Diagnóstico do seu estudo</h2>
+            <p>${state.nome ? state.nome + "," : ""} analisando suas respostas, percebo que você tem exatamente os desafios que mais impedem a aprovação em concursos:</p>
+            <ul>
+              ${stateStorageToList(state)}
+            </ul>
+            <p><b>O Manual do Aprovado – Versão do Iniciante</b> resolve de forma PRÁTICA todos esses pontos. Ele não é mais um PDF genérico: é um roteiro testado, validado, sem enrolação, direto para quem está começando do zero ou se sente travado.</p>
+            <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO RECEBER O MEU MANUAL</a>
+            <p class="mini">Ou siga nosso conteúdo no <a href="https://instagram.com/pg_concursos_" target="_blank">Instagram</a>.</p>
+          </div>
+        `,
+      },
+      // FINAL: Usuário já aprovado e satisfeito
+      {
+        id: "final_pro",
+        type: "final",
+        message: (state) => `
+          <div class="final-mensagem">
+            <h2>Parabéns pela conquista!</h2>
+            <p>${state.nome ? state.nome + "," : ""} é muito bom saber que você já trilhou parte do caminho! Se quiser otimizar ainda mais, ajudar amigos, ou avançar para cargos maiores, o Manual do Aprovado pode ser um aliado. 😉</p>
+            <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">CONHECER O MANUAL</a>
+            <p class="mini">Acompanhe também no <a href="https://instagram.com/pg_concursos_" target="_blank">Instagram</a>.</p>
+          </div>
+        `,
+      },
+    ];
+
+    // ==== RESUMO DINÂMICO PARA O FINAL ====
+    function stateStorageToList(state) {
+      let lista = [];
+      if (state[1] === 0) lista.push("<li>• Falta evolução real nos estudos</li>");
+      if (state[2] === 0) lista.push("<li>• Tentou vários métodos, sem resultado</li>");
+      if (state[3] === 1 || state[4] === 1 || state[6] === 1) lista.push("<li>• Falta organização e plano de estudos eficiente</li>");
+      if (state[5] === 1) lista.push("<li>• Revisão pouco eficiente</li>");
+      if (state
