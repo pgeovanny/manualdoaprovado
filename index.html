@@ -18,7 +18,7 @@
     *{box-sizing:border-box;}
     body,html{margin:0;padding:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);}
     a{color:inherit;text-decoration:none;}
-    button{font-family:inherit;}
+    button{font-family:inherit;cursor:pointer;}
     #wrapper{max-width:420px;margin:0 auto;padding:24px;}
     .screen{display:none;}
     .active{display:block;}
@@ -28,18 +28,19 @@
     h2{font-size:1.3rem;}
     .badge{display:inline-block;background:var(--accent);color:#fff;padding:4px 12px;border-radius:8px;font-weight:700;margin:12px auto;}
     .subtitle{font-size:1rem;text-align:center;margin:16px 0;line-height:1.4;}
-    .btn-main{width:100%;padding:14px;border:none;border-radius:24px;background:linear-gradient(90deg,var(--accent),var(--accent-light));color:#fff;font-weight:700;font-size:1.05rem;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s;}
+    .btn-main{width:100%;padding:14px;border:none;border-radius:24px;background:linear-gradient(90deg,var(--accent),var(--accent-light));color:#fff;font-weight:700;font-size:1.05rem;box-shadow:var(--shadow);transition:transform .2s;}
     .btn-main:hover{transform:scale(1.02);}
+    .small{font-size:.85rem;text-align:center;margin:14px 0;color:rgba(35,50,65,0.6);}
     /* Quiz */
     .progress{height:4px;width:100%;background:rgba(42,107,186,0.15);border-radius:2px;overflow:hidden;margin-bottom:12px;}
     .progress-inner{height:100%;width:0;background:var(--accent);transition:width .3s;}
     .question{font-size:1.05rem;min-height:48px;line-height:1.4;margin:16px 0;}
-    .btn-group{display:flex;gap:8px;justify-content:center;}
-    .btn-sim{flex:1;padding:10px;border:none;border-radius:20px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:background .2s;}
-    .btn-sim:hover{background:var(--accent-light);}
-    .btn-nao{flex:1;padding:10px;border:none;border-radius:20px;background:var(--accent-light);color:#fff;font-weight:600;cursor:pointer;}
-    .btn-back{flex:1;padding:10px;border:1px solid var(--accent);border-radius:20px;background:#fff;color:var(--accent);cursor:pointer;}
-    .persuasion{background:rgba(42,107,186,0.1);border-left:4px solid var(--accent);padding:12px;margin:16px 0;border-radius:8px;font-size:0.95rem;line-height:1.4;}
+    .btn-group{display:flex;gap:8px;justify-content:center;margin-bottom:12px;}
+    .btn-sim{flex:1;padding:10px;border:none;border-radius:20px;background:var(--accent);color:#fff;font-weight:600;}
+    .btn-nao{flex:1;padding:10px;border:none;border-radius:20px;background:var(--accent-light);color:#fff;font-weight:600;}
+    .btn-back{flex:1;padding:10px;border:1px solid var(--accent);border-radius:20px;background:#fff;color:var(--accent);}
+    .persuasion{display:none;background:rgba(42,107,186,0.1);border-left:4px solid var(--accent);padding:12px;margin:16px 0;border-radius:8px;font-size:.95rem;line-height:1.4;}
+    .persuasion .btn-group {margin:12px 0 0;}
     /* Desafios */
     .list {list-style:none;padding:0;margin:12px 0;}
     .list li{position:relative;padding-left:20px;margin:8px 0;}
@@ -47,16 +48,15 @@
     /* Manual */
     .capamock{width:90px;height:130px;background:linear-gradient(125deg,#38C1F3,#fff);border-radius:10px;margin:0 auto 14px;}
     .man-list{list-style:none;padding:0;margin:12px 0;}
-    .man-list li{position:relative;padding-left:20px;margin:8px 0;}
+    .man-list li{position:relative;padding-left:20px;margin:8px 0;opacity:0;transition:opacity .5s;}
     .man-list li::before{content:'✔';position:absolute;left:0;color:var(--accent);}
     .man-sub{font-size:1rem;text-align:center;margin:12px 0;}
     .cta-group{display:flex;gap:12px;margin-top:16px;}
     .cta-group a{flex:1;text-align:center;padding:12px 0;border-radius:20px;color:#fff;font-weight:600;font-size:1rem;}
     .cta-sample{background:var(--accent-light);}
     .cta-buy{background:var(--accent);}
-    .btn-finish{margin:16px auto 0;padding:10px 0;border:none;border-radius:20px;background:#fff;color:var(--accent);border:1px solid var(--accent);cursor:pointer;display:block;width:80%;font-weight:600;}
+    .btn-finish{margin:16px auto 0;padding:10px 0;border:none;border-radius:20px;background:#fff;color:var(--accent);border:1px solid var(--accent);display:block;width:80%;font-weight:600;}
     .btn-finish:hover{background:var(--accent);color:#fff;}
-    .small{font-size:.85rem;text-align:center;margin:14px 0;color:rgba(35,50,65,0.6);}
   </style>
 </head>
 <body>
@@ -70,7 +70,6 @@
         <button class="btn-main" onclick="startQuiz()">Começar</button>
       </div>
     </div>
-
     <!-- 2. Quiz -->
     <div id="screen-quiz" class="screen">
       <div class="card">
@@ -81,11 +80,16 @@
           <button class="btn-nao" onclick="answer('nao')">Não</button>
           <button class="btn-back" onclick="quizBack()">Voltar</button>
         </div>
-        <div id="persuasion" class="persuasion" style="display:none;"></div>
+        <div id="persuasion" class="persuasion">
+          <div id="persuadeTxt"></div>
+          <div class="btn-group">
+            <button class="btn-sim" onclick="advanceAfterNo()">Avançar</button>
+            <button class="btn-back" onclick="quizBack()">Voltar</button>
+          </div>
+        </div>
         <div class="small" id="visit-quiz"></div>
       </div>
     </div>
-
     <!-- 3. Desafios -->
     <div id="screen-dor" class="screen">
       <div class="card">
@@ -100,7 +104,6 @@
         <button class="btn-back" onclick="quizBack()">Voltar</button>
       </div>
     </div>
-
     <!-- 4. Manual -->
     <div id="screen-manual" class="screen">
       <div class="card">
@@ -130,19 +133,17 @@
   <script>
     // Visitantes
     fetch('https://api.countapi.xyz/hit/manualdoaprovado/iniciante')
-      .then(r=>r.json()).then(d=>{
-        document.getElementById('visit-quiz').innerText = `👀 ${d.value} visitantes`;
-        document.getElementById('visit-manual').innerText = `👀 ${d.value} visitantes`;
+      .then(res=>res.json()).then(data=>{
+        document.getElementById('visit-quiz').innerText = `👀 ${data.value} visitantes`;
+        document.getElementById('visit-manual').innerText = `👀 ${data.value} visitantes`;
       });
 
-    // Fluxo
     const screens = ['screen-intro','screen-quiz','screen-dor','screen-manual'];
     function show(id){
       screens.forEach(s=>document.getElementById(s).classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    // Quiz lógica
     const qs = [
       "Você já se perdeu sem saber por onde começar?",
       "Tem dificuldade para revisar e esquece o que estudou?",
@@ -157,35 +158,45 @@
     ];
     let idx = 0;
     function startQuiz(){
-      idx=0;
-      document.getElementById('persuasion').style.display='none';
+      idx = 0;
+      document.getElementById('persuasion').style.display = 'none';
       showQuestion();
       show('screen-quiz');
     }
     function showQuestion(){
       document.getElementById('qtext').innerText = qs[idx];
       document.getElementById('prog').style.width = ((idx/qs.length)*100)+'%';
-      document.getElementById('qbtns').style.display='flex';
+      document.getElementById('qbtns').style.display = 'flex';
     }
     function answer(res){
-      if(res==='nao'){
-        const p = document.getElementById('persuasion');
-        p.innerText = ps[idx];
-        p.style.display = 'block';
-        document.getElementById('qbtns').style.display='none';
+      if(res === 'nao'){
+        document.getElementById('persuadeTxt').innerText = ps[idx];
+        document.getElementById('persuasion').style.display = 'block';
+        document.getElementById('qbtns').style.display = 'none';
       } else {
         idx++;
-        if(idx<qs.length){
-          document.getElementById('persuasion').style.display='none';
+        if(idx < qs.length){
+          document.getElementById('persuasion').style.display = 'none';
           showQuestion();
         } else {
           show('screen-dor');
         }
       }
     }
+    function advanceAfterNo(){
+      document.getElementById('persuasion').style.display = 'none';
+      idx++;
+      if(idx < qs.length){
+        showQuestion();
+      } else {
+        show('screen-dor');
+      }
+    }
     function quizBack(){
-      if(idx>0){
-        idx--; document.getElementById('persuasion').style.display='none'; showQuestion();
+      if(idx > 0){
+        idx--;
+        document.getElementById('persuasion').style.display = 'none';
+        showQuestion();
       } else {
         show('screen-intro');
       }
@@ -193,11 +204,13 @@
     function showManual(){
       show('screen-manual');
       document.querySelectorAll('#featureList li').forEach((li,i)=>{
-        li.style.opacity=0;
-        setTimeout(()=>{li.style.transition='opacity .5s';li.style.opacity=1;}, i*120);
+        li.style.opacity = 0;
+        setTimeout(()=>{ li.style.transition='opacity .5s'; li.style.opacity = 1; }, i * 120);
       });
     }
-    function restart(){ show('screen-intro'); }
+    function restart(){
+      show('screen-intro');
+    }
   </script>
 </body>
 </html>
