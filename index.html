@@ -4,8 +4,379 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Manual do Aprovado - Diagnóstico Interativo</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --azul1: #232fff;
+  --azul2: #3ad3fc;
+  --azul-escuro: #091146;
+  --cinza-bg: #f4f7fe;
+  --glass: rgba(255,255,255,0.94);
+  --glass-blur: 16px;
+  --shadow: 0 8px 48px 0 rgba(35, 73, 230, 0.19);
+  --radius: 2.4rem;
+  --max-card: 480px;
+  --duration: .33s;
+}
+
+html, body {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #e4edfc 0%, #eef3fd 60%, #c9e0fa 100%);
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--azul-escuro);
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 75% 18%, #3ad3fc44 0 27%, transparent 50%),
+              radial-gradient(circle at 15% 90%, #232fff1a 0 32%, transparent 60%);
+  pointer-events: none;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2vw;
+  margin-bottom: 2vw;
+  z-index: 2;
+}
+
+.header-glass {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--glass);
+  border-radius: 2rem;
+  box-shadow: 0 2px 16px #232fff1a;
+  padding: 1.5rem 2.5rem 1.3rem 2.5rem;
+  border: 1.5px solid #ebf1fa;
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.avatar {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--azul1) 70%, var(--azul2) 100%);
+  color: #fff;
+  border-radius: 50%;
+  padding: 9px 14px;
+  margin-right: 6px;
+  box-shadow: 0 0 0 6px #3ad3fc1a;
+  border: 2.2px solid #fff;
+  filter: drop-shadow(0 6px 20px #232fff1a);
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 1.45rem;
+  letter-spacing: 2px;
+  margin: 0;
+  color: var(--azul1);
+}
+
+.subtitle {
+  font-size: 1.04rem;
+  font-weight: 600;
+  color: #4782ff;
+  margin-left: 12px;
+  letter-spacing: 0.04em;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+  padding-bottom: 4vw;
+}
+
+.quiz-outer {
+  width: 100vw;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-glass {
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  max-width: var(--max-card);
+  width: 98vw;
+  margin: 0 auto;
+  padding: 3.2rem 2.2rem 2.4rem 2.2rem;
+  min-height: 340px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  animation: fadeInCard var(--duration) cubic-bezier(.77,0,.18,1);
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(44px) scale(.95);}
+  to { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+.avatar-float {
+  position: absolute;
+  top: -38px; right: -24px;
+  width: 60px; height: 60px;
+  background: linear-gradient(120deg,var(--azul1) 60%, var(--azul2) 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 26px #232fff39;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  border: 2.2px solid #fff;
+  z-index: 3;
+  animation: flutua 2.3s infinite cubic-bezier(.59,0,.38,1) alternate;
+}
+@keyframes flutua {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(-10px);}
+}
+
+.pergunta {
+  font-size: 1.32rem;
+  font-weight: 900;
+  color: var(--azul-escuro);
+  margin-bottom: 2.1rem;
+  line-height: 1.5;
+  width: 100%;
+  text-align: center;
+  min-height: 2.7rem;
+  animation: fadeInPerg var(--duration);
+}
+
+@keyframes fadeInPerg {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  animation: fadeInBtns var(--duration) cubic-bezier(.8,0,.18,1);
+}
+@keyframes fadeInBtns {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.btn-quiz {
+  width: 96%;
+  max-width: 380px;
+  background: var(--azul-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 2.2rem;
+  font-size: 1.14rem;
+  font-weight: 800;
+  padding: 1.12rem 0;
+  box-shadow: 0 6px 30px 0 #232fff25;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: background .21s, transform .12s, box-shadow .22s;
+  outline: none;
+  letter-spacing: 0.01em;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.1rem;
+}
+
+.btn-quiz:active,
+.btn-quiz:focus {
+  background: linear-gradient(90deg, #0d1a4f 85%, #39f1ff 100%);
+  transform: scale(.97);
+  box-shadow: 0 2px 8px 0 #232fff33;
+}
+
+.btn-quiz[disabled] {
+  background: #dde1f6;
+  color: #a8b4cb;
+  cursor: not-allowed;
+}
+
+.btn-voltar {
+  background: none;
+  border: none;
+  color: var(--azul-escuro);
+  font-weight: 800;
+  font-size: 1.09rem;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  letter-spacing: .02em;
+  display: block;
+  outline: none;
+}
+
+input[type="text"] {
+  width: 92%;
+  border-radius: 1.3rem;
+  border: 2px solid #b3c3ed;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.6rem;
+  font-size: 1.08rem;
+  background: #f6f8ffb5;
+  font-family: inherit;
+  color: #1c236a;
+  transition: border-color .22s;
+  font-weight: 700;
+  outline: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="text"]:focus {
+  border-color: var(--azul1);
+  outline: 2px solid #c7d4f7;
+}
+
+ul {
+  margin: 1.2rem 0 0.2rem 0;
+  padding-left: 1.6em;
+  text-align: left;
+  display: inline-block;
+}
+li {
+  font-size: 1.13rem;
+  margin-bottom: 0.36rem;
+  line-height: 1.44;
+  font-weight: 600;
+  color: #1b255b;
+}
+
+.cta-bar {
+  display: flex;
+  gap: 1.1rem;
+  justify-content: center;
+  margin: 2.3rem 0 0.6rem 0;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.cta-final, .cta-demo {
+  display: inline-block;
+  min-width: 165px;
+  padding: 1.09rem 0;
+  border-radius: 2.2rem;
+  font-size: 1.17rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: background .17s, color .17s, transform .12s, box-shadow .16s;
+  letter-spacing: .03em;
+  text-align: center;
+  box-shadow: 0 6px 18px #232fff20;
+  outline: none;
+  border: none;
+}
+.cta-final {
+  background: var(--azul-gradient);
+  color: #fff;
+}
+.cta-final:hover {
+  background: linear-gradient(90deg, #091146 92%, #3ad3fc 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 38px #232fff45;
+}
+.cta-demo {
+  background: #fff;
+  color: var(--azul1);
+  border: 2px solid var(--azul1);
+}
+.cta-demo:hover {
+  background: #e7f2ff;
+  color: var(--azul1);
+  border-color: #09a9ee;
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: 0 3px 18px #232fff11;
+}
+
+#progress-bar-container {
+  width: 98vw;
+  max-width: var(--max-card);
+  height: 10px;
+  margin: 0 auto 15px auto;
+  background: #e3eafd;
+  border-radius: 12px;
+  box-shadow: 0 1px 7px #232fff0e;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #232fff 55%, #3ad3fc 100%);
+  border-radius: 12px;
+  transition: width .38s cubic-bezier(.66,0,.28,1);
+}
+
+footer {
+  z-index: 2;
+  text-align: center;
+  font-size: 1.09rem;
+  padding: 17px 0 13px 0;
+  color: #495072;
+  font-weight: 800;
+  background: #fff9;
+  border-top: 1.6px solid #e3eafd;
+  box-shadow: 0 -2px 14px #232fff12;
+  letter-spacing: .01em;
+}
+
+footer a {
+  color: var(--azul-escuro);
+  text-decoration: none;
+  font-weight: 900;
+  margin-left: 12px;
+}
+
+@media (max-width: 700px) {
+  .header-glass {
+    flex-direction: column;
+    gap: 9px;
+    padding: 11px 6vw;
+    font-size: 0.95em;
+  }
+  .card-glass, #progress-bar-container {
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+    min-width: 97vw;
+    max-width: 98vw;
+    border-radius: 2.7rem;
+    padding: 6vw 2vw 6vw 2vw;
+  }
+  .cta-bar {
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .pergunta {
+    font-size: 1.07rem;
+  }
+}
+  </style>
 </head>
 <body>
   <div class="background"></div>
@@ -17,8 +388,10 @@
     </div>
   </header>
   <main>
-    <div class="card-glass" id="quiz-card">
-      <!-- Fluxo renderizado aqui -->
+    <div class="quiz-outer">
+      <div class="card-glass" id="quiz-card">
+        <!-- Render JS -->
+      </div>
     </div>
     <div id="progress-bar-container">
       <div id="progress-bar"></div>
@@ -29,172 +402,193 @@
     <a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a>
   </footer>
   <script>
-    // ================= FLUXO LÓGICO ======================
+    // FLUXO
     const steps = [
-      // STEP 0: Nome
       {
         id: 0,
-        question: "Antes de começar: qual seu nome?",
+        question: "Antes de começar, como você gostaria de ser chamado(a)?",
         type: "input",
         inputPlaceholder: "Digite seu nome aqui",
         next: 1,
       },
-      // STEP 1: PROBLEMA CENTRAL
       {
         id: 1,
-        question: (state) => `Olá, ${state.nome || "concurseiro(a)"}! Você sente que estuda muito, mas não vê evolução real nos seus resultados?`,
+        question: (state) => `Olá, ${state.nome || "concurseiro(a)"}! Você sente que está perdido(a) nos estudos ou tem dúvidas sobre como avançar?`,
         options: [
-          { text: "Sim, sinto isso", next: 2 },
-          { text: "Não, estou progredindo", next: 10 },
+          { text: "Sim, me sinto perdido(a)", next: 2 },
+          { text: "Não, estou seguro(a)", next: 4 }
         ],
       },
-      // STEP 2: Tentou mudar método?
       {
         id: 2,
-        question: "Você já tentou mudar o método de estudo pra resolver esse problema?",
+        question: "Fique tranquilo(a), você não está sozinho(a)! A maioria dos iniciantes sente isso.<br><br>O maior erro é tentar estudar de tudo ao mesmo tempo, sem direção e método.<br><br>Você já tentou montar um ciclo de estudos (sequência flexível de matérias)?",
         options: [
-          { text: "Já tentei, mas não adiantou", next: 3 },
-          { text: "Nunca tentei, sigo estudando do meu jeito", next: 3 },
-        ],
+          { text: "Sim, mas não funcionou", next: 5 },
+          { text: "Nunca tentei", next: 5 }
+        ]
       },
-      // STEP 3: Planejamento
-      {
-        id: 3,
-        question: "Hoje você segue um planejamento claro de estudos? (ex: ciclo, rotina fixa, metas semanais)",
-        options: [
-          { text: "Tenho um plano estruturado", next: 4 },
-          { text: "Faço mais ou menos, sem rotina definida", next: 4 },
-          { text: "Não, estudo totalmente solto", next: 4 },
-        ],
-      },
-      // STEP 4: Revisão
       {
         id: 4,
-        question: "Você tem um método de revisão que funciona de verdade? (Ou sente que esquece muito rápido?)",
+        question: "Ótimo! Você já tem um ciclo de estudos organizado (exemplo: sequência de matérias, revisões e questões todo dia)?",
         options: [
-          { text: "Sim, reviso bem", next: 5 },
-          { text: "Faço revisão, mas sinto que esqueço rápido", next: 5 },
-          { text: "Não reviso quase nada", next: 5 },
-        ],
+          { text: "Sim, tenho ciclo", next: 6 },
+          { text: "Não, estudo de forma solta", next: 5 }
+        ]
       },
-      // STEP 5: Questões
       {
         id: 5,
-        question: "Resolver questões faz parte do seu dia a dia?",
+        question: "Estudar sem um ciclo é como correr sem direção. O ciclo de estudos é o divisor de águas entre quem só acumula conteúdo e quem realmente evolui.<br><br>Sabe como funciona uma boa revisão para concurso?",
         options: [
-          { text: "Sim, todo dia", next: 6 },
-          { text: "Só quando sobra tempo", next: 6 },
-          { text: "Raramente", next: 6 },
-        ],
+          { text: "Sim, sei revisar", next: 7 },
+          { text: "Não sei revisar direito", next: 8 }
+        ]
       },
-      // STEP 6: Material
       {
         id: 6,
-        question: "Você sente segurança ao escolher materiais de estudo? (PDF, videoaula, site de questões etc)",
+        question: "Você faz revisões regulares que realmente funcionam (sem confusão ou acúmulo de resumos)?",
         options: [
-          { text: "Sim, sei escolher", next: 7 },
-          { text: "Não, sempre fico na dúvida", next: 7 },
-        ],
+          { text: "Sim, reviso bem", next: 9 },
+          { text: "Não, minha revisão é ruim", next: 8 }
+        ]
       },
-      // STEP 7: Área de foco
       {
         id: 7,
-        question: "Você já escolheu a área/cargo que quer? Ou ainda está testando tudo?",
+        question: "A revisão eficaz não é repetir resumo nem decorar. É voltar aos pontos-chave e revisar sempre com base no que mais cai!<br><br>Agora, você resolve questões TODO DIA ou só quando sobra tempo?",
         options: [
-          { text: "Já sei meu foco", next: 8 },
-          { text: "Ainda não, estou perdido(a)", next: 8 },
-        ],
+          { text: "Todo dia", next: 10 },
+          { text: "Só quando sobra tempo", next: 11 },
+          { text: "Quase nunca", next: 11 }
+        ]
       },
-      // STEP 8: Diagnóstico personalizado
       {
         id: 8,
-        question: (state) => {
-          let problemas = [];
-          if (state[1] === 0) problemas.push("falta de evolução nos estudos");
-          if (state[3] !== 0) problemas.push("ausência de planejamento estruturado");
-          if (state[4] !== 0) problemas.push("revisão pouco eficaz ou inexistente");
-          if (state[5] !== 0) problemas.push("baixa prática com questões");
-          if (state[6] !== 0) problemas.push("insegurança na escolha de materiais");
-          if (state[7] !== 0) problemas.push("falta de clareza sobre o foco");
-          const nome = state.nome || "Concurseiro(a)";
-          return `
-            <strong>${nome}, veja seu diagnóstico:</strong>
-            <br><br>
-            Você enfrenta:<br>
-            <ul>
-              ${problemas.map(p => `<li>• ${p}</li>`).join('')}
-            </ul>
-            <br>
-            <b>É justamente para vencer essas barreiras que existe o Manual do Aprovado — Versão do Iniciante.</b>
-            <br><br>
-            Quer entender como o Manual pode resolver seu caso?
-          `;
-        },
+        question: "Esse é o maior gargalo dos iniciantes: revisar errado faz você esquecer tudo, mesmo estudando. O método certo é leve e eficiente.<br><br>Falando nisso, resolver questões é parte do seu dia?",
         options: [
-          { text: "Quero ver o método!", next: 9 },
-          { text: "Voltar ao início", next: 1 }
+          { text: "Sim, todo dia", next: 10 },
+          { text: "Só às vezes", next: 11 },
+          { text: "Quase nunca", next: 11 }
         ]
       },
-      // STEP 9: Apresentação do Manual
       {
         id: 9,
-        question: `
-        <strong>Como o Manual do Aprovado vai te ajudar:</strong>
-        <ul>
-          <li>✔️ Método validado, direto ao ponto</li>
-          <li>✔️ Ciclo de estudos explicado com modelos práticos</li>
-          <li>✔️ Estratégia de revisão simples e eficiente</li>
-          <li>✔️ Como usar questões para consolidar o estudo</li>
-          <li>✔️ Guia de materiais e áreas de foco</li>
-          <li>✔️ Tudo para evitar os erros que você acabou de relatar</li>
-        </ul>
-        <br>
-        <b>Bônus:</b> Suporte personalizado, dicas exclusivas e atualização para 2025.<br><br>
-        <a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO GARANTIR O MEU MANUAL!</a>
-        `,
+        question: "Ótimo! E sobre questões: você resolve de forma ativa, acompanhando o próprio desempenho e aprendendo com erros?",
         options: [
-          { text: "Voltar ao diagnóstico", next: 8 }
+          { text: "Sim, acompanho tudo", next: 12 },
+          { text: "Não, faço sem controle", next: 13 }
         ]
       },
-      // STEP 10: Caso o usuário já esteja progredindo bem
       {
         id: 10,
-        question: "Você já foi aprovado em algum concurso? Ou está estudando para sua primeira prova?",
+        question: "Excelente hábito! Você se sente seguro(a) na escolha dos materiais (PDF, videoaula, site de questões) ou fica na dúvida?",
         options: [
-          { text: "Já fui aprovado", next: 11 },
-          { text: "Ainda não, mas estou confiante", next: 12 }
+          { text: "Me sinto seguro(a)", next: 14 },
+          { text: "Sempre fico na dúvida", next: 15 }
         ]
       },
-      // STEP 11: Parabenização (aprovados)
       {
         id: 11,
-        question: (state) => `Parabéns, ${state.nome || "concurseiro(a)"}! Já passou por onde muitos querem chegar. Se quiser aperfeiçoar seu método, conhecer técnicas avançadas e acelerar novas aprovações, conheça o Manual do Aprovado.<br><br><a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO ACESSAR!</a>`,
+        question: "Resolver questões TODO DIA é o que realmente faz o conteúdo grudar. Sem isso, fica difícil evoluir de verdade.<br><br>Sobre os materiais: tem confiança nas escolhas?",
         options: [
-          { text: "Voltar ao início", next: 1 }
+          { text: "Sim, escolho bem", next: 14 },
+          { text: "Tenho dúvidas", next: 15 }
         ]
       },
-      // STEP 12: Incentivo para os confiantes
       {
         id: 12,
-        question: (state) => `${state.nome || "Concurseiro(a)"}, manter a confiança é essencial! Se quiser garantir um método sem enrolação e acelerar sua aprovação, conte com o Manual do Aprovado — feito por quem já trilhou esse caminho.<br><br><a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO COMEÇAR CERTO!</a>`,
+        question: "Top! Agora, última etapa: você já escolheu uma área/cargo específico para focar, ou ainda atira para todos os lados?",
         options: [
-          { text: "Voltar ao início", next: 1 }
+          { text: "Já tenho foco", next: 16 },
+          { text: "Ainda estou atirando pra todo lado", next: 17 }
+        ]
+      },
+      {
+        id: 13,
+        question: "Ficar só resolvendo questões sem estratégia é perder tempo. O segredo é analisar erros e acertos, sempre.<br><br>Sobre a escolha de área/cargo: você já definiu?",
+        options: [
+          { text: "Sim, já defini", next: 16 },
+          { text: "Ainda não", next: 17 }
+        ]
+      },
+      {
+        id: 14,
+        question: "Show! Para fechar: você tem clareza absoluta do que cai na prova do seu concurso-alvo, ou sente que pode estar estudando conteúdo desnecessário?",
+        options: [
+          { text: "Tenho clareza total", next: 18 },
+          { text: "Acho que perco tempo com coisa inútil", next: 17 }
+        ]
+      },
+      {
+        id: 15,
+        question: "Errar na escolha de material é um dos motivos de mais reprovação.<br>No Manual do Aprovado, você recebe indicação direta do que funciona de verdade.<br><br>Para finalizar: já escolheu uma área/cargo para focar?",
+        options: [
+          { text: "Sim, já escolhi", next: 16 },
+          { text: "Ainda estou perdido(a)", next: 17 }
+        ]
+      },
+      {
+        id: 16,
+        question: (state) => `
+          <b>${state.nome || "Concurseiro(a)"}, seu caminho está MUITO bem encaminhado!</b><br><br>
+          <span style="color:#232fff">Todo aprovado que atinge constância teve acesso a método de verdade, revisão leve e material validado.</span><br>
+          <div class="cta-bar">
+            <a href="LINK_KIWIFY" class="cta-final" target="_blank">ADQUIRIR AGORA</a>
+            <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">VER AMOSTRA</a>
+          </div>
+          <div style="font-size:1rem;margin-top:1.4rem;color:#576;">
+            Não espere cair na zona do "quase lá". O Manual do Aprovado é o atalho para chegar no objetivo sem perder anos tentando e errando sozinho.
+          </div>
+        `,
+        options: [
+          { text: "Voltar ao início", next: 0 }
+        ]
+      },
+      {
+        id: 17,
+        question: (state) => `
+          <span style="color:#232fff"><b>Está vendo como falta de direção trava tudo?</b></span><br>
+          O Manual do Aprovado foi criado pra destravar exatamente isso: foco, ciclo, revisão e escolha dos melhores materiais, direto ao ponto.<br><br>
+          <div class="cta-bar">
+            <a href="LINK_KIWIFY" class="cta-final" target="_blank">ADQUIRIR AGORA</a>
+            <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">VER AMOSTRA</a>
+          </div>
+          <div style="font-size:1rem;margin-top:1.2rem;color:#577;">
+            Baixe a amostra gratuita ou garanta já o seu. Se decidir estudar com método, a aprovação vira questão de tempo.
+          </div>
+        `,
+        options: [
+          { text: "Voltar ao início", next: 0 }
+        ]
+      },
+      {
+        id: 18,
+        question: (state) => `
+          <b>${state.nome || "Concurseiro(a)"}, você já está muito à frente da média!</b><br>
+          Que tal ter acesso ao mesmo método que já acelerou a aprovação de centenas de pessoas?<br><br>
+          <div class="cta-bar">
+            <a href="LINK_KIWIFY" class="cta-final" target="_blank">ADQUIRIR AGORA</a>
+            <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">VER AMOSTRA</a>
+          </div>
+          <div style="font-size:1rem;margin-top:1.1rem;color:#577;">
+            Evolua ainda mais e chegue mais rápido ao seu nome no Diário Oficial.
+          </div>
+        `,
+        options: [
+          { text: "Voltar ao início", next: 0 }
         ]
       }
     ];
 
-    // ================= STATE E RENDER =====================
-    let state = { nome: "", step: 0 }; // Salva respostas
-    let history = []; // Pilha para voltar
+    // STATE & RENDER
+    let state = { nome: "", step: 0 };
+    let history = [];
 
     function renderStep(stepId) {
       const container = document.getElementById("quiz-card");
       const step = steps.find(s => s.id === stepId);
       updateProgressBar(stepId);
 
-      let avatar = `<div class="avatar-float"></div>`;
+      let avatar = `<div class="avatar-float">👨‍🎓</div>`;
       let html = avatar;
-
       let question = typeof step.question === "function" ? step.question(state) : step.question;
       html += `<div class="pergunta">${question}</div>`;
 
@@ -256,13 +650,14 @@
       setTimeout(() => {
         renderStep(stepId);
         container.classList.add("show");
-      }, isBack ? 150 : 250);
+      }, isBack ? 100 : 180);
     }
 
     function updateProgressBar(stepId) {
-      const total = 9;
-      const percent = Math.min((stepId / total) * 100, 100);
-      document.getElementById("progress-bar").style.width = percent + "%";
+      const total = 18;
+      let pct = (stepId / total) * 100;
+      if (pct > 100) pct = 100;
+      document.getElementById("progress-bar").style.width = pct + "%";
     }
 
     window.onload = () => {
