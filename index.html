@@ -7,272 +7,196 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --dark: #0B132B;
-      --blue: #1E90FF;
+      --dark: #1A2138;
+      --blue: #37a2ff;
       --cyan: #30F6FF;
+      --magenta: #f233d3;
       --white: #F6F8FF;
-      --glass: rgba(255,255,255,0.10);
-      --radius: 24px;
-      --shadow: 0 8px 40px 0 rgba(30,144,255,0.14), 0 2px 8px #263b5860;
-      --neon: 0 0 12px #30f6ff,0 0 38px #1e90ff60;
-      --frost: linear-gradient(120deg,rgba(48,246,255,0.11) 20%,rgba(255,255,255,0.05) 80%);
+      --glass: rgba(255,255,255,0.13);
+      --radius: 26px;
+      --shadow: 0 8px 40px 0 rgba(30,144,255,0.11), 0 2px 8px #263b5860;
+      --neon: 0 0 14px #30f6ff,0 0 40px #37a2ff88, 0 0 6px #f233d3aa;
+      --frost: linear-gradient(120deg,rgba(48,246,255,0.16) 22%,rgba(255,255,255,0.08) 78%);
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     body,html {
       min-height:100vh; width:100vw; overflow-x:hidden;
-      background:linear-gradient(120deg,#0B132B 60%,#2367f5 100%);
-      background-size:200% 200%; animation:animBG 20s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 50% 38%,#3be8ff44 0%,#fff0 55%),
+        linear-gradient(135deg,#23296b 35%, #1A2138 75%, #242249 100%);
+      background-size:200% 200%, 100% 100%;
+      animation:bgAnim 22s ease-in-out infinite;
       font-family:'Inter',sans-serif; color:var(--white);
     }
-    @keyframes animBG {
-      0%{background-position:0% 0%;}
-      50%{background-position:100% 90%;}
-      100%{background-position:0% 0%;}
+    @keyframes bgAnim {
+      0%{background-position:51% 50%,0 0;}
+      50%{background-position:49% 60%,0 0;}
+      100%{background-position:51% 50%,0 0;}
     }
     .frost {
       position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:var(--frost),repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 0 2px,transparent 2px 10px);
+      background:var(--frost),repeating-linear-gradient(45deg,rgba(255,255,255,0.035) 0 2px,transparent 2px 10px);
       backdrop-filter:blur(1.5px);
     }
-    .shape {
-      position:absolute;border-radius:50%;filter:blur(105px);z-index:-2;
-      animation:float 8s ease-in-out infinite alternate;
-    }
-    .shape1{width:230px;height:230px;background:var(--cyan);top:9%;left:-5%;}
-    .shape2{width:310px;height:310px;background:var(--blue);top:65%;left:68%;animation-duration:10s;}
-    @keyframes float{to{transform:translateY(35px) translateX(18px)}}
     #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
-    .shell {
-      position:relative;
-      z-index:1;
-      width:100%; max-width:420px;
-      margin:32px auto;
-      padding:32px 0 32px 0;
-    }
-    .card, .card-glass {
-      background:var(--glass);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:36px 30px 28px 30px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-      margin-bottom:32px;
-      animation:fadeIn 1s both;
-    }
+    .shell { position:relative; z-index:1; width:100%; max-width:420px; margin:32px auto; padding:32px 0 32px 0; }
+    /* Boas-vindas */
     .card-glass {
       background:var(--glass),var(--frost);
-      border:2px solid #30f6ff66;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:40px 30px 34px 30px;
+      text-align:center;
+      margin-bottom:32px;
+      border:2.5px solid #30f6ff55;
       box-shadow:var(--neon);
+      position:relative;
+      animation:fadeIn 1s both;
     }
     @keyframes fadeIn {
       from{opacity:0;transform:translateY(24px) scale(0.97);}
       to{opacity:1;transform:translateY(0) scale(1);}
     }
     .neon-title {
-      font-family:'Montserrat',sans-serif;font-size:2.25rem;font-weight:900;
-      color:var(--cyan); letter-spacing:1.5px; text-shadow:var(--neon),0 4px 22px #1E90FF70;
-      margin-bottom:10px; position:relative; display:inline-block;
-      animation:shine 2.8s cubic-bezier(.8,0,.2,1) infinite alternate;
+      font-family:'Montserrat',sans-serif;font-size:2.36rem;font-weight:900;
+      color:#fff;
+      letter-spacing:1.4px; text-shadow:0 0 21px #30f6ff,0 4px 32px #f233d3bb,0 0 4px #fff;
+      margin-bottom:13px; position:relative; display:inline-block;
+      background: linear-gradient(90deg,#30F6FF 15%,#37a2ff 50%,#f233d3 100%);
+      background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      animation:shineTitle 3.6s cubic-bezier(.8,0,.2,1) infinite alternate;
     }
-    @keyframes shine {
+    @keyframes shineTitle {
       0%{text-shadow:var(--neon);}
-      45%{text-shadow:0 0 24px #30f6ff,0 0 6px #fff;}
+      50%{text-shadow:0 0 37px #f233d3,0 0 16px #fff;}
       100%{text-shadow:var(--neon);}
     }
-    .lightning {
-      width:88px;height:26px;display:block;margin:0 auto -12px auto;opacity:0.91;
+    .intro-blur {
+      font-size:1.19rem;font-weight:600;
+      background:linear-gradient(92deg,#3be8ffcc,#fff0 70%);
+      color:#1e90ff;text-shadow:0 0 8px #37a2ffb9,0 0 3px #fff;
+      border-radius:19px;
+      padding:7px 19px 8px 19px;
+      margin:13px 0 8px 0;
+      display:inline-block;
+      box-shadow:0 0 15px #30f6ff33;
     }
     .frase-chave {
-      margin:10px 0 8px 0;
-      color:#2ee5ef;
+      margin:14px 0 10px 0;
+      color:#fff;
       font-family:'Montserrat',sans-serif;
-      font-size:1.04rem;
-      letter-spacing:.02em;
-      text-shadow:0 0 10px #2ee5efb8;
+      font-size:1.08rem;
+      letter-spacing:.01em;
+      text-shadow:0 0 12px #2ee5efb8, 0 0 6px #f233d3aa;
       font-weight:700;
       border-left:3.5px solid #30f6ff;
       padding-left:13px;
+      background:rgba(48,246,255,0.10);
+      border-radius:12px;
       text-align:left;
+      display:inline-block;
     }
     .btn-main {
-      margin-top:28px; font-size:1.12rem; font-weight:700;
+      margin-top:29px; font-size:1.13rem; font-weight:800;
       border:none; outline:none;
-      color:var(--dark); background:linear-gradient(95deg,#30F6FF,#1E90FF 65%);
-      padding:15px 38px; border-radius:48px; cursor:pointer;
-      box-shadow:0 0 24px #30f6ff66;
+      color:#1A2138; background:linear-gradient(95deg,#30F6FF,#f233d3 85%);
+      padding:17px 44px; border-radius:48px; cursor:pointer;
+      box-shadow:0 0 28px #30f6ff77,0 0 4px #f233d3aa;
       letter-spacing:0.5px;
       position:relative; overflow:hidden; z-index:2;
-      transition:transform 0.2s, box-shadow 0.24s;
-      animation:btnGlow 2.8s ease-in-out infinite alternate;
+      transition:transform 0.22s, box-shadow 0.27s;
+      animation:btnPulse 2.6s ease-in-out infinite alternate;
     }
-    @keyframes btnGlow {
-      from{ box-shadow:0 0 10px #30f6ffcc;}
-      to{ box-shadow:0 0 22px #30f6ffbb,0 0 9px #1E90FFaa;}
+    @keyframes btnPulse {
+      0%{ box-shadow:0 0 9px #30f6ff99,0 0 0px #f233d3cc;}
+      50%{ box-shadow:0 0 21px #30f6ffbb,0 0 13px #f233d3bb;}
+      100%{ box-shadow:0 0 9px #30f6ff99,0 0 0px #f233d3cc;}
     }
-    .btn-main:hover{ transform:translateY(-2px) scale(1.05);}
-    .btn-group { margin-top:10px; display:flex;gap:16px;justify-content:center; }
-    .btn-opt, .btn-back {
-      font-size:1.06rem;font-weight:700;
-      border:none;outline:none;
-      border-radius:44px;cursor:pointer;
-      transition:background .16s,transform .12s;
-      position:relative; overflow:hidden;
-      padding:13px 0;
-      box-shadow:0 0 10px #00f0ff66;
-      min-width:85px;
-    }
-    .btn-opt {
-      flex:1 1 0;
-      background:linear-gradient(90deg,#1ef3fe99 30%,#1e90ffcc 100%);
-      color:#fff;
-    }
-    .btn-opt:hover {
-      background:linear-gradient(90deg,#fff,#30f6ff);
-      color:var(--blue);transform:scale(1.05);
-      box-shadow:0 0 15px #30f6ffbb;
-    }
-    .btn-back {
-      background:linear-gradient(95deg,#253858,#33567d 90%);
-      color:#fff;
-      margin-left:2px;
-      min-width:65px;
-      box-shadow:0 0 8px #222b3e40;
-    }
-    .btn-back:hover {
-      background:linear-gradient(90deg,#30f6ff77,#1e90ff);
-      color:var(--dark);transform:scale(1.06);
-    }
+    .btn-main:hover{ transform:translateY(-2px) scale(1.045);}
     /* Pop-up Pensamento */
-    .popup-thought {
-      position:fixed;
-      min-width:170px;
-      max-width:250px;
-      padding:12px 20px;
-      background:rgba(20,40,70,0.97);
-      color:#fff;
-      border-radius:18px 18px 30px 18px;
-      font-size:.98rem;
-      font-weight:500;
-      z-index:30;
-      box-shadow:0 4px 22px #1E90FF55,0 0 13px #30f6ff;
+    .pop-thought-wrap {
+      position:fixed; left:14px; bottom:28px; z-index:25; width:115px; height:110px; pointer-events:none;
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    }
+    .pop-persona {
+      width:54px;height:54px;margin-bottom:7px;
+    }
+    .pop-bubble {
+      min-width:165px; max-width:255px;
+      padding:12px 18px 10px 22px;
+      background:linear-gradient(96deg,#3be8ffcc 0 25%,#f233d3cc 80%);
+      color:#112139;
+      border-radius:32px 22px 38px 19px;
+      font-size:1.01rem;
+      font-weight:700;
+      box-shadow:0 4px 18px #1E90FF50,0 0 8px #30f6ff99;
       opacity:0;
       pointer-events:none;
-      animation:popThought .7s forwards;
-      border-left:4px solid #30f6ff;
+      animation:popThoughtUp 3.2s linear forwards;
+      margin-bottom:11px;
+      position:absolute;
+      left:54px; bottom:14px;
       text-align:left;
+      filter:blur(0);
+      transition:filter .3s;
     }
-    @keyframes popThought {
-      from{transform:scale(0.7) translateY(22px);opacity:0;}
-      60%{transform:scale(1.03) translateY(-8px);}
-      to{transform:scale(1) translateY(0);opacity:1;}
+    @keyframes popThoughtUp {
+      0%{transform:translateY(25px) scale(.95);opacity:0;}
+      10%{opacity:.8;}
+      25%{transform:translateY(0) scale(1.03);}
+      90%{opacity:1;}
+      100%{transform:translateY(-58px) scale(.93);opacity:0;}
     }
-    /* Robô */
-    .robot {
-      width:124px;height:124px;margin:0 auto 16px auto;position:relative;z-index:1;
-      border-radius:50%; background:radial-gradient(circle at 28% 35%,#b7f6fc 25%,#53bfff 80%,#0A4CAA 100%);
-      box-shadow:0 0 32px #30f6ff,0 0 16px #1E90FF80;
-      animation:robotPop 1.2s both;
-    }
-    @keyframes robotPop{ from{transform:scale(0.5);opacity:0;} to{transform:scale(1);opacity:1;} }
-    .robot .eye{
-      position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;
-      top:40%; box-shadow:0 0 12px #fff6;
-      animation:blink 5s infinite steps(1);
-    }
-    .robot .eye.left{ left:32%; }
-    .robot .eye.right{ right:32%; }
+    /* ---- Restante igual (quiz, robô, manual, etc) ---- */
+    .card,.manual-card{background:var(--glass);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px 28px 26px 28px;text-align:center;margin-bottom:32px;animation:fadeIn 1s both;}
+    .manual-card {background:rgba(20,38,80,0.98);border:2.3px solid #30f6ff;}
+    .manual-card h2 {font-family:'Montserrat',sans-serif;font-size:1.46rem;font-weight:900;color:var(--cyan);margin-bottom:4px;}
+    .manual-card .version {color:#fff;font-weight:600;margin-bottom:14px;}
+    .manual-card ul {list-style:none;text-align:left;margin:18px 0 28px 0;}
+    .manual-card li{display:flex;align-items:center;gap:10px;font-size:1.07rem;opacity:0;transform:translateX(-18px);transition:all .5s;padding:7px 0;}
+    .manual-card li.visible{opacity:1;transform:translateX(0);}
+    .manual-card li::before{content:'✦';color:var(--cyan);font-size:1.2rem;text-shadow:0 0 2px #fff,0 0 5px #30f6ff;}
+    .manual-cta{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:15px;}
+    .manual-cta a{flex:1 1 48%;padding:13px 0;border-radius:50px;font-weight:700;text-decoration:none;text-align:center;font-size:1.05rem;background:linear-gradient(95deg,#30F6FF,#f233d3 85%);color:#1A2138;box-shadow:0 0 10px #30f6ff44,0 0 5px #f233d3aa;transition:transform .19s,box-shadow .23s;}
+    .manual-cta a:hover{transform:scale(1.06);box-shadow:0 0 15px #30f6ffcc,0 0 13px #f233d3cc;color:#23296b;}
+    .typewriter{font-family:'Inter',sans-serif;font-size:1.13rem;min-height:48px;margin-bottom:16px;letter-spacing:0.04em;display:inline-block;white-space:pre-line;background:rgba(24,48,98,0.24);border-radius:13px;padding:14px 10px 12px 15px;box-shadow:0 0 5px #30f6ff40;text-align:justify;}
+    .btn-group{margin-top:10px;display:flex;gap:16px;justify-content:center;}
+    .btn-opt,.btn-back{font-size:1.06rem;font-weight:700;border:none;outline:none;border-radius:44px;cursor:pointer;transition:background .16s,transform .12s;position:relative;overflow:hidden;padding:13px 0;box-shadow:0 0 10px #00f0ff66;min-width:85px;}
+    .btn-opt{flex:1 1 0;background:linear-gradient(90deg,#30f6ff 30%,#f233d3 100%);color:#fff;}
+    .btn-opt:hover{background:linear-gradient(90deg,#fff,#30f6ff);color:var(--blue);transform:scale(1.06);box-shadow:0 0 15px #30f6ffbb;}
+    .btn-back{background:linear-gradient(95deg,#253858,#33567d 90%);color:#fff;margin-left:2px;min-width:65px;box-shadow:0 0 8px #222b3e40;}
+    .btn-back:hover{background:linear-gradient(90deg,#30f6ff77,#f233d3);color:var(--dark);transform:scale(1.07);}
+    .robot{width:124px;height:124px;margin:0 auto 16px auto;position:relative;z-index:1;border-radius:50%;background:radial-gradient(circle at 28% 35%,#b7f6fc 25%,#53bfff 80%,#0A4CAA 100%);box-shadow:0 0 32px #30f6ff,0 0 16px #1E90FF80;animation:robotPop 1.2s both;}
+    @keyframes robotPop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .robot .eye{position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:40%;box-shadow:0 0 12px #fff6;animation:blink 5s infinite steps(1);}
+    .robot .eye.left{left:32%;}.robot .eye.right{right:32%;}
     @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
     .robot .antenna{position:absolute;width:5px;height:28px;background:#fff;top:-15px;left:50%;transform:translateX(-50%);}
     .robot .antenna::after{content:'';position:absolute;width:13px;height:13px;background:var(--cyan);border-radius:50%;top:-10px;left:-5px;box-shadow:0 0 10px #30f6ff;}
     .robot .smile {position:absolute;width:46px;height:20px;left:50%;top:70%;transform:translate(-50%,0);border-bottom:3px solid #fff;border-radius:0 0 28px 28px;opacity:.8;}
-    .manual-card {
-      background:rgba(10,36,70,0.94);
-      border:2.2px solid #30f6ff;
-      border-radius:28px;
-      box-shadow:0 0 42px #00f0ff66,0 0 7px #30f6ff;
-      padding:30px 20px 30px 20px;
-      position:relative;overflow:hidden;
-      margin-top:6px;
-      animation:manualGlow 2s alternate infinite;
-      text-align:justify;
-    }
-    @keyframes manualGlow {
-      0%{box-shadow:0 0 18px #30f6ff70;}
-      100%{box-shadow:0 0 36px #30f6ffbb,0 0 12px #1e90ffaa;}
-    }
-    .manual-card h2 {
-      font-family:'Montserrat',sans-serif;font-size:1.51rem;font-weight:900;
-      color:var(--cyan);margin-bottom:4px;
-      letter-spacing:.01em;
-    }
-    .manual-card .version {
-      color:#fff;font-weight:600;margin-bottom:14px;letter-spacing:.03em;
-    }
-    .manual-card ul {
-      list-style:none; text-align:left; margin:18px 0 28px 0;
-    }
-    .manual-card li {
-      display:flex; align-items:center; gap:11px;
-      font-size:1.07rem;
-      opacity:0; transform:translateX(-18px);transition:all .5s;
-      padding:7px 0 7px 0;
-    }
-    .manual-card li.visible { opacity:1; transform:translateX(0);}
-    .manual-card li::before {
-      content:'✦';color:var(--cyan);font-size:1.22rem;
-      text-shadow:0 0 3px #fff,0 0 7px #30f6ff;
-    }
-    .manual-cta {
-      display:flex;gap:13px;justify-content:center;flex-wrap:wrap;
-      margin-top:15px;
-    }
-    .manual-cta a {
-      flex:1 1 48%;padding:14px 0;border-radius:50px;font-weight:700;
-      text-decoration:none;text-align:center;font-size:1.07rem;
-      background:linear-gradient(95deg,#30F6FF,#1E90FF 65%);
-      color:var(--dark);
-      box-shadow:0 0 14px #30f6ff77;
-      transition:transform .21s,box-shadow .23s;
-    }
-    .manual-cta a:hover {
-      transform:scale(1.07);
-      box-shadow:0 0 20px #30f6ff88,0 0 13px #1E90FFcc;
-      color:var(--blue);
-    }
-    /* Justifica textos de perguntas/desafios/manuais */
+    /* Justifica textos */
     #qtext, .manual-card, .card-glass, #desafiosList, #featureList { text-align:justify; }
-    .card-glass ul { margin-left:0;margin-right:0;}
     /* Footer */
-    footer{margin-top:20px;text-align:center;font-size:.93rem;opacity:.65;}
-    @media(max-width:480px){.shell{padding:10px 0;}.card{padding:18px 4vw;}}
+    footer{margin-top:18px;text-align:center;font-size:.92rem;opacity:.60;}
+    @media(max-width:480px){.shell{padding:10px 0;}.card{padding:12px 3vw;}}
   </style>
 </head>
 <body>
   <div class="frost"></div>
-  <div class="shape shape1"></div>
-  <div class="shape shape2"></div>
   <div id="center">
     <div class="shell">
-
-      <!-- TELA 1: INTRO FUTURISTA -->
+      <!-- TELA 1: INTRO -->
       <div class="card-glass" id="screen-intro">
-        <svg class="lightning" viewBox="0 0 90 26">
-          <polyline points="1,25 20,7 31,19 46,1 55,13 68,3 89,21"
-            style="fill:none;stroke:#30f6ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
-              filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #30f6ff)"/>
-        </svg>
         <span class="neon-title">Bem-vindo ao<br>Manual do Aprovado</span>
-        <div style="margin:18px 0 4px 0; color:#dafbff;font-size:1.13rem;opacity:.96;font-weight:600;letter-spacing:.01em;text-shadow:0 0 11px #30f6ffcc;">
-          O seu atalho para estudar <span style="color:#30f6ff;">com estratégia</span> e passar <span style="color:#1e90ff;">mais rápido!</span>
+        <div class="intro-blur">
+          Sua jornada para aprovação pode ser<br><b>muito mais rápida.</b>
         </div>
         <div class="frase-chave">
           Estudar com estratégia é metade do caminho para a aprovação.
         </div>
         <button class="btn-main" id="btnStart">Começar</button>
       </div>
-
-      <!-- TELA 2: PERGUNTAS INTERATIVAS -->
+      <!-- TELA 2: QUIZ -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="typewriter" id="qtext"></div>
         <div class="btn-group" id="qbtns" style="display:none;">
@@ -281,7 +205,6 @@
           <button class="btn-back" onclick="quizBack()">Voltar</button>
         </div>
       </div>
-
       <!-- TELA 3: ROBÔ -->
       <div class="card" id="screen-robo" style="display:none;">
         <div class="robot">
@@ -298,10 +221,9 @@
         <button class="btn-main" onclick="showChallenges()">Quero avançar!</button>
         <button class="btn-back" onclick="backToQuiz()">Voltar</button>
       </div>
-
       <!-- TELA 4: DESAFIOS -->
       <div class="card-glass" id="screen-desafios" style="display:none;">
-        <div style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;text-align:center;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:1.16rem;font-weight:700;color:#fff;margin-bottom:12px;text-align:center;">
           Antes do Manual, olha só se você já sentiu isso:
         </div>
         <div>
@@ -317,7 +239,6 @@
         <button class="btn-main" onclick="showManual()">Quero meu Manual!</button>
         <button class="btn-back" onclick="backToRobo()">Voltar</button>
       </div>
-
       <!-- TELA 5: MANUAL DO APROVADO -->
       <div class="manual-card" id="screen-manual" style="display:none;">
         <h2>Manual do Aprovado</h2>
@@ -337,10 +258,22 @@
         </div>
       </div>
       <footer>© 2025 Manual do Aprovado • Todos os direitos reservados</footer>
+      <!-- Pop-up de pensamento animado -->
+      <div class="pop-thought-wrap" id="popWrap" style="display:none;">
+        <svg class="pop-persona" viewBox="0 0 70 70">
+          <ellipse cx="35" cy="36" rx="29" ry="28" fill="#f6f8ff" stroke="#1e90ff" stroke-width="4"/>
+          <ellipse cx="35" cy="57" rx="19" ry="9" fill="#37a2ff"/>
+          <ellipse cx="25" cy="37" rx="4.5" ry="7.2" fill="#fff"/>
+          <ellipse cx="45" cy="37" rx="4.5" ry="7.2" fill="#fff"/>
+          <ellipse cx="25" cy="39" rx="2" ry="2.5" fill="#1A2138"/>
+          <ellipse cx="45" cy="39" rx="2" ry="2.5" fill="#1A2138"/>
+          <ellipse cx="35" cy="48" rx="6.3" ry="4" fill="#fff"/>
+          <ellipse cx="35" cy="51.2" rx="4.3" ry="1.3" fill="#c6e7ff"/>
+        </svg>
+      </div>
     </div>
   </div>
   <script>
-    // Perguntas indutivas e respostas "não"
     const perguntas = [
       "Você sente que está perdido(a), sem saber por onde começar a estudar para concursos?",
       "Já ficou desmotivado(a) por não ver progresso nos estudos?",
@@ -359,32 +292,37 @@
     ];
     const popups = [
       "Serviço público: estabilidade para a vida toda!",
-      "Mudança de vida começa com um passo!",
+      "Mudança de vida começa com um passo.",
       "Mais tempo para família, menos insegurança.",
       "Salários acima da média do mercado.",
       "Reconhecimento profissional e crescimento.",
-      "Você também pode chegar lá!",
+      "Você também pode chegar lá.",
       "Não importa onde você começa. O que importa é continuar!"
     ];
-    let perguntaIdx = 0, answeredNo = false, popupTimeouts = [];
-    // Popups motivacionais
-    function showPopup(){
-      let msg = popups[Math.floor(Math.random()*popups.length)];
-      let popup = document.createElement('div');
-      popup.className = 'popup-thought';
-      popup.innerHTML = msg;
-      let corner = Math.random();
-      if(corner<.33) {popup.style.top="38px"; popup.style.left="10px";}
-      else if(corner<.66) {popup.style.bottom="54px"; popup.style.right="10px";}
-      else {popup.style.top="36px"; popup.style.right="24px";}
-      document.body.appendChild(popup);
-      setTimeout(()=>{popup.style.opacity="1";},50);
-      setTimeout(()=>{popup.style.opacity="0";popup.remove();},3500);
+    let perguntaIdx = 0, answeredNo = false, quizStarted = false;
+
+    // POPUP
+    function showPopPersona(msg) {
+      let wrap = document.getElementById('popWrap');
+      wrap.style.display = "flex";
+      // Remove antigos
+      let old = document.querySelector('.pop-bubble');
+      if(old) old.remove();
+      let bubble = document.createElement('div');
+      bubble.className = 'pop-bubble';
+      bubble.innerHTML = msg;
+      wrap.appendChild(bubble);
+      setTimeout(()=>{ bubble.style.filter = 'blur(0)'; }, 80);
+      setTimeout(()=>{ bubble.remove(); }, 3300);
     }
-    function schedulePopup() {
-      popupTimeouts.push(setTimeout(showPopup, 700 + Math.random()*1400));
+    // SCHEDULE popups
+    function schedulePopup(force) {
+      if(force || (quizStarted && Math.random()<0.7)) {
+        let msg = popups[Math.floor(Math.random()*popups.length)];
+        setTimeout(()=>showPopPersona(msg), 900+Math.random()*1200);
+      }
     }
-    // Typewriter
+    // TYPEWRITER
     function typeWriter(element, text, cb) {
       let i = 0;
       element.innerHTML = "";
@@ -392,12 +330,12 @@
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
           i++;
-          setTimeout(typing, 17 + Math.random()*25);
+          setTimeout(typing, 17 + Math.random()*22);
         } else if(cb) { cb(); }
       }
       typing();
     }
-    // Esconde tudo
+    // Hide all
     function hideAll() {
       ["screen-intro","screen-quiz","screen-robo","screen-desafios","screen-manual"].forEach(id=>{
         let el = document.getElementById(id); if(el) el.style.display = "none";
@@ -408,8 +346,9 @@
       hideAll();
       document.getElementById("screen-quiz").style.display = "block";
       perguntaIdx = 0;
+      quizStarted = true;
       showPergunta();
-      schedulePopup();
+      schedulePopup(true);
     };
     // Voltar nas perguntas
     function quizBack(){
@@ -420,6 +359,8 @@
       } else {
         hideAll();
         document.getElementById("screen-intro").style.display = "block";
+        quizStarted = false;
+        document.getElementById('popWrap').style.display = "none";
       }
     }
     function backToQuiz(){
@@ -448,6 +389,7 @@
         } else {
           hideAll();
           document.getElementById("screen-robo").style.display = "block";
+          document.getElementById('popWrap').style.display = "none";
         }
       } else if(resp==="nao"){
         // Mostra frase persuasiva para o "não" e só depois libera continuar
@@ -456,6 +398,7 @@
           let t = document.getElementById("qtext");
           let fr = persuasaoNao[perguntaIdx]||persuasaoNao[0];
           t.innerHTML += `<br><span style="color:#30f6ff;font-weight:700;display:block;margin-top:8px;">${fr}</span>`;
+          schedulePopup(true);
         } else {
           perguntaIdx++;
           if(perguntaIdx < perguntas.length) {
@@ -464,6 +407,7 @@
           } else {
             hideAll();
             document.getElementById("screen-robo").style.display = "block";
+            document.getElementById('popWrap').style.display = "none";
           }
         }
       }
