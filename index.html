@@ -55,10 +55,11 @@ header {
 .header-txt h1 { margin:0 0 1px 0; font-size:1.39rem; font-weight:900; letter-spacing:.05em; color:#fff;}
 .header-txt .subtitle { font-size:1.06rem;color:#e9fbff;font-weight:700;letter-spacing:.01em;}
 .header-insta {
-  margin-left:auto;color:#fff;font-size:1.13rem;font-weight:800;display:flex;align-items:center;gap:7px;text-decoration:none;
+  margin-left:auto; color:#fff; font-size:1.32rem; font-weight:900; display:flex;align-items:center;gap:7px;text-decoration:none;
+  border-radius:50%; padding:7px; background:rgba(41,54,85,.19); transition:background .18s;
 }
-.header-insta:hover {color:#7bf7f7;}
-.header-insta svg {width:19px;height:19px;}
+.header-insta:hover {background:rgba(41,54,85,.31);}
+.header-insta svg {width:26px;height:26px;}
 main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-direction:column;align-items:center;}
 .quiz-box {
   margin:43px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
@@ -73,31 +74,28 @@ main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-directio
 .prof-face { width:60px; height:60px; background:#fff; border-radius:50%; box-shadow:0 2px 15px #2576f722; display:flex;align-items:center;justify-content:center;}
 .prof-face svg { width:48px;height:48px;}
 .balao {
-  background: #fff; color:#2576f7; font-weight:900; font-size:1.09rem; border-radius:1.3rem 1.3rem 1.3rem .8rem; box-shadow: 0 2px 16px #49c2fa18;
-  padding:19px 24px 19px 15px; text-align:left; min-width:110px; max-width:380px; word-break:break-word; min-height:37px; display:flex;align-items:center;transition:box-shadow .17s, background .17s; border:2px solid #e2eefe21;
+  background: #fff; color:#2576f7; font-weight:900; font-size:1.13rem; border-radius:1.3rem 1.3rem 1.3rem .8rem; box-shadow: 0 2px 16px #49c2fa18;
+  padding:23px 27px 22px 20px; text-align:left; min-width:130px; max-width:440px; word-break:break-word; min-height:41px; display:flex;align-items:center;transition:box-shadow .17s, background .17s; border:2px solid #e2eefe21;
 }
 @media (max-width:600px) {
   .quiz-box {padding:1.25rem 0.55rem;}
   .prof-wrap {gap:7px;}
   .balao {max-width:97vw;}
   .header-content {padding:7px 3vw 8px 2vw;}
-  .header-insta{font-size:1rem;}
+  .header-insta{font-size:1.18rem;}
 }
 .quiz-content {width:100%; display:flex; flex-direction:column;align-items:center;justify-content:center;}
-.pergunta {font-size:1.15rem; font-weight:800; margin-bottom:1.18rem; color:#f7fcff; text-align:center;}
+.pergunta {font-size:1.15rem; font-weight:800; margin-bottom:1.15rem; color:#f7fcff; text-align:center;}
 .opcoes { display:flex; flex-direction:column; gap:1.08rem; width:100%; align-items:center;}
 .btn-quiz {
   background:linear-gradient(90deg, #2576f7 60%, #49c2fa 100%);
-  color:#fff;font-weight:900;font-size:1.09rem; padding:1.13rem 0;
+  color:#fff;font-weight:900;font-size:1.11rem; padding:1.13rem 0;
   border:none; border-radius:2rem; max-width:320px; width:98%;
   margin:0 auto; cursor:pointer; box-shadow:0 5px 19px #2576f728;
   transition:background .13s,transform .1s;
 }
 .btn-quiz:hover { background:linear-gradient(90deg, #49c2fa 90%, #2576f7 100%); transform:scale(1.03);}
-.prints-row {display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:1.5rem 0;}
-.print-glass {background:rgba(41,54,85,.81);border-radius:1.3rem;box-shadow:0 3px 24px #2436631a;padding:7px 7px 2px 7px;}
-.print-glass img {max-height:130px;max-width:160px;border-radius:0.7rem;box-shadow:0 2px 14px #22304a42;display:block;}
-.cta-final-bar { display:flex; gap:1.3rem; justify-content:center; margin:2.1rem 0 1.1rem 0;}
+.cta-final-bar { display:flex; gap:1.25rem; justify-content:center; margin:2.1rem 0 1.1rem 0;}
 .cta-final-btn {
   background:linear-gradient(90deg, #2576f7 57%, #49c2fa 100%);
   color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.13rem; padding:1.13rem 0;
@@ -105,15 +103,22 @@ main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-directio
   text-align:center;
 }
 .cta-final-btn:hover {background:linear-gradient(90deg,#49c2fa 97%,#2576f7 100%);transform:scale(1.03);}
+#contador {
+  color:#49c2fa;font-size:1.08rem;font-weight:700;text-align:center;
+  background:#223859; border-radius:2rem; padding:8px 0 7px 0; margin-top:20px; margin-bottom:-7px;
+  box-shadow:0 1px 8px #49c2fa11;
+  width:90%;max-width:320px;
+}
 footer {
-  width:100vw; text-align:center; font-size:1.09rem; padding:23px 0 16px 0; color:#b4d8ed; font-weight:800;
-  background: #182a42ee; border-top: 1.1px solid #22395a; letter-spacing: .01em; margin-top: 40px; display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  width:100vw; text-align:center; font-size:1.13rem; padding:26px 0 18px 0; color:#b4d8ed; font-weight:800;
+  background: #182a42ee; border-top: 1.1px solid #22395a; letter-spacing: .01em; margin-top: 40px; display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
 }
 .footer-insta {
-  margin-top:5px;font-size:1.09rem;color:#7bf7f7;font-weight:800;display:flex;align-items:center;gap:5px;justify-content:center;
-  text-decoration:none;
+  margin-top:4px;font-size:1.17rem;color:#7bf7f7;font-weight:900;display:flex;align-items:center;gap:8px;justify-content:center;
+  text-decoration:none; border-radius:50%; padding:7px 8px 7px 7px; background:rgba(41,54,85,.16); transition:background .17s;
 }
-.footer-insta svg {width:19px;height:19px;}
+.footer-insta:hover {background:rgba(41,54,85,.26);}
+.footer-insta svg {width:24px;height:24px;}
   </style>
 </head>
 <body>
@@ -121,7 +126,7 @@ footer {
   <header>
     <div class="header-content">
       <div class="professor-avatar">
-        <!-- Professor simpático, animado, humano -->
+        <!-- Professor animado/humano -->
         <svg viewBox="0 0 60 60" fill="none">
           <ellipse cx="30" cy="48" rx="20" ry="8" fill="#22365e" opacity=".11"/>
           <ellipse cx="30" cy="28" rx="20" ry="19" fill="#f9fafc"/>
@@ -139,20 +144,19 @@ footer {
         <h1>Manual do Aprovado</h1>
         <span class="subtitle">Estudar com estratégia é metade do caminho para a aprovação.</span>
       </div>
-      <a href="https://instagram.com/manualdoaprovado_" class="header-insta" target="_blank">
+      <a href="https://instagram.com/manualdoaprovado_" class="header-insta" target="_blank" title="Instagram Manual do Aprovado">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.3" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#fff"/></svg>
-        @manualdoaprovado_
       </a>
     </div>
   </header>
   <main>
     <div class="quiz-box" id="quiz-box"></div>
+    <div id="contador"></div>
   </main>
   <footer>
     <div>© 2025 Manual do Aprovado</div>
-    <a href="https://instagram.com/manualdoaprovado_" class="footer-insta" target="_blank">
+    <a href="https://instagram.com/manualdoaprovado_" class="footer-insta" target="_blank" title="Instagram Manual do Aprovado">
       <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.5" stroke="#7bf7f7" stroke-width="2"/><circle cx="12" cy="12" r="4.3" stroke="#7bf7f7" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#7bf7f7"/></svg>
-      @manualdoaprovado_
     </a>
   </footer>
   <script>
@@ -168,7 +172,19 @@ footer {
     style.innerHTML = `@keyframes part-move {0% { transform: translateY(0) scale(.89);} 100% { transform: translateY(-28px) scale(1.06);}}`;
     document.head.appendChild(style);
 
-    // Fluxo lógico e persuasivo para iniciantes
+    // Contador de visitantes (salva em localStorage para simular "visitantes reais")
+    function atualizaContador() {
+      let key = "visitantes_manual_aprovado";
+      let visitas = localStorage.getItem(key);
+      if (!visitas) visitas = 0;
+      visitas = parseInt(visitas) + 1;
+      localStorage.setItem(key, visitas);
+      document.getElementById("contador").innerHTML =
+        `<span>${visitas.toLocaleString("pt-BR")} pessoas já acessaram esta página!</span>`;
+    }
+    atualizaContador();
+
+    // Fluxo lógico, claro, sem prints
     const steps = [
       { id: 0, prof: "Parabéns por estar aqui! Você já está um passo à frente, buscando o caminho certo para estudar e ser aprovado.<br><br>Me diz seu nome para eu te ajudar do jeito mais personalizado possível.", input:true, placeholder:"Digite seu nome", next: 1, digitando:true },
       { id: 1, prof: (s)=>`Muito bom, ${s.nome || ""}! Qual o seu maior desafio para começar a estudar?`, op:[
@@ -181,15 +197,10 @@ footer {
         {t:"Já tentei, mas não consegui manter",n:3}
       ]},
       // FINAL
-      { id: 3, prof:`O <b>Manual do Aprovado – Versão Iniciante</b> foi criado para te guiar desde o primeiro passo. <br>Você não precisa perder anos errando sozinho.<br><br>
-        <span style="color:#7bf7f7"><b>Veja o que você vai aprender com o Manual:</b></span>`, final:true }
-    ];
-
-    // Exemplos de prints (troque o src pelos seus prints reais)
-    const prints = [
-      { src: "https://i.imgur.com/M8wNpgz.png", alt: "Sumário do Manual" },
-      { src: "https://i.imgur.com/XVrdjOy.png", alt: "Exemplo de Ciclo" },
-      { src: "https://i.imgur.com/jDdyQZq.png", alt: "Dicas de Revisão" }
+      { id: 3, prof:`<span style="font-weight:900;color:#2576f7;display:block;margin-bottom:7px;">Manual do Aprovado – Versão Iniciante</span>
+        <span style="font-weight:700;display:block;">Foi criado para te guiar desde o primeiro passo. Você não precisa perder anos errando sozinho.</span>
+        <br>
+        <span style="color:#7bf7f7;font-weight:900;">Veja o que você vai aprender:</span>`, final:true }
     ];
 
     let state = { nome:"" }, history=[];
@@ -199,7 +210,7 @@ footer {
       box.innerHTML = `
         <div class="prof-wrap">
           <div class="prof-face">
-            <!-- Professor simpático, animado, humano -->
+            <!-- Professor animado/humano -->
             <svg viewBox="0 0 60 60" fill="none">
               <ellipse cx="30" cy="48" rx="20" ry="8" fill="#22365e" opacity=".11"/>
               <ellipse cx="30" cy="28" rx="20" ry="19" fill="#f9fafc"/>
@@ -257,10 +268,10 @@ footer {
       }
       if(s.final){
         content.innerHTML = `
-          <div class="pergunta" style="font-size:1.16rem;font-weight:900;color:#49c2fa;margin-bottom:1.3rem;text-align:center;">
-            <span style="color:#fff;">Você vai aprender, na prática:</span>
+          <div class="pergunta" style="font-size:1.18rem;font-weight:900;color:#49c2fa;margin-bottom:1.18rem;text-align:center;">
+            Você vai aprender, na prática:
           </div>
-          <ul style="font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.23rem 1.4rem 1.25rem 1.4rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;">
+          <ul style="font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.2rem 1.3rem 1.19rem 1.3rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;">
             <li>Como escolher os melhores sites de questões.</li>
             <li>Entender as bancas principais e os tipos de prova.</li>
             <li>Montar seu ciclo de estudos e revisar de verdade.</li>
@@ -268,16 +279,11 @@ footer {
             <li>Montar uma rotina sem ficar perdido(a).</li>
             <li>E muito mais, sem enrolação!</li>
           </ul>
-          <div class="prints-row">
-            ${prints.map(print=>`
-              <div class="print-glass"><img src="${print.src}" alt="${print.alt}"></div>
-            `).join('')}
-          </div>
           <div class="cta-final-bar">
             <a href="LINK_KIWIFY" class="cta-final-btn" target="_blank">Quero estudar certo!</a>
             <a href="LINK_AMOSTRA" class="cta-final-btn" style="background:#13244c;color:#7bf7f7;border:2px solid #7bf7f7;">Ver Amostra</a>
           </div>
-          <div style="color:#7bf7f7;margin-top:1.18rem;font-size:1.09rem;text-align:center;">Siga o método e encurte anos de estudo. Qualquer dúvida, é só chamar no Instagram!</div>
+          <div style="color:#7bf7f7;margin-top:1.14rem;font-size:1.09rem;text-align:center;">Siga o método e encurte anos de estudo. Qualquer dúvida, chame no Instagram!</div>
           ${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:22px;" id="voltar">← Voltar</button>`:""}
         `;
         let bvoltar = content.querySelector('#voltar');
