@@ -7,122 +7,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
 :root {
-  --azul1: #3386ff;
-  --azul2: #57dbff;
-  --azul3: #172345;
-  --glass: rgba(245,249,255,0.96);
-  --glass-blur: 18px;
-  --glass-border: rgba(51,134,255,0.14);
-  --shadow: 0 16px 48px 0 rgba(51,134,255,0.14);
+  --azul: #3386ff;
+  --azul2: #1dcaff;
+  --azul3: #113a7a;
+  --glass: rgba(255,255,255,0.98);
+  --glass-blur: 14px;
+  --glass-border: rgba(51,134,255,0.15);
+  --shadow: 0 12px 38px 0 rgba(51,134,255,0.16);
   --radius: 2.2rem;
-  --max-card: 440px;
-  --duration: .38s;
+  --max-card: 510px;
 }
-
 html, body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #eaf3ff 0%, #c3e6ff 100%);
-  animation: futurismo-bg 18s linear infinite alternate;
+  background: linear-gradient(130deg, #eaf5ff 0%, #c6e5ff 100%);
   font-family: 'Inter', Arial, sans-serif;
-  color: var(--azul3);
+  color: #102040;
   margin: 0;
 }
-
-@keyframes futurismo-bg {
-  0% { background-position: 0 0; }
-  100% { background-position: 400px 220px; }
-}
-
 body {
   display: flex;
   flex-direction: column;
 }
-
-.futuristic-glow {
-  filter: drop-shadow(0 0 16px #57dbff77) drop-shadow(0 0 20px #3386ff60);
-}
-
 header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 32px 0 16px 0;
-  z-index: 2;
   width: 100vw;
+  padding: 0;
+  margin: 0;
 }
-
-.header-glass {
+.splash-hero {
+  margin: 0 auto;
+  margin-top: 46px;
+  margin-bottom: 34px;
+  max-width: 520px;
+  padding: 2.2rem 1.8rem 1.8rem 1.8rem;
   background: var(--glass);
-  border-radius: 2rem;
-  box-shadow: 0 6px 32px #3386ff15;
-  padding: 1.7rem 2.5rem;
-  border: 1.4px solid var(--glass-border);
-  backdrop-filter: blur(var(--glass-blur));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 0;
-  animation: glassIn .9s cubic-bezier(.61,0,.26,1);
-}
-
-@keyframes glassIn {
-  from { opacity: 0; transform: scale(.92) translateY(-50px);}
-  70% { opacity: 0.7; }
-  to   { opacity: 1; transform: scale(1) translateY(0);}
-}
-
-.logo-svg {
-  width: 46px; height: 46px;
-  display: block;
-  margin: 0 auto 7px auto;
-  filter: drop-shadow(0 0 16px #57dbff77);
-  animation: flutuaLogo 2.6s infinite alternate cubic-bezier(.43,0,.52,1);
-}
-@keyframes flutuaLogo {
-  from { transform: translateY(0);}
-  to { transform: translateY(-14px);}
-}
-
-h1 {
-  font-weight: 900;
-  font-size: 1.48rem;
-  letter-spacing: 1.5px;
-  color: var(--azul1);
-  margin: 0 0 4px 0;
+  border-radius: 2.4rem;
+  box-shadow: 0 12px 48px #1dcaff28;
+  border: 1.5px solid var(--glass-border);
   text-align: center;
-  text-shadow: 0 0 12px #57dbff22;
-  animation: glowTitle .9s cubic-bezier(.82,0,.38,1);
+  animation: splashReveal .9s cubic-bezier(.7,0,.32,1);
+  position: relative;
 }
-@keyframes glowTitle {
-  from { color: #a2e6ff; text-shadow: 0 0 80px #57dbff;}
-  to   { color: var(--azul1);}
+@keyframes splashReveal {
+  from { opacity:0; transform: scale(.92) translateY(-65px) blur(4px);}
+  to   { opacity:1; transform: scale(1) translateY(0) blur(0);}
 }
-
-.subtitle {
-  color: #39b4e4;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: .02em;
-  margin-bottom: 1px;
-}
-
-.visitor-counter {
-  margin: 7px auto 0 auto;
-  font-size: 0.99rem;
-  color: #0c3d6e;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  background: linear-gradient(90deg, #c5e7fd 60%, #e5f8ff 100%);
-  border-radius: 1rem;
-  padding: 3px 18px;
-  box-shadow: 0 1px 5px #3386ff13;
+.badge-ini {
   display: inline-block;
-  user-select: none;
-  animation: fadeInCounter .5s .7s backwards;
+  background: linear-gradient(90deg,#1dcaff 30%,#3386ff 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.01rem;
+  padding: 7px 22px 7px 14px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+  margin-top: -2px;
+  letter-spacing: .04em;
+  box-shadow: 0 2px 14px #3386ff17;
+  position: relative;
 }
-@keyframes fadeInCounter {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.badge-ini:before {
+  content: "🚀";
+  margin-right: 7px;
+}
+.splash-hero h1 {
+  font-size: 1.58rem;
+  font-weight: 900;
+  color: var(--azul);
+  margin-bottom: 10px;
+  letter-spacing: .04em;
+  text-shadow: 0 2px 16px #3386ff18;
+}
+.splash-hero .sub {
+  font-size: 1.09rem;
+  color: #20b8f0;
+  margin-bottom: 20px;
+  font-weight: 700;
+  display: block;
+}
+.splash-hero .desc {
+  color: #173669;
+  font-size: 1.13rem;
+  margin-bottom: 28px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+.splash-hero .btn-splash {
+  background: linear-gradient(90deg, #3386ff 70%, #1dcaff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.16rem;
+  font-weight: 900;
+  padding: 1.08rem 0;
+  width: 98%;
+  max-width: 290px;
+  margin: 0 auto;
+  cursor: pointer;
+  box-shadow: 0 6px 22px #3386ff2c;
+  transition: background .15s, transform .11s, box-shadow .13s;
+  display: block;
+  letter-spacing: .01em;
+}
+.splash-hero .btn-splash:hover {
+  background: linear-gradient(90deg, #1dcaff 80%, #3386ff 100%);
+  transform: scale(1.045);
+  box-shadow: 0 11px 35px #1dcaff27;
 }
 
 main {
@@ -134,54 +123,40 @@ main {
 
 .quiz-outer {
   width: 100vw;
-  min-height: 70vh;
+  min-height: 68vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: quizIn 1.08s cubic-bezier(.6,0,.31,1);
+  margin-top: 20px;
 }
-@keyframes quizIn {
-  from { opacity: 0; transform: scale(.93) translateY(90px);}
-  to   { opacity: 1; transform: scale(1) translateY(0);}
-}
-
 .card-glass {
   background: var(--glass);
   box-shadow: var(--shadow);
   border-radius: var(--radius);
   max-width: var(--max-card);
-  width: 95vw;
+  width: 98vw;
   margin: 0 auto;
-  padding: 2.6rem 2.1rem 1.8rem 2.1rem;
+  padding: 2.5rem 1.8rem 1.4rem 1.8rem;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   animation: fadeInCard .7s cubic-bezier(.77,0,.18,1);
 }
-
 @keyframes fadeInCard {
   from { opacity: 0; transform: translateY(38px) scale(.97);}
   to { opacity: 1; transform: translateY(0) scale(1);}
 }
-
 .pergunta {
-  font-size: 1.15rem;
+  font-size: 1.13rem;
   font-weight: 900;
   color: var(--azul3);
   margin-bottom: 1.6rem;
   line-height: 1.52;
   width: 100%;
-  text-align: center;
   min-height: 2.5rem;
-  animation: fadeInPerg .39s;
 }
-
-@keyframes fadeInPerg {
-  from { opacity: 0; transform: translateY(18px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-
 .opcoes {
   display: flex;
   flex-direction: column;
@@ -189,69 +164,41 @@ main {
   width: 100%;
   align-items: center;
   margin-bottom: 0.5rem;
-  animation: fadeInBtns .39s cubic-bezier(.8,0,.18,1);
 }
-@keyframes fadeInBtns {
-  from { opacity: 0; transform: translateY(18px);}
-  to { opacity: 1; transform: translateY(0);}
-}
-
 .btn-quiz {
   width: 96%;
-  max-width: 340px;
-  background: linear-gradient(90deg, var(--azul1) 70%, var(--azul2) 100%);
+  max-width: 350px;
+  background: linear-gradient(90deg, var(--azul) 68%, var(--azul2) 100%);
   color: #fff;
   border: none;
-  border-radius: 2.3rem;
-  font-size: 1.11rem;
-  font-weight: 800;
-  padding: 1.05rem 0;
+  border-radius: 2.1rem;
+  font-size: 1.09rem;
+  font-weight: 900;
+  padding: 1.09rem 0;
   margin: 0 auto;
   cursor: pointer;
-  box-shadow: 0 6px 28px #3386ff22;
+  box-shadow: 0 6px 24px #3386ff26;
   outline: none;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: background .16s, transform .11s, box-shadow .19s;
+  transition: background .14s, transform .11s, box-shadow .14s;
   letter-spacing: 0.01em;
 }
-.btn-quiz:before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 0; height: 0;
-  background: radial-gradient(circle, #fff8 5%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: width .28s, height .28s, opacity .28s;
-}
-.btn-quiz:active:before {
-  width: 220px; height: 220px;
-  opacity: .17;
-  transition: 0s;
-}
 .btn-quiz:hover, .btn-quiz:focus {
-  background: linear-gradient(90deg, #3fa8ff 85%, #b0f1ff 100%);
-  transform: translateY(-1.5px) scale(1.035);
-  box-shadow: 0 16px 44px #57dbff33;
+  background: linear-gradient(90deg, #1dcaff 85%, #3386ff 100%);
+  transform: scale(1.035);
+  box-shadow: 0 16px 44px #1dcaff2a;
 }
-
 .btn-quiz[disabled] {
-  background: #dde3ee;
-  color: #b5bed2;
+  background: #e5eefd;
+  color: #a0b5d7;
   cursor: not-allowed;
 }
-
 .btn-voltar {
   background: none;
   border: none;
-  color: var(--azul1);
+  color: var(--azul);
   font-weight: 900;
-  font-size: 1.03rem;
+  font-size: 1.05rem;
   margin-top: 18px;
   cursor: pointer;
   text-align: center;
@@ -261,14 +208,14 @@ main {
 input[type="text"] {
   width: 90%;
   border-radius: 1.2rem;
-  border: 1.7px solid #b9dafe;
+  border: 1.5px solid #c9e3fc;
   padding: 1.02rem 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.2rem;
   font-size: 1.06rem;
   background: #f7fcffbb;
   font-family: inherit;
-  color: #2a3455;
-  transition: border-color .19s;
+  color: #1c2860;
+  transition: border-color .17s;
   font-weight: 700;
   outline: none;
   display: block;
@@ -276,89 +223,87 @@ input[type="text"] {
   margin-right: auto;
 }
 input[type="text"]:focus {
-  border-color: var(--azul1);
-  outline: 1.2px solid #e3f0ff;
+  border-color: var(--azul);
+  outline: 1px solid #e3f0ff;
 }
 
 ul {
   margin: 1.1rem 0 0.2rem 0;
-  padding-left: 1.4em;
+  padding-left: 1.1em;
   text-align: left;
   display: inline-block;
 }
 li {
-  font-size: 1.05rem;
-  margin-bottom: 0.24rem;
-  line-height: 1.38;
+  font-size: 1.04rem;
+  margin-bottom: 0.18rem;
+  line-height: 1.33;
   font-weight: 600;
-  color: #174fa8;
+  color: #2266cc;
 }
 
 .cta-final-expl {
   color: var(--azul3);
-  font-size: 1.09rem;
+  font-size: 1.10rem;
   font-weight: 700;
   text-align: center;
-  margin: 0 auto 2.2rem auto;
+  margin: 0 auto 2.1rem auto;
   margin-top: 0.2rem;
   padding: 0 0.5rem 0.4rem 0.5rem;
-  line-height: 1.6;
+  line-height: 1.55;
   border-radius: 1rem;
-  max-width: 430px;
+  max-width: 410px;
 }
-
 .cta-bar {
   display: flex;
-  gap: 1.1rem;
+  gap: 1.0rem;
   justify-content: center;
-  margin: 2.2rem 0 0.5rem 0;
+  margin: 2.1rem 0 0.3rem 0;
   width: 100%;
   flex-wrap: wrap;
 }
 .cta-final, .cta-demo {
   display: inline-block;
-  min-width: 142px;
-  padding: 1.09rem 0;
+  min-width: 135px;
+  padding: 1.04rem 0;
   border-radius: 2rem;
-  font-size: 1.1rem;
+  font-size: 1.09rem;
   font-weight: 900;
   text-decoration: none;
-  transition: background .13s, color .13s, transform .11s, box-shadow .12s;
+  transition: background .12s, color .12s, transform .10s, box-shadow .12s;
   letter-spacing: .02em;
   text-align: center;
-  box-shadow: 0 3px 11px #3386ff11;
+  box-shadow: 0 2px 8px #3386ff18;
   outline: none;
   border: none;
 }
 .cta-final {
-  background: linear-gradient(90deg, var(--azul1) 55%, var(--azul2) 100%);
+  background: linear-gradient(90deg, var(--azul) 55%, var(--azul2) 100%);
   color: #fff;
-  box-shadow: 0 10px 36px #57dbff24;
+  box-shadow: 0 8px 24px #1dcaff2e;
 }
 .cta-final:hover {
-  background: linear-gradient(90deg, #2f71c8 90%, #68e0fd 100%);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 10px 38px #57dbff39;
+  background: linear-gradient(90deg, #1dcaff 95%, #3386ff 100%);
+  transform: scale(1.045);
+  box-shadow: 0 14px 36px #1dcaff34;
 }
 .cta-demo {
   background: #fff;
-  color: var(--azul1);
-  border: 2px solid var(--azul1);
+  color: var(--azul);
+  border: 2px solid var(--azul);
 }
 .cta-demo:hover {
-  background: #dbf3ff;
-  color: var(--azul1);
-  border-color: #38c6ff;
-  transform: translateY(-1.5px) scale(1.02);
-  box-shadow: 0 2px 7px #3386ff12;
+  background: #d9f7ff;
+  color: var(--azul);
+  border-color: #20aaff;
+  transform: scale(1.025);
+  box-shadow: 0 2px 8px #3386ff16;
 }
-
 #progress-bar-container {
-  width: 95vw;
+  width: 98vw;
   max-width: var(--max-card);
   height: 8px;
-  margin: 0 auto 10px auto;
-  background: #d3eafd;
+  margin: 0 auto 12px auto;
+  background: #ddeafd;
   border-radius: 12px;
   box-shadow: 0 1px 4px #3386ff0e;
   overflow: hidden;
@@ -368,57 +313,51 @@ li {
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--azul1) 60%, var(--azul2) 100%);
+  background: linear-gradient(90deg, var(--azul) 60%, var(--azul2) 100%);
   border-radius: 12px;
-  transition: width .32s cubic-bezier(.66,0,.28,1);
+  transition: width .28s cubic-bezier(.66,0,.28,1);
 }
-
 footer {
   z-index: 2;
   text-align: center;
-  font-size: 1.05rem;
-  padding: 19px 0 13px 0;
-  color: #3a426a;
+  font-size: 1.04rem;
+  padding: 18px 0 10px 0;
+  color: #306;
   font-weight: 800;
-  background: #fff8;
-  border-top: 1.2px solid #e3eafd;
-  box-shadow: 0 -2px 10px #3386ff0d;
+  background: #fff7;
+  border-top: 1.1px solid #d9eafd;
+  box-shadow: 0 -2px 10px #3386ff0c;
   letter-spacing: .01em;
 }
 @media (max-width: 650px) {
-  .header-glass { padding: 1.1rem 3vw; }
+  .splash-hero {
+    padding: 2rem 2vw 1.4rem 2vw;
+    border-radius: 1.4rem;
+  }
   .card-glass, #progress-bar-container {
     min-width: 98vw;
     max-width: 99vw;
-    border-radius: 2.1rem;
-    padding: 7vw 2vw 7vw 2vw;
+    border-radius: 1.6rem;
+    padding: 7vw 2vw 6vw 2vw;
   }
   .cta-bar { flex-direction: column; gap: 1rem; }
-  .pergunta { font-size: 1.01rem; }
 }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-glass">
-      <svg class="logo-svg" viewBox="0 0 60 60" fill="none">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#3386ff"/><stop offset="1" stop-color="#57dbff"/>
-          </linearGradient>
-        </defs>
-        <circle cx="30" cy="30" r="28" fill="url(#g1)" opacity=".18"/>
-        <path d="M16 44V18a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v26l-14-5-14 5z" fill="url(#g1)" stroke="#3386ff" stroke-width="2.3"/>
-        <circle cx="23" cy="24" r="2" fill="#fff" />
-        <circle cx="30" cy="24" r="2" fill="#fff" />
-        <circle cx="37" cy="24" r="2" fill="#fff" />
-      </svg>
-      <h1 class="futuristic-glow">Manual do Aprovado</h1>
-      <span class="subtitle">Diagnóstico Inteligente</span>
-      <div class="visitor-counter" id="counter"></div>
+    <div class="splash-hero" id="splash">
+      <span class="badge-ini">Especial para Iniciantes</span>
+      <h1>Pronto para sair do zero e ser aprovado mais rápido?</h1>
+      <span class="sub">Descubra o método que vai acelerar sua aprovação já nos primeiros meses.</span>
+      <div class="desc">
+        Responda algumas perguntas e receba um diagnóstico personalizado para sair da estagnação.<br>
+        <b>Você vai aprender a estudar de verdade, economizar tempo e evitar os erros que reprovam milhares de iniciantes todo ano.</b>
+      </div>
+      <button class="btn-splash" onclick="startQuiz()">Começar Diagnóstico</button>
     </div>
   </header>
-  <main>
+  <main style="display:none">
     <div class="quiz-outer">
       <div class="card-glass" id="quiz-card"></div>
     </div>
@@ -430,19 +369,23 @@ footer {
     © 2025 Manual do Aprovado
   </footer>
   <script>
-    // CONTADOR DE VISITAS (simula visitas)
-    function startCounter() {
-      let base = 392 + Math.floor(Math.random()*16);
-      let el = document.getElementById('counter');
-      let now = base + Math.floor(performance.now()/3700);
-      el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje`;
+    // CONTADOR DE VISITAS (simulação)
+    function updateCounter() {
+      let base = 390 + Math.floor(Math.random()*20);
+      let el = document.createElement('div');
+      el.id = "counter-diagnostico";
+      el.style = "margin-top:10px;font-size:.98rem;color:#17a2c5;font-weight:700;";
+      let now = base + Math.floor(performance.now()/3400);
+      el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
+      document.getElementById("splash").appendChild(el);
       setInterval(()=>{
         now++;
-        el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje`;
-      }, 6200);
+        el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
+      }, 5200);
     }
+    updateCounter();
 
-    // FLUXO DO QUIZ
+    // FLUXO QUIZ (lógica emocional e impacto)
     const steps = [
       {
         id: 0,
@@ -453,117 +396,108 @@ footer {
       },
       {
         id: 1,
-        question: (s) => `Olá, ${s.nome || "concurseiro(a)"}! <br>Você sente que está perdido(a) nos estudos ou tem dúvidas sobre como avançar?`,
+        question: (s) => `Olá, ${s.nome || "concurseiro(a)"}! Qual das situações mais resume seu momento?`,
         options: [
-          { text: "Sim, estou perdido(a)", next: 2 },
-          { text: "Mais ou menos", next: 2 },
-          { text: "Não, estou seguro(a)", next: 4 }
-        ],
+          { text: "Estou começando do zero", next: 2 },
+          { text: "Já tentei estudar, mas travo", next: 3 },
+          { text: "Já estudo há um tempo, mas não evoluo", next: 4 }
+        ]
       },
       {
         id: 2,
-        question: "Qual é o seu maior desafio hoje?",
+        question: "Esse é o melhor momento para criar bons hábitos! <br><b>Você sente dificuldade para montar rotina ou escolher material?</b>",
         options: [
-          { text: "Não tenho rotina de estudos", next: 5 },
-          { text: "Não reviso direito", next: 6 },
-          { text: "Dúvida nos materiais", next: 7 },
-          { text: "Não sei que área focar", next: 8 }
+          { text: "Sim, tudo parece confuso", next: 5 },
+          { text: "Mais ou menos, tenho dúvidas", next: 5 },
+          { text: "Não, já tenho rotina", next: 6 }
+        ]
+      },
+      {
+        id: 3,
+        question: "A maioria dos iniciantes sente travas porque tenta estudar tudo igual, sem método. <br><b>Você já tentou algum plano, ciclo ou revisão programada?</b>",
+        options: [
+          { text: "Nunca tentei", next: 5 },
+          { text: "Já tentei, mas não funcionou", next: 5 },
+          { text: "Tento, mas não consigo seguir", next: 5 }
         ]
       },
       {
         id: 4,
-        question: "Ótimo! <br>Você já tem um ciclo de estudos estruturado (sequência de matérias e revisões regulares)?",
+        question: "Quando não evolui, normalmente é porque falta clareza, revisão ou método de questões. <br><b>Qual sente mais dificuldade hoje?</b>",
         options: [
-          { text: "Sim, tenho", next: 9 },
-          { text: "Não exatamente", next: 5 }
+          { text: "Montar ciclo ou rotina", next: 5 },
+          { text: "Revisar com método", next: 5 },
+          { text: "Focar ou escolher o que estudar", next: 5 }
         ]
       },
       {
         id: 5,
-        question: "Montar um ciclo de estudos é o divisor de águas para quem quer sair do zero e realmente evoluir. <br>Você já tentou revisar de verdade o que estudou?",
+        question: "Você já definiu a área/cargo para focar?<br><span style='font-weight:400'>(Definir o alvo é o que mais acelera o resultado de quem começa do zero.)</span>",
         options: [
-          { text: "Sim, mas não fixo nada", next: 6 },
-          { text: "Nunca tentei revisar", next: 6 }
+          { text: "Ainda não", next: 6 },
+          { text: "Já tenho um alvo", next: 7 }
         ]
       },
       {
         id: 6,
-        question: "Revisão é o segredo da memória de longo prazo. <br>Você resolve questões TODO DIA ou só quando sobra tempo?",
+        question: "A maioria perde anos mudando de foco! O Manual do Aprovado te ajuda a encontrar seu caminho, mesmo que esteja perdido agora.<br>Você costuma revisar o que estuda?",
         options: [
-          { text: "Todo dia", next: 10 },
-          { text: "Só às vezes", next: 10 },
-          { text: "Quase nunca", next: 10 }
+          { text: "Nunca reviso", next: 8 },
+          { text: "Reviso só quando lembro", next: 8 },
+          { text: "Já faço revisões", next: 7 }
         ]
       },
       {
         id: 7,
-        question: "Errar na escolha dos materiais é uma das maiores causas de reprovação. <br>Hoje você se sente seguro(a) com o material que usa?",
+        question: "Parabéns, você já está na frente! Só falta implementar método validado para acelerar de verdade.<br>Você resolve questões TODO DIA?",
         options: [
-          { text: "Sim, seguro(a)", next: 11 },
-          { text: "Tenho dúvidas", next: 11 }
+          { text: "Nunca", next: 8 },
+          { text: "Às vezes", next: 8 },
+          { text: "Sim, sempre", next: 9 }
         ]
       },
       {
         id: 8,
-        question: "A falta de clareza na área de foco faz você rodar em círculos. <br>Já definiu um cargo ou área dos seus sonhos?",
+        question: "Esse é um dos maiores erros dos iniciantes.<br>Sem revisão e questões diárias, todo mundo acaba esquecendo.<br><b>Quer ver como sair desse ciclo?</b>",
         options: [
-          { text: "Já defini", next: 12 },
-          { text: "Ainda não", next: 12 }
+          { text: "Quero sim!", next: 9 }
         ]
       },
       {
         id: 9,
-        question: "Perfeito! <br>Você já faz revisões com estratégia e resolve questões todo dia?",
+        question: "Pronto! Você já está à frente da maioria só por buscar diagnóstico.<br>Veja como o Manual vai te guiar na direção certa.",
         options: [
-          { text: "Sim, faço tudo", next: 11 },
-          { text: "Falta revisão", next: 6 },
-          { text: "Falta questões", next: 10 }
+          { text: "Ver resultado", next: 10 }
         ]
       },
       {
         id: 10,
-        question: "Resolver questões é o que faz o conteúdo grudar. <br>Já definiu uma área/cargo para focar?",
-        options: [
-          { text: "Já tenho", next: 12 },
-          { text: "Ainda não", next: 12 }
-        ]
-      },
-      {
-        id: 11,
-        question: "Show! <br>Você já sabe exatamente o que vai cair na sua prova?",
-        options: [
-          { text: "Já sei", next: 13 },
-          { text: "Tenho dúvida ainda", next: 13 }
-        ]
-      },
-      {
-        id: 12,
-        question: "Ótimo, isso já coloca você na frente de muitos. Agora, para realmente acelerar sua aprovação, só falta seguir um método já validado por aprovados.",
-        options: [
-          { text: "Quero conhecer o método!", next: 13 }
-        ]
-      },
-      {
-        id: 13,
         question: (s) => `
           <div class="cta-final-expl">
-            <b>O que é o Manual do Aprovado?</b><br><br>
-            É o atalho para quem quer sair do básico, parar de rodar em círculos e estudar com clareza, direção e estratégia.<br>
-            Você vai aprender:
+            <b>O Manual do Aprovado é o atalho para estudar do zero, economizar tempo e ser aprovado mais rápido.</b><br><br>
+            Feito 100% para iniciantes.<br>
+            <span style="color:#2266cc"><b>Com ele, você vai aprender a:</b></span>
             <ul>
-              <li>Como montar um ciclo de estudos eficiente.</li>
-              <li>Como revisar com inteligência, sem enrolação.</li>
-              <li>Como escolher materiais certos para sua realidade.</li>
-              <li>Como definir sua área/foco com segurança.</li>
-              <li>Como criar hábitos de resolução de questões que mudam seu resultado.</li>
+              <li>Montar seu ciclo e rotina mesmo sem experiência;</li>
+              <li>Nunca mais travar em revisão ou planejamento;</li>
+              <li>Escolher materiais certos sem gastar à toa;</li>
+              <li>Definir sua área e criar um plano realista;</li>
+              <li>Aprender de verdade resolvendo questões (com método);</li>
+              <li>Evitar perder anos tentando sozinho.</li>
             </ul>
-            <b>Bônus:</b> Dicas práticas, modelos prontos e apoio direto para iniciantes.
+            <b>Bônus exclusivos:</b>
+            <ul>
+              <li>Checklist de rotina para iniciantes.</li>
+              <li>Modelos prontos de plano de estudo.</li>
+              <li>Suporte para dúvidas iniciais.</li>
+              <li>Acesso a atualizações 2025.</li>
+            </ul>
           </div>
           <div class="cta-bar">
-            <a href="LINK_KIWIFY" class="cta-final" target="_blank">Adquirir Agora</a>
+            <a href="LINK_KIWIFY" class="cta-final" target="_blank">Quero estudar certo!</a>
             <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">Ver Amostra</a>
           </div>
-          <div style="color:#217; margin-top:1.2rem;font-size:1.03rem">
+          <div style="color:#217; margin-top:1.2rem;font-size:1.05rem">
             Dê o próximo passo inteligente e estude como quem já foi aprovado.
           </div>
         `,
@@ -573,17 +507,20 @@ footer {
       }
     ];
 
-    // STATE & RENDER
+    // QUIZ STATE & RENDER
     let state = { nome: "", step: 0 };
     let history = [];
-
+    function startQuiz() {
+      document.getElementById('splash').style.display = 'none';
+      document.querySelector('main').style.display = 'flex';
+      renderStep(0);
+      document.getElementById("quiz-card").classList.add("show");
+    }
     function renderStep(stepId) {
       const container = document.getElementById("quiz-card");
       const step = steps.find(s => s.id === stepId);
       updateProgressBar(stepId);
-
       let html = `<div class="pergunta">${typeof step.question === "function" ? step.question(state) : step.question}</div>`;
-
       if (step.type === "input") {
         html += `<input type="text" id="input-nome" placeholder="${step.inputPlaceholder || ""}" autocomplete="off" maxlength="30"/>
           <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
@@ -601,7 +538,6 @@ footer {
         });
         return;
       }
-
       if (step.options) {
         html += `<div class="opcoes">`;
         step.options.forEach((op, idx) => {
@@ -609,12 +545,10 @@ footer {
         });
         html += `</div>`;
       }
-
       if (history.length > 0) {
         html += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
       }
       container.innerHTML = html;
-
       if (step.options) {
         container.querySelectorAll(".btn-quiz").forEach((btn, idx) => {
           btn.addEventListener("click", () => {
@@ -634,7 +568,6 @@ footer {
         });
       }
     }
-
     function goTo(stepId, isBack = false) {
       state.step = stepId;
       const container = document.getElementById("quiz-card");
@@ -642,21 +575,14 @@ footer {
       setTimeout(() => {
         renderStep(stepId);
         container.classList.add("show");
-      }, isBack ? 110 : 210);
+      }, isBack ? 100 : 210);
     }
-
     function updateProgressBar(stepId) {
-      const total = 13;
+      const total = 10;
       let pct = (stepId / total) * 100;
       if (pct > 100) pct = 100;
       document.getElementById("progress-bar").style.width = pct + "%";
     }
-
-    window.onload = () => {
-      renderStep(0);
-      document.getElementById("quiz-card").classList.add("show");
-      startCounter();
-    };
   </script>
 </body>
 </html>
