@@ -7,33 +7,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --dark: #090D1B;
-      --blue: #2076FF;
-      --cyan: #4FF7F7;
-      --glass: rgba(255,255,255,0.11);
-      --radius: 22px;
-      --shadow: 0 8px 40px 0 rgba(35,163,255,0.22), 0 1.5px 4px #1c232e60;
-      --neon: 0 0 12px #4ff7f7,0 0 32px #2076ff60;
-      --frost: linear-gradient(120deg,rgba(40,180,255,0.13) 20%,rgba(255,255,255,0.06) 80%);
+      --dark: #0B132B;
+      --blue: #1E90FF;
+      --cyan: #30F6FF;
+      --white: #F6F8FF;
+      --glass: rgba(255,255,255,0.08);
+      --radius: 24px;
+      --shadow: 0 8px 40px 0 rgba(30,144,255,0.16), 0 2px 8px #263b5860;
+      --neon: 0 0 14px #30f6ff,0 0 38px #1e90ff60;
+      --frost: linear-gradient(120deg,rgba(48,246,255,0.11) 20%,rgba(255,255,255,0.05) 80%);
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     body,html {
-      width:100vw; min-height:100vh;
-      background:linear-gradient(125deg,#122449 60%,#2383f5 100%);
-      background-size:200% 200%; animation:animBG 18s ease-in-out infinite;
-      font-family:'Inter',sans-serif; color:#f3f3f7; overflow-x:hidden;
+      min-height:100vh; width:100vw; overflow-x:hidden;
+      background:linear-gradient(120deg,#0B132B 60%,#2367f5 100%);
+      background-size:200% 200%; animation:animBG 20s ease-in-out infinite;
+      font-family:'Inter',sans-serif; color:var(--white);
     }
     @keyframes animBG {
       0%{background-position:0% 0%;}
-      50%{background-position:100% 80%;}
+      50%{background-position:100% 90%;}
       100%{background-position:0% 0%;}
     }
     .frost {
       position:fixed;inset:0;pointer-events:none;z-index:0;
-      background:var(--frost),repeating-linear-gradient(45deg,rgba(255,255,255,0.05) 0 1px,transparent 1px 10px);
-      backdrop-filter:blur(2px);
+      background:var(--frost),repeating-linear-gradient(45deg,rgba(255,255,255,0.03) 0 2px,transparent 2px 10px);
+      backdrop-filter:blur(1.5px);
     }
-    /* ---------- Container ---------- */
+    .shape {
+      position:absolute;border-radius:50%;filter:blur(105px);z-index:-2;
+      animation:float 8s ease-in-out infinite alternate;
+    }
+    .shape1{width:230px;height:230px;background:var(--cyan);top:9%;left:-5%;}
+    .shape2{width:310px;height:310px;background:var(--blue);top:65%;left:68%;animation-duration:10s;}
+    @keyframes float{to{transform:translateY(35px) translateX(18px)}}
     #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
     .shell {
       position:relative;
@@ -42,7 +49,6 @@
       margin:32px auto;
       padding:32px 0 32px 0;
     }
-    /* ---------- Cards Glass ---------- */
     .card, .card-glass {
       background:var(--glass);
       border-radius:var(--radius);
@@ -56,54 +62,46 @@
     }
     .card-glass {
       background:var(--glass),var(--frost);
-      border:1.5px solid #48c6ff66;
+      border:2px solid #30f6ff66;
       box-shadow:var(--neon);
     }
     @keyframes fadeIn {
       from{opacity:0;transform:translateY(24px) scale(0.97);}
       to{opacity:1;transform:translateY(0) scale(1);}
     }
-    /* ---------- Logo/Title/Lightning ---------- */
+    /* Neon Title */
     .neon-title {
-      font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;
-      color:var(--cyan); letter-spacing:1.5px; text-shadow:var(--neon),0 4px 28px #2076FF70;
-      margin-bottom:10px; position:relative;
-      display:inline-block;
-      animation:shine 2.5s cubic-bezier(.8,0,.2,1) infinite alternate;
+      font-family:'Montserrat',sans-serif;font-size:2.25rem;font-weight:900;
+      color:var(--cyan); letter-spacing:1.5px; text-shadow:var(--neon),0 4px 22px #1E90FF70;
+      margin-bottom:10px; position:relative; display:inline-block;
+      animation:shine 2.8s cubic-bezier(.8,0,.2,1) infinite alternate;
     }
     @keyframes shine {
       0%{text-shadow:var(--neon);}
-      50%{text-shadow:0 0 40px #4ff7f7,0 0 8px #fff;}
+      45%{text-shadow:0 0 24px #30f6ff,0 0 6px #fff;}
       100%{text-shadow:var(--neon);}
     }
     .lightning {
-      width:90px;height:26px;display:block;margin:0 auto -12px auto;opacity:0.93;
+      width:88px;height:26px;display:block;margin:0 auto -12px auto;opacity:0.91;
     }
-    /* SVG Lightning effect, see below in HTML */
-    /* ---------- Frost Border ---------- */
-    .frost-border {
-      border: 2px solid #4ff7f7bb;
-      border-radius:20px;
-      box-shadow:0 0 32px #2076ff60, 0 0 6px #4ff7f7;
-    }
-    /* ---------- Button Modern ---------- */
+    /* Botão principal */
     .btn-main {
       margin-top:28px; font-size:1.12rem; font-weight:700;
       border:none; outline:none;
-      color:var(--dark); background:linear-gradient(95deg,#45ffff,#44baff 65%);
+      color:var(--dark); background:linear-gradient(95deg,#30F6FF,#1E90FF 65%);
       padding:15px 38px; border-radius:48px; cursor:pointer;
-      box-shadow:0 0 24px #4ff7f766;
+      box-shadow:0 0 24px #30f6ff66;
       letter-spacing:0.5px;
       position:relative; overflow:hidden; z-index:2;
-      transition:transform 0.2s, box-shadow 0.25s;
+      transition:transform 0.2s, box-shadow 0.24s;
       animation:btnGlow 2.8s ease-in-out infinite alternate;
     }
     @keyframes btnGlow {
-      from{ box-shadow:0 0 10px #44fff6cc;}
-      to{ box-shadow:0 0 24px #2df4f7bb,0 0 12px #44baffaa;}
+      from{ box-shadow:0 0 10px #30f6ffcc;}
+      to{ box-shadow:0 0 22px #30f6ffbb,0 0 9px #1E90FFaa;}
     }
-    .btn-main:hover{ transform:translateY(-2px) scale(1.04); }
-    /* ---------- Typewriter ---------- */
+    .btn-main:hover{ transform:translateY(-2px) scale(1.05);}
+    /* Typewriter */
     .typewriter {
       font-family:'Inter',sans-serif;
       font-size:1.13rem; min-height:48px;
@@ -111,72 +109,67 @@
       letter-spacing:0.04em;
       display:inline-block;
       white-space:pre-line;
+      background:rgba(20,38,58,0.29);
+      border-radius:13px;padding:14px 10px 12px 15px;
+      box-shadow:0 0 5px #30f6ff40;
     }
-    /* ---------- Option Buttons ---------- */
+    /* Botões opções */
     .btn-group {
       margin-top:10px;
       display:flex;gap:16px;justify-content:center;
     }
     .btn-opt {
       flex:1 1 0;
-      font-size:1.08rem;
+      font-size:1.09rem;
       border:none;outline:none;
-      background:linear-gradient(90deg,#1ef3fe99 30%,#2e89fbcc 100%);
-      color:#fff;
-      font-weight:700;padding:13px 0;
+      background:linear-gradient(90deg,#1ef3fe99 30%,#1e90ffcc 100%);
+      color:#fff;font-weight:700;padding:13px 0;
       border-radius:44px;cursor:pointer;
       box-shadow:0 0 12px #00f0ff66;
-      transition:background .17s,transform .13s;
-      position:relative;
-      overflow:hidden;
+      transition:background .18s,transform .14s;
+      position:relative; overflow:hidden;
     }
     .btn-opt:hover {
-      background:linear-gradient(90deg,#fff,#4ff7f7);
-      color:var(--blue);transform:scale(1.05);
-      box-shadow:0 0 18px #4ff7f7bb;
+      background:linear-gradient(90deg,#fff,#30f6ff);
+      color:var(--blue);transform:scale(1.04);
+      box-shadow:0 0 16px #30f6ffbb;
     }
-    /* ---------- Robô Moderno ---------- */
+    /* Robô */
     .robot {
       width:124px;height:124px;margin:0 auto 16px auto;position:relative;z-index:1;
       border-radius:50%; background:radial-gradient(circle at 28% 35%,#b7f6fc 25%,#53bfff 80%,#0A4CAA 100%);
-      box-shadow:0 0 32px #4ff7f7,0 0 16px #2076FF80;
+      box-shadow:0 0 32px #30f6ff,0 0 16px #1E90FF80;
       animation:robotPop 1.2s both;
     }
     @keyframes robotPop{ from{transform:scale(0.5);opacity:0;} to{transform:scale(1);opacity:1;} }
     .robot .eye{
       position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;
-      top:40%; box-shadow:0 0 16px #fff6;
+      top:40%; box-shadow:0 0 12px #fff6;
       animation:blink 5s infinite steps(1);
     }
     .robot .eye.left{ left:32%; }
     .robot .eye.right{ right:32%; }
     @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
     .robot .antenna{position:absolute;width:5px;height:28px;background:#fff;top:-15px;left:50%;transform:translateX(-50%);}
-    .robot .antenna::after{content:'';position:absolute;width:13px;height:13px;background:var(--cyan);border-radius:50%;top:-10px;left:-5px;box-shadow:0 0 10px #4ff7f7;}
-    .robot .smile {
-      position:absolute;
-      width:46px;height:20px;
-      left:50%;top:70%;transform:translate(-50%,0);
-      border-bottom:3px solid #fff;border-radius:0 0 28px 28px;
-      opacity:.8;
-    }
-    /* ---------- Manual Card Ultra ---------- */
+    .robot .antenna::after{content:'';position:absolute;width:13px;height:13px;background:var(--cyan);border-radius:50%;top:-10px;left:-5px;box-shadow:0 0 10px #30f6ff;}
+    .robot .smile {position:absolute;width:46px;height:20px;left:50%;top:70%;transform:translate(-50%,0);border-bottom:3px solid #fff;border-radius:0 0 28px 28px;opacity:.8;}
+    /* Manual Card */
     .manual-card {
       background:rgba(10,36,70,0.94);
-      border:1.8px solid #44d2fe;
+      border:2.2px solid #30f6ff;
       border-radius:28px;
-      box-shadow:0 0 52px #00f0ff66,0 0 10px #4ff7f7;
+      box-shadow:0 0 42px #00f0ff66,0 0 7px #30f6ff;
       padding:30px 20px 30px 20px;
       position:relative;overflow:hidden;
       margin-top:6px;
       animation:manualGlow 2s alternate infinite;
     }
     @keyframes manualGlow {
-      0%{box-shadow:0 0 30px #2bcbfd70;}
-      100%{box-shadow:0 0 62px #4ff7f7bb,0 0 12px #44baffcc;}
+      0%{box-shadow:0 0 18px #30f6ff70;}
+      100%{box-shadow:0 0 36px #30f6ffbb,0 0 12px #1e90ffaa;}
     }
     .manual-card h2 {
-      font-family:'Montserrat',sans-serif;font-size:1.48rem;font-weight:900;
+      font-family:'Montserrat',sans-serif;font-size:1.51rem;font-weight:900;
       color:var(--cyan);margin-bottom:4px;
       letter-spacing:.01em;
     }
@@ -194,54 +187,50 @@
     }
     .manual-card li.visible { opacity:1; transform:translateX(0);}
     .manual-card li::before {
-      content:'✦';color:var(--cyan);font-size:1.25rem;
-      text-shadow:0 0 4px #fff,0 0 10px #4ff7f7;
+      content:'✦';color:var(--cyan);font-size:1.22rem;
+      text-shadow:0 0 3px #fff,0 0 7px #30f6ff;
     }
     .manual-cta {
-      display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-      margin-top:18px;
+      display:flex;gap:13px;justify-content:center;flex-wrap:wrap;
+      margin-top:15px;
     }
     .manual-cta a {
       flex:1 1 48%;padding:14px 0;border-radius:50px;font-weight:700;
-      text-decoration:none;text-align:center;font-size:1.06rem;
-      background:linear-gradient(95deg,#45ffff,#44baff 65%);
+      text-decoration:none;text-align:center;font-size:1.07rem;
+      background:linear-gradient(95deg,#30F6FF,#1E90FF 65%);
       color:var(--dark);
-      box-shadow:0 0 16px #00f0ff88;
-      transition:transform .2s,box-shadow .23s;
+      box-shadow:0 0 14px #30f6ff77;
+      transition:transform .21s,box-shadow .23s;
     }
     .manual-cta a:hover {
       transform:scale(1.07);
-      box-shadow:0 0 20px #44fff688,0 0 18px #4ff7f7cc;
+      box-shadow:0 0 20px #30f6ff88,0 0 13px #1E90FFcc;
       color:var(--blue);
     }
-    /* ---------- FOOTER ---------- */
-    footer{margin-top:20px;text-align:center;font-size:.89rem;opacity:.6;}
+    footer{margin-top:20px;text-align:center;font-size:.93rem;opacity:.65;}
 
-    @media(max-width:480px){.shell{padding:12px 0;}.card{padding:22px 5vw;}}
+    @media(max-width:480px){.shell{padding:10px 0;}.card{padding:18px 4vw;}}
   </style>
 </head>
 <body>
   <div class="frost"></div>
-  <!-- SHAPES DE LUZ -->
   <div class="shape shape1"></div>
   <div class="shape shape2"></div>
   <div id="center">
     <div class="shell">
-
       <!-- TELA 1: INTRO FUTURISTA -->
       <div class="card-glass" id="screen-intro">
         <svg class="lightning" viewBox="0 0 90 26">
           <polyline points="1,25 20,7 31,19 46,1 55,13 68,3 89,21"
-            style="fill:none;stroke:#4ff7f7;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
-              filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 30px #4ff7f7)"/>
+            style="fill:none;stroke:#30f6ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+              filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #30f6ff)"/>
         </svg>
         <span class="neon-title">Bem-vindo ao<br>Manual do Aprovado</span>
-        <div style="margin:18px 0 4px 0; color:#defbff;font-size:1.13rem;opacity:.96;font-weight:600;letter-spacing:.01em;text-shadow:0 0 12px #4ff7f7cc;">
-          O seu atalho para estudar <span style="color:#53f8fd;">com estratégia</span> e passar <span style="color:#45ffff;">mais rápido!</span>
+        <div style="margin:18px 0 4px 0; color:#dafbff;font-size:1.14rem;opacity:.97;font-weight:600;letter-spacing:.01em;text-shadow:0 0 11px #30f6ffcc;">
+          O seu atalho para estudar <span style="color:#30f6ff;">com estratégia</span> e passar <span style="color:#1e90ff;">mais rápido!</span>
         </div>
-        <button class="btn-main" onclick="startQuiz()">Começar</button>
+        <button class="btn-main" id="btnStart">Começar</button>
       </div>
-
       <!-- TELA 2: PERGUNTAS INTERATIVAS -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="typewriter" id="qtext"></div>
@@ -250,7 +239,6 @@
           <button class="btn-opt" onclick="quizReply('nao')">Não</button>
         </div>
       </div>
-
       <!-- TELA 3: ROBÔ -->
       <div class="card" id="screen-robo" style="display:none;">
         <div class="robot">
@@ -259,14 +247,13 @@
           <div class="antenna"></div>
           <div class="smile"></div>
         </div>
-        <h1 style="font-size:1.24rem;font-weight:700;color:var(--cyan);margin:9px 0 0 0;letter-spacing:.01em;">Parabéns!</h1>
-        <p style="font-size:1.05rem;opacity:.93;margin-bottom:7px;margin-top:5px;">
+        <h1 style="font-size:1.22rem;font-weight:700;color:var(--cyan);margin:9px 0 0 0;letter-spacing:.01em;">Parabéns!</h1>
+        <p style="font-size:1.05rem;opacity:.95;margin-bottom:7px;margin-top:5px;">
           Só de buscar orientação, você já está na frente de milhares de iniciantes.<br>
-          <span style="color:#00f0ff;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
+          <span style="color:#30f6ff;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
         </p>
         <button class="btn-main" onclick="showChallenges()">Quero avançar!</button>
       </div>
-
       <!-- TELA 4: DESAFIOS -->
       <div class="card-glass" id="screen-desafios" style="display:none;">
         <div style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;">
@@ -284,7 +271,6 @@
         </div>
         <button class="btn-main" onclick="showManual()">Quero meu Manual!</button>
       </div>
-
       <!-- TELA 5: MANUAL DO APROVADO -->
       <div class="manual-card" id="screen-manual" style="display:none;">
         <h2>Manual do Aprovado</h2>
@@ -299,4 +285,14 @@
           <li>Visão de longo prazo + eficiência no curto prazo</li>
         </ul>
         <div class="manual-cta">
-          <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_
+          <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_blank">📥 Baixar Amostra</a>
+          <a class="cta-buy" href="ADQUIRIR_AGORA_LINK" target="_blank">💳 Adquirir Agora</a>
+        </div>
+      </div>
+      <footer>© 2025 Manual do Aprovado • Todos os direitos reservados</footer>
+    </div>
+  </div>
+  <script>
+    // Perguntas indutivas (modifique como quiser)
+    const perguntas = [
+      "
