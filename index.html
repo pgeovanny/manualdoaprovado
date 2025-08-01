@@ -1,237 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Manual do Aprovado – Iniciante</title>
-<style>
-  /* === ROOT === */
-  :root {
-    --bg: #0d111f;   --fg: #f5faff;
-    --g1: #38c1f3;   --g2: #2a6bba;
-    --glass: rgba(255,255,255,0.12);
-    --radius: 16px;  --shadow: 0 8px 24px rgba(0,0,0,0.15);
-    --trans: 0.3s;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body,html{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);font-family:Inter,sans-serif;padding-bottom:48px;}
-  a{color:inherit;text-decoration:none;}button{cursor:pointer;border:none;background:none;font-family:inherit;}
-
-  /* === CANVAS PARTICLES === */
-  #canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
-  /* (JS in the bottom) */
-
-  /* === WRAPPER & SCREENS === */
-  #wrapper{position:relative;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;}
-  .screen{position:absolute;top:0;left:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity var(--trans);z-index:1;}
-  .screen.active{display:flex;opacity:1;}
-
-  /* === BASE CARD === */
-  .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);width:100%;max-width:420px;text-align:center;position:relative;}
-
-  /* === HERO === */
-  #screen-intro h1{font-size:2.4rem;color:var(--g1);text-shadow:0 0 8px var(--g1);animation:fadeUp .8s;}
-  #screen-intro .subtitle{margin-top:12px;font-size:1rem;animation:fadeUp .8s .4s forwards;opacity:0;}
-  #screen-intro .btn-main{margin-top:24px;padding:16px 0;width:100%;border-radius:28px;
-    background:linear-gradient(90deg,var(--g2),var(--g1));color:#fff;font-size:1.05rem;font-weight:700;
-    position:relative;overflow:hidden;transition:transform .2s;}
-  #screen-intro .btn-main:hover{transform:scale(1.04);}
-  #screen-intro .btn-main:active{transform:scale(.97);}
-
-  /* fadeUp */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
-
-  /* === ROBÔ + PROGRESSO === */
-  #robot{position:absolute;top:24px;right:24px;width:60px;height:60px;z-index:2;animation:bob 3s infinite ease-in-out;}
-  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-  .halo{fill:none;stroke-width:6;stroke:var(--g1);stroke-linecap:round;transition:stroke .3s;}
-  .face{fill:var(--fg);} .eye{fill:var(--bg);} .mouth{fill:var(--bg);}
-
-  /* === QUIZ CARD === */
-  .card-quiz{padding:24px;}
-  .progress-container{width:90px;height:90px;margin:0 auto 16px;}
-  .progress-bg,.progress-bar{cx:45;cy:45;r:40;fill:none;stroke-width:6;}
-  .progress-bg{stroke:rgba(255,255,255,0.2);} 
-  .progress-bar{stroke:var(--g1);stroke-dasharray:251;stroke-dashoffset:251;transition:stroke-dashoffset .5s;}
-  .question{font-size:1.05rem;min-height:60px;line-height:1.4;margin:12px 0;}
-  .input-box{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.3);transition:all var(--trans);}
-  .input-box:focus-within{border-color:var(--g1);box-shadow:0 0 12px rgba(56,193,248,0.5);}
-  .btn-group{display:flex;gap:8px;justify-content:center;margin-top:12px;}
-  .btn-sml{flex:1;padding:10px 0;border-radius:20px;color:#fff;font-weight:600;transition:opacity .2s;}
-  .btn-sim{background:var(--g1);} .btn-nao{background:var(--g2);} .btn-back{background:var(--fg);color:var(--g2);border:1px solid var(--g2);}
-  .btn-sml:hover{opacity:.85;} .btn-sml:active{transform:scale(.97);}
-  /* remove JS typewriter, sem .typing */
-
-  /* === PERSUASION === */
-  .persuasion{display:none;background:rgba(56,193,248,0.1);border-left:4px solid var(--g2);padding:16px;margin:16px 0;border-radius:8px;animation:slideIn .4s;}
-  @keyframes slideIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);} }
-
-  /* === DOR === */
-  .card-dor{text-align:left;}
-  .card-dor h2{text-align:center;color:var(--g1);margin-bottom:12px;}
-  .list{list-style:none;padding:0;}
-  .list li{position:relative;padding-left:24px;margin:8px 0;color:var(--fg);}
-  .list li::before{content:'✔';position:absolute;left:0;top:2px;color:var(--g1);}
-
-  /* === MANUAL FINAL === */
-  .card-manual{background:var(--fg);color:var(--text-dark);padding:32px;text-align:left;transition:transform .3s;}
-  .card-manual:hover{transform:perspective(600px) rotateY(3deg) rotateX(2deg);}
-  .card-manual h2{text-align:center;color:var(--g2);margin-bottom:16px;}
-  #featureList{list-style:none;padding:0;}
-  #featureList li{position:relative;padding-left:24px;margin:8px 0;opacity:0;transition:opacity .5s;}
-  #featureList li::before{content:'✔';position:absolute;left:0;top:2px;color:var(--g2);}
-  .subtitle-final{text-align:center;margin:20px 0;}
-  .cta-group{display:flex;gap:8px;}
-  .cta-group a{flex:1;padding:12px 0;border-radius:24px;text-align:center;color:#fff;font-weight:700;transition:transform .2s;}
-  .cta-sample{background:var(--g1);} .cta-buy{background:var(--g2);}
-  .cta-group a:hover{transform:scale(1.04);}
-  .btn-finish{display:block;margin:16px auto 0;padding:10px 0;width:80%;border-radius:24px;background:var(--g2);color:#fff;font-weight:700;transition:transform .2s;}
-  .btn-finish:hover{transform:scale(1.03);}
-
-  /* === FOOTER === */
-  footer{position:fixed;bottom:0;left:0;width:100%;height:48px;background:var(--fg);display:flex;align-items:center;justify-content:center;color:var(--text-dark);font-size:.9rem;box-shadow:0 -2px 8px rgba(0,0,0,0.1);}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual do Aprovado | Página de Vendas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div id="wrapper">
-  <canvas id="canvas"></canvas>
-
-  <!-- Robô -->
-  <div id="robot">
-    <svg width="60" height="60" viewBox="0 0 100 100">
-      <circle class="halo" cx="50" cy="50" r="45"/>
-      <circle class="face" cx="50" cy="50" r="30"/>
-      <circle class="eye" cx="38" cy="45" r="4"/>
-      <circle class="eye" cx="62" cy="45" r="4"/>
-      <rect class="mouth" x="40" y="60" width="20" height="4" rx="2" ry="2"/>
-    </svg>
-  </div>
-
-  <!-- INTRO -->
-  <div id="screen-intro" class="screen active">
-    <div class="card">
-      <h1>Manual do Aprovado</h1>
-      <div class="subtitle">Estude com estratégia e avance rápido.</div>
-      <button class="btn-main" onclick="startQuiz()">Começar</button>
+  <header>
+    <div class="container header-container">
+      <span class="logo">📘</span>
+      <h1>MANUAL DO APROVADO</h1>
     </div>
-  </div>
-
-  <!-- QUIZ -->
-  <div id="screen-quiz" class="screen">
-    <div class="card card-quiz">
-      <div class="progress-container">
-        <svg width="100" height="100">
-          <circle class="progress-bg"/>
-          <circle class="progress-bar" id="bar"/>
-        </svg>
-      </div>
-      <div id="qtext" class="question input-box"></div>
-      <div id="qbtns" class="btn-group">
-        <button class="btn-sml btn-sim" onclick="answer('sim')">Sim</button>
-        <button class="btn-sml btn-nao" onclick="answer('nao')">Não</button>
-        <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
-      </div>
-      <div id="persuasion" class="persuasion">
-        <div id="persuadeTxt"></div>
-        <div class="btn-group">
-          <button class="btn-sml btn-sim" onclick="advanceAfterNo()">Avançar</button>
-          <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DOR -->
-  <div id="screen-dor" class="screen">
-    <div class="card card-dor">
-      <h2>Dificuldades comuns</h2>
-      <ul class="list">
-        <li>Falta de direção no estudo.</li>
-        <li>Revisões ineficazes que não fixam.</li>
-        <li>Dúvidas sobre como usar a lei seca.</li>
-        <li>M​éd</li>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Pare de estudar errado!</h2>
+      <p>O método direto ao ponto que já APROVOU em concursos reais.<br>
+      <span class="destaque">Transforme sua rotina e chegue à aprovação mais rápido.</span></p>
+      <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO GARANTIR O MEU!</a>
+      <p class="preco">Apenas <b>R$ XX,90</b> (promoção de lançamento)</p>
+    </section>
+    <section class="beneficios">
+      <h3>O que você vai receber:</h3>
+      <ul>
+        <li>✔️ Método validado por aprovados</li>
+        <li>✔️ Ciclo de estudos prático (modelo preenchível)</li>
+        <li>✔️ Revisão inteligente (sem enrolação)</li>
+        <li>✔️ Como usar questões para aprender de verdade</li>
+        <li>✔️ Indicações de sites e apps grátis</li>
+        <li>✔️ Guia para escolher a área certa pra VOCÊ</li>
+        <li>✔️ Estratégia para acelerar a aprovação</li>
       </ul>
-      <button class="btn-main" onclick="showManual()">Ver Solução</button>
-      <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
+    </section>
+    <section class="depoimento">
+      <blockquote>
+        <p>“Comecei a aplicar o método do Manual e, em 2 meses, já senti diferença real. Estudar ficou mais leve e finalmente vi progresso!”</p>
+        <cite>— Concurseiro(a) Real</cite>
+      </blockquote>
+    </section>
+    <section class="faq">
+      <h3>Perguntas frequentes</h3>
+      <details>
+        <summary>O Manual serve pra qualquer concurso?</summary>
+        <p>Sim! O método é adaptável para concursos de nível médio ou superior, em qualquer área.</p>
+      </details>
+      <details>
+        <summary>É digital? Vou receber na hora?</summary>
+        <p>Sim! Após a confirmação do pagamento, o Manual é enviado no seu e-mail/WhatsApp em minutos.</p>
+      </details>
+      <details>
+        <summary>Tem suporte caso eu tenha dúvidas?</summary>
+        <p>Tem sim! É só chamar no WhatsApp que eu te ajudo pessoalmente.</p>
+      </details>
+    </section>
+    <section class="cta-section">
+      <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO GARANTIR O MEU AGORA!</a>
+    </section>
+  </main>
+  <footer>
+    <div class="container footer-container">
+      <p>© 2025 Manual do Aprovado | Feito por Paulo Geovanny</p>
+      <p><a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a></p>
     </div>
-  </div>
-
-  <!-- MANUAL FINAL -->
-  <div id="screen-manual" class="screen">
-    <div class="card card-manual">
-      <h2>Manual do Aprovado</h2>
-      <ul id="featureList">
-        <li>Como montar um ciclo de estudos estratégico e flexível.</li>
-        <li>Como revisar de forma prática e contínua.</li>
-        <li>Como controlar suas horas líquidas e estudar com qualidade.</li>
-        <li>Como usar questões no dia a dia para fixar e avançar.</li>
-        <li>Por que não fazer resumos à mão e como grifar com inteligência.</li>
-        <li>Como, quando e por que ler a lei seca.</li>
-        <li>Visão de longo prazo, agindo com eficiência no curto prazo.</li>
-      </ul>
-      <div class="subtitle-final">Seu tempo de estudo vai finalmente render!</div>
-      <div class="cta-group">
-        <a class="cta-sample" href="#" target="_blank">Baixar Amostra</a>
-        <a class="cta-buy" href="#" target="_blank">Adquirir Agora</a>
-      </div>
-      <button class="btn-finish" onclick="restart()">Voltar ao Início</button>
-    </div>
-  </div>
-</div>
-
-<footer>Estudar com estratégia é metade do caminho para a aprovação.</footer>
-
-<script>
-// PARTICLES
-const c=document.getElementById('canvas'),ctx=c.getContext('2d');
-let w,h,p=[];
-function init(){w=c.width=innerWidth;h=c.height=innerHeight;p=[];for(let i=0;i<80;i++)p.push({x:Math.random()*w,y:Math.random()*h,r:1+Math.random()*2,dx:-.2+Math.random()*.4,dy:-.2+Math.random()*.4});}
-function d(){ctx.clearRect(0,0,w,h);p.forEach(o=>{o.x+=o.dx;o.y+=o.dy;if(o.x<0||o.x>w)o.dx*=-1;if(o.y<0||o.y>h)o.dy*=-1;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,2*Math.PI);ctx.fillStyle='rgba(56,193,248,0.2)';ctx.fill();});requestAnimationFrame(d);}
-init();d();onresize=init;
-
-// ROBÔ HALO
-const halo=document.querySelector('.halo'),cols=['#38c1f3','#2a6bba','#00d084','#a14ae3'];
-function updateRobot(s){halo.setAttribute('stroke',cols[s]||cols[0]);}
-
-// FLOW
-const screens=['screen-intro','screen-quiz','screen-dor','screen-manual'];
-const qs=[
-  "Você já se sentiu perdido sem saber por onde começar?",
-  "Você revisa, mas esquece horas depois?",
-  "Quer usar questões como atalho para fixar?",
-  "Estudar sozinho te deixa inseguro?"
-];
-const ps=[
-  "Perder tempo é frustrante. Deseja aprender o método dos aprovados?",
-  "Memória falha? Descubra a revisão que fixa em 24h!",
-  "Questões são poderosos aliados. Avançar para dominar?",
-  "Suporte faz toda diferença. Avançar para ver como?"
-];
-let idx=0;
-function show(id){screens.forEach(s=>document.getElementById(s).classList.remove('active'));document.getElementById(id).classList.add('active');}
-function startQuiz(){idx=0;updateRobot(0);document.getElementById('persuasion').style.display='none';nextQ();show('screen-quiz');}
-function nextQ(){
-  updateRobot(idx);
-  document.getElementById('qtext').textContent=qs[idx];
-  document.getElementById('bar').style.strokeDashoffset=251 - (251*(idx/qs.length));
-  document.getElementById('qbtns').style.display='flex';
-}
-function answer(r){
-  if(r==='nao'){
-    document.getElementById('qbtns').style.display='none';
-    document.getElementById('persuasion').style.display='block';
-    document.getElementById('persuadeTxt').textContent=ps[idx];
-  } else {
-    idx++;
-    if(idx<qs.length){document.getElementById('persuasion').style.display='none';nextQ();}
-    else show('screen-dor');
-  }
-}
-function advanceAfterNo(){answer('sim');}
-function quizBack(){if(idx>0){idx--;document.getElementById('persuasion').style.display='none';nextQ();}else show('screen-intro');}
-function showManual(){updateRobot(3);show('screen-manual');document.querySelectorAll('#featureList li').forEach((l,i)=>setTimeout(()=>l.style.opacity=1,i*120));}
-function restart(){show('screen-intro');updateRobot(0);}
-</script>
+  </footer>
 </body>
 </html>
