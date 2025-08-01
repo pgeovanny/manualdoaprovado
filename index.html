@@ -1,189 +1,234 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Manual do Aprovado - Diagnóstico Interativo</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="background"></div>
-  <header>
-    <div class="header-glass">
-      <span class="avatar">📘</span>
-      <h1>Manual do Aprovado</h1>
-      <span class="subtitle">Diagnóstico Interativo</span>
-    </div>
-  </header>
-  <main>
-    <div class="card-glass" id="quiz-card">
-      <!-- Fluxo renderizado aqui -->
-    </div>
-    <div id="progress-bar-container">
-      <div id="progress-bar"></div>
-    </div>
-  </main>
-  <footer>
-    <span>© 2025 Manual do Aprovado</span>
-    <a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a>
-  </footer>
-  <script>
-    // ================= FLUXO LÓGICO ======================
-    const steps = [
-      // STEP 0: Nome
-      {
-        id: 0,
-        question: "Antes de começar: qual seu nome?",
-        type: "input",
-        inputPlaceholder: "Digite seu nome aqui",
-        next: 1,
-      },
-      // STEP 1: PROBLEMA CENTRAL
-      {
-        id: 1,
-        question: (state) => `Olá, ${state.nome || "concurseiro(a)"}! Você sente que estuda muito, mas não vê evolução real nos seus resultados?`,
-        options: [
-          { text: "Sim, sinto isso", next: 2 },
-          { text: "Não, estou progredindo", next: 10 },
-        ],
-      },
-      // STEP 2: Tentou mudar método?
-      {
-        id: 2,
-        question: "Você já tentou mudar o método de estudo pra resolver esse problema?",
         options: [
           { text: "Já tentei, mas não adiantou", next: 3 },
-          { text: "Nunca tentei", next: 4 },
+          { text: "Nunca tentei, sigo estudando do meu jeito", next: 3 },
         ],
       },
-      // STEP 3: Tem um plano CLARO?
+      // STEP 3: Planejamento
       {
         id: 3,
-        feedback: "Entendi. Às vezes o problema está no método, não só no esforço.",
-        question: "Hoje, você segue um plano claro de estudos (como ciclo, rotina, planejamento)?",
+        question: "Hoje você segue um planejamento claro de estudos? (ex: ciclo, rotina fixa, metas semanais)",
         options: [
-          { text: "Sim, tenho um plano", next: 5 },
-          { text: "Não, estudo meio perdido", next: 6 },
+          { text: "Tenho um plano estruturado", next: 4 },
+          { text: "Faço mais ou menos, sem rotina definida", next: 4 },
+          { text: "Não, estudo totalmente solto", next: 4 },
         ],
       },
-      // STEP 4: Organiza estudo de alguma forma?
+      // STEP 4: Revisão
       {
         id: 4,
-        feedback: "Quase todo mundo começa tentando na força bruta, sem método. Mas há solução!",
-        question: "Hoje, você organiza seus estudos de alguma forma, ou só vai fazendo o que dá?",
+        question: "Você tem um método de revisão que funciona de verdade? (Ou sente que esquece muito rápido?)",
         options: [
-          { text: "Tenho alguma organização", next: 5 },
-          { text: "Não, faço tudo sem ordem", next: 6 },
+          { text: "Sim, reviso bem", next: 5 },
+          { text: "Faço revisão, mas sinto que esqueço rápido", next: 5 },
+          { text: "Não reviso quase nada", next: 5 },
         ],
       },
-      // STEP 5: Faz revisões realmente eficientes?
+      // STEP 5: Questões
       {
         id: 5,
-        feedback: "Ótimo! Ter um plano já é metade do caminho. Agora, me diz:",
-        question: "Você revisa o conteúdo de forma realmente eficiente, sem bagunça?",
+        question: "Resolver questões faz parte do seu dia a dia?",
         options: [
-          { text: "Sim, reviso bem", next: 7 },
-          { text: "Não, revisão é problema pra mim", next: 7 },
+          { text: "Sim, todo dia", next: 6 },
+          { text: "Só quando sobra tempo", next: 6 },
+          { text: "Raramente", next: 6 },
         ],
       },
-      // STEP 6: O caos...
+      // STEP 6: Material
       {
         id: 6,
-        feedback: "Tá tudo bem, muita gente começa assim! Mas olha só:",
-        question: "Você já ouviu falar em Ciclo de Estudos (o método que mais aprova hoje)?",
+        question: "Você sente segurança ao escolher materiais de estudo? (PDF, videoaula, site de questões etc)",
         options: [
-          { text: "Já ouvi, mas nunca usei", next: 7 },
-          { text: "Nunca ouvi falar", next: 7 },
+          { text: "Sim, sei escolher", next: 7 },
+          { text: "Não, sempre fico na dúvida", next: 7 },
         ],
       },
-      // STEP 7: Questões
+      // STEP 7: Área de foco
       {
         id: 7,
-        feedback: "Questão polêmica entre os iniciantes...",
-        question: "Você resolve questões TODO DIA ou só quando sobra tempo?",
+        question: "Você já escolheu a área/cargo que quer? Ou ainda está testando tudo?",
         options: [
-          { text: "Todo dia!", next: 8 },
-          { text: "Só quando dá", next: 8 },
-          { text: "Quase nunca faço questões", next: 8 },
+          { text: "Já sei meu foco", next: 8 },
+          { text: "Ainda não, estou perdido(a)", next: 8 },
         ],
       },
-      // STEP 8: Dúvida sobre material
+      // STEP 8: Diagnóstico personalizado
       {
         id: 8,
-        feedback: "E na hora de escolher material para estudar?",
-        question: "Você se sente seguro(a) ou fica perdido(a) com tanta opção de apostilas, PDFs, videoaulas?",
+        question: (state) => {
+          // Diagnóstico dinâmico com base no que respondeu
+          let problemas = [];
+          if (state[1] === 0) problemas.push("falta de evolução nos estudos");
+          if (state[3] !== 0) problemas.push("ausência de planejamento estruturado");
+          if (state[4] !== 0) problemas.push("revisão pouco eficaz ou inexistente");
+          if (state[5] !== 0) problemas.push("baixa prática com questões");
+          if (state[6] !== 0) problemas.push("insegurança na escolha de materiais");
+          if (state[7] !== 0) problemas.push("falta de clareza sobre o foco");
+          const nome = state.nome || "Concurseiro(a)";
+          return `
+            <strong>${nome}, veja seu diagnóstico:</strong>
+            <br><br>
+            Você enfrenta:<br>
+            <ul>
+              ${problemas.map(p => `<li>• ${p}</li>`).join('')}
+            </ul>
+            <br>
+            <b>É justamente para vencer essas barreiras que existe o Manual do Aprovado — Versão do Iniciante.</b>
+            <br><br>
+            Quer entender como o Manual pode resolver seu caso?
+          `;
+        },
         options: [
-          { text: "Consigo escolher bem", next: 9 },
-          { text: "Fico totalmente perdido(a)", next: 9 },
-        ],
+          { text: "Quero ver o método!", next: 9 },
+          { text: "Voltar ao início", next: 1 }
+        ]
       },
-      // STEP 9: Definiu área/objetivo?
+      // STEP 9: Apresentação do Manual
       {
         id: 9,
-        question: "Você já definiu sua área ou cargo dos sonhos, ou ainda está meio perdido(a)?",
+        question: `
+        <strong>Como o Manual do Aprovado vai te ajudar:</strong>
+        <ul>
+          <li>✔️ Método validado, direto ao ponto</li>
+          <li>✔️ Ciclo de estudos explicado com modelos práticos</li>
+          <li>✔️ Estratégia de revisão simples e eficiente</li>
+          <li>✔️ Como usar questões para consolidar o estudo</li>
+          <li>✔️ Guia de materiais e áreas de foco</li>
+          <li>✔️ Tudo para evitar os erros que você acabou de relatar</li>
+        </ul>
+        <br>
+        <b>Bônus:</b> Suporte personalizado, dicas exclusivas e atualização para 2025.<br><br>
+        <a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO GARANTIR O MEU MANUAL!</a>
+        `,
         options: [
-          { text: "Já defini", next: "final" },
-          { text: "Ainda estou meio perdido(a)", next: "final" },
-        ],
+          { text: "Voltar ao diagnóstico", next: 8 }
+        ]
       },
-      // STEP 10: Usuário que está progredindo
+      // STEP 10: Caso o usuário já esteja progredindo bem
       {
         id: 10,
-        feedback: "Excelente! Mesmo assim, deixa eu perguntar mais algumas coisas:",
-        question: "Você já foi aprovado em algum concurso ou ainda está na luta?",
+        question: "Você já foi aprovado em algum concurso? Ou está estudando para sua primeira prova?",
         options: [
-          { text: "Já fui aprovado", next: "final_pro" },
-          { text: "Ainda não fui aprovado", next: 11 },
-        ],
+          { text: "Já fui aprovado", next: 11 },
+          { text: "Ainda não, mas estou confiante", next: 12 }
+        ]
       },
-      // STEP 11: Usuário progredindo mas sem aprovação
+      // STEP 11: Parabenização (aprovados)
       {
         id: 11,
-        question: "Você sente que poderia avançar ainda mais se tivesse uma rotina mais clara, revisão eficiente e um método pronto?",
+        question: (state) => `Parabéns, ${state.nome || "concurseiro(a)"}! Já passou por onde muitos querem chegar. Se quiser aperfeiçoar seu método, conhecer técnicas avançadas e acelerar novas aprovações, conheça o Manual do Aprovado.<br><br><a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO ACESSAR!</a>`,
         options: [
-          { text: "Sim, acho que sim", next: "final" },
-          { text: "Não, já estou satisfeito", next: "final_pro" },
-        ],
+          { text: "Voltar ao início", next: 1 }
+        ]
       },
-      // ==== FINAIS ====
-      // FINAL: Manual como solução natural
+      // STEP 12: Incentivo para os confiantes
       {
-        id: "final",
-        type: "final",
-        message: (state) => `
-          <div class="final-mensagem">
-            <h2>Diagnóstico do seu estudo</h2>
-            <p>${state.nome ? state.nome + "," : ""} analisando suas respostas, percebo que você tem exatamente os desafios que mais impedem a aprovação em concursos:</p>
-            <ul>
-              ${stateStorageToList(state)}
-            </ul>
-            <p><b>O Manual do Aprovado – Versão do Iniciante</b> resolve de forma PRÁTICA todos esses pontos. Ele não é mais um PDF genérico: é um roteiro testado, validado, sem enrolação, direto para quem está começando do zero ou se sente travado.</p>
-            <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">QUERO RECEBER O MEU MANUAL</a>
-            <p class="mini">Ou siga nosso conteúdo no <a href="https://instagram.com/pg_concursos_" target="_blank">Instagram</a>.</p>
-          </div>
-        `,
-      },
-      // FINAL: Usuário já aprovado e satisfeito
-      {
-        id: "final_pro",
-        type: "final",
-        message: (state) => `
-          <div class="final-mensagem">
-            <h2>Parabéns pela conquista!</h2>
-            <p>${state.nome ? state.nome + "," : ""} é muito bom saber que você já trilhou parte do caminho! Se quiser otimizar ainda mais, ajudar amigos, ou avançar para cargos maiores, o Manual do Aprovado pode ser um aliado. 😉</p>
-            <a class="cta" href="https://wa.me/SEUNUMERO" target="_blank">CONHECER O MANUAL</a>
-            <p class="mini">Acompanhe também no <a href="https://instagram.com/pg_concursos_" target="_blank">Instagram</a>.</p>
-          </div>
-        `,
-      },
+        id: 12,
+        question: (state) => `${state.nome || "Concurseiro(a)"}, manter a confiança é essencial! Se quiser garantir um método sem enrolação e acelerar sua aprovação, conte com o Manual do Aprovado — feito por quem já trilhou esse caminho.<br><br><a href="https://wa.me/SEUNUMERO" class="cta-final" target="_blank">QUERO COMEÇAR CERTO!</a>`,
+        options: [
+          { text: "Voltar ao início", next: 1 }
+        ]
+      }
     ];
 
-    // ==== RESUMO DINÂMICO PARA O FINAL ====
-    function stateStorageToList(state) {
-      let lista = [];
-      if (state[1] === 0) lista.push("<li>• Falta evolução real nos estudos</li>");
-      if (state[2] === 0) lista.push("<li>• Tentou vários métodos, sem resultado</li>");
-      if (state[3] === 1 || state[4] === 1 || state[6] === 1) lista.push("<li>• Falta organização e plano de estudos eficiente</li>");
-      if (state[5] === 1) lista.push("<li>• Revisão pouco eficiente</li>");
-      if (state
+    // ================= STATE E RENDER =====================
+    let state = { nome: "", step: 0 }; // Salva respostas
+    let history = []; // Pilha para voltar
+
+    function renderStep(stepId) {
+      const container = document.getElementById("quiz-card");
+      const step = steps.find(s => s.id === stepId);
+      // Barra de progresso
+      updateProgressBar(stepId);
+
+      // Avatar de apoio (personalização)
+      let avatar = `<div class="avatar-float"></div>`;
+
+      let html = avatar;
+
+      // Pergunta simples
+      let question = typeof step.question === "function" ? step.question(state) : step.question;
+      html += `<div class="pergunta">${question}</div>`;
+
+      // Campo input
+      if (step.type === "input") {
+        html += `<input type="text" id="input-nome" placeholder="${step.inputPlaceholder || ""}" autocomplete="off" maxlength="30"/>
+          <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
+        container.innerHTML = html;
+        const input = document.getElementById("input-nome");
+        const btn = document.getElementById("btn-next");
+        input.addEventListener("input", () => {
+          btn.disabled = input.value.trim().length < 2;
+        });
+        btn.addEventListener("click", () => {
+          history.push(stepId);
+          state.nome = input.value.trim();
+          state[stepId] = input.value.trim();
+          goTo(step.next);
+        });
+        // Não mostra botão voltar no início
+        return;
+      }
+
+      // Opções
+      if (step.options) {
+        html += `<div class="opcoes">`;
+        step.options.forEach((op, idx) => {
+          html += `<button class="btn-quiz" data-idx="${idx}">${op.text}</button>`;
+        });
+        html += `</div>`;
+      }
+
+      // Botão voltar
+      if (history.length > 0) {
+        html += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
+      }
+      container.innerHTML = html;
+
+      // Listeners de opção
+      if (step.options) {
+        container.querySelectorAll(".btn-quiz").forEach((btn, idx) => {
+          btn.addEventListener("click", () => {
+            history.push(stepId);
+            state[stepId] = idx;
+            goTo(step.options[idx].next);
+          });
+        });
+      }
+      // Listener botão voltar
+      const btnVoltar = document.getElementById("btn-voltar");
+      if (btnVoltar) {
+        btnVoltar.addEventListener("click", () => {
+          if (history.length > 0) {
+            let prev = history.pop();
+            goTo(prev, true);
+          }
+        });
+      }
+    }
+
+    function goTo(stepId, isBack = false) {
+      state.step = stepId;
+      // Pequena animação ao trocar
+      const container = document.getElementById("quiz-card");
+      container.classList.remove("show");
+      setTimeout(() => {
+        renderStep(stepId);
+        container.classList.add("show");
+      }, isBack ? 150 : 250);
+    }
+
+    function updateProgressBar(stepId) {
+      // Do 0 a 9 = fluxo principal
+      const total = 9;
+      const percent = Math.min((stepId / total) * 100, 100);
+      document.getElementById("progress-bar").style.width = percent + "%";
+    }
+
+    // Inicialização
+    window.onload = () => {
+      renderStep(0);
+      document.getElementById("quiz-card").classList.add("show");
+    };
+  </script>
+</body>
+</html>
