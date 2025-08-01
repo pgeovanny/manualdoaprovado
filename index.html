@@ -6,482 +6,167 @@
   <title>Manual do Aprovado - Diagnóstico Inteligente</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-:root {
-  --azul-escuro: #141d2a;
-  --azul-glass: rgba(24, 35, 50, 0.97);
-  --azul1: #2576f7;
-  --azul2: #49c2fa;
-  --neon: #7bf7f7;
-  --branco: #f8fafd;
-  --radius: 2.4rem;
-  --shadow: 0 10px 60px 0 #223c6290;
-  --max-card: 720px;
-}
-html, body {
-  min-height: 100vh;
-  background: linear-gradient(120deg, #162337 0%, #22314c 100%);
-  background-size: 180% 180%;
-  animation: gradmove 16s ease-in-out infinite alternate;
-  font-family: 'Inter', Arial, sans-serif;
-  color: var(--branco);
-  margin: 0;
-  overflow-x: hidden;
-}
-@keyframes gradmove {
-  0% { background-position: 0 0;}
-  100% { background-position: 100% 100%;}
-}
-body { display: flex; flex-direction: column; }
-header {
-  width: 100vw;
-  margin: 0; padding: 0;
-  position: fixed;
-  top: 0; left: 0; z-index: 10;
-}
-.cabecalho {
-  width: 100vw; min-height: 90px; padding: 0; background: linear-gradient(90deg,#2576f7 8%,#49c2fa 92%);
-  box-shadow: 0 7px 38px #223c6292; display: flex; align-items: center; justify-content: center;
-  position: relative; border-bottom: 3px solid #7bf7f77e; overflow: visible;
-}
-.cabecalho-content {
-  display: flex; align-items: center; gap: 28px; width: 100%; max-width: 880px; margin: 0 auto;
-  padding: 0 18px; justify-content: flex-start;
-}
-#robo-cabecalho {
-  width: 56px; height: 56px; min-width: 56px; background: linear-gradient(120deg,#f8fafd 80%,#7bf7f7 100%);
-  border-radius: 50%; box-shadow: 0 3px 22px #2576f722; display: flex; align-items: center; justify-content: center;
-  border: 2.2px solid #fff; margin-right: 0; animation: roboGrande 2.1s infinite alternate cubic-bezier(.41,0,.54,1);
-}
-@keyframes roboGrande {
-  0% { transform: translateY(0);}
-  100% { transform: translateY(-7px);}
-}
-#robo-cabecalho svg { width: 36px; height: 36px;}
-.cabecalho-txt { display: flex; flex-direction: column; align-items: flex-start; }
-.cabecalho h1 { color: #fff; font-size: 2.07rem; font-weight: 900; margin: 0 0 3px 0; letter-spacing: .06em; text-shadow: 0 3px 28px #223c6257; }
-.cabecalho .subtitle { color: #102644; font-weight: 700; font-size: 1.13rem; letter-spacing: .02em; margin-top: 2px; text-shadow: 0 1px 8px #7bf7f711;}
-main { flex: 1; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin-top: 108px;}
-.splash-hero {
-  width: 100%; max-width: var(--max-card); margin: 34px auto 36px auto;
-  padding: 2.7rem 2.7rem 2.7rem 2.7rem; background: var(--azul-glass); border-radius: var(--radius);
-  box-shadow: var(--shadow); border: 2.5px solid #49c2fa33; display: flex; flex-direction: row; align-items: stretch; gap: 0; min-height: 290px; position: relative;
-}
-.splash-hero .robo-quadro { width: 36%; min-width: 180px; max-width: 230px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin-right: 30px; }
-.splash-hero .robo-img-balao { display: flex; flex-direction: column; align-items: center; margin-top: 7px; margin-bottom: 0; }
-.splash-hero #robo-principal { width: 70px; height: 70px; background: linear-gradient(130deg,#f8fafd 85%,#49c2fa 100%);
-  border-radius: 50%; box-shadow: 0 3px 22px #2576f744; display: flex; align-items: center; justify-content: center;
-  animation: roboGrande 2.1s infinite alternate cubic-bezier(.42,0,.54,1); margin-bottom: 4px; border: 2.2px solid #fff;}
-.splash-hero #robo-principal svg { width: 43px; height: 43px;}
-.splash-hero .balao {
-  background: #fff; color: #2576f7; font-size: 1.09rem; font-weight: 800;
-  border-radius: 1.6rem 1.6rem 1.6rem 0.7rem; box-shadow: 0 2px 16px #49c2fa13;
-  padding: 14px 20px 14px 14px; margin-top: 0; margin-bottom: 7px; min-width: 142px; text-align: left; max-width: 99vw; word-break: break-word;
-  animation: falaIn .55s; position: relative;
-}
-@keyframes falaIn { from { opacity: 0; transform: scale(.92) translateY(15px);} to { opacity: 1; transform: scale(1) translateY(0);}}
-.splash-hero .balao:after {
-  content: ''; position: absolute; left: 13px; bottom: -15px; width: 18px; height: 18px;
-  background: #fff; border-radius: 0 0 9px 0; transform: rotate(35deg) skew(-28deg); box-shadow: 1px 5px 9px #2576f722;
-}
-.splash-hero .inicial-content { flex: 1; min-width: 210px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
-.badge-ini { display: inline-block; background: linear-gradient(90deg,#2576f7 40%,#49c2fa 100%);
-  color: #fff; font-weight: 900; font-size: 1.06rem; padding: 7px 24px 7px 15px; border-radius: 99px; margin-bottom: 22px; letter-spacing: .045em; border: 1.1px solid #49c2fa88; }
-.splash-hero h2 { font-size: 1.44rem; font-weight: 900; color: #7bf7f7; margin-bottom: 13px; letter-spacing: .01em; }
-.splash-hero .sub { font-size: 1.14rem; color: #b8ccde; margin-bottom: 17px; font-weight: 600; display: block; }
-.splash-hero .desc { color: #e8fafd; font-size: 1.10rem; margin-bottom: 29px; font-weight: 400; line-height: 1.55; }
-.splash-hero .btn-splash { background: linear-gradient(90deg, #2576f7 70%, #49c2fa 100%); color: #fff;
-  border: none; border-radius: 2rem; font-size: 1.16rem; font-weight: 900; padding: 1.12rem 0; width: 100%;
-  max-width: 270px; margin: 0 auto 6px auto; cursor: pointer; box-shadow: 0 8px 32px #49c2fa22,0 0 18px #2576f71a;
-  transition: background .16s, transform .11s, box-shadow .13s; display: block; border: 2px solid #2576f7; position: relative; overflow: hidden;}
-.splash-hero .btn-splash:hover { background: linear-gradient(90deg, #49c2fa 85%, #2576f7 100%); transform: scale(1.04);}
-.counter-diagnostico { color: #49c2fa; font-size: 1.06rem; font-weight: 700; margin-top: 14px; letter-spacing: .01em; text-shadow: 0 1px 2px #49c2fa33; text-align: center;}
-.quiz-outer { width: 100vw; min-height: 67vh; display: flex; align-items: center; justify-content: center; margin-top: 13px;}
-.card-glass {
-  background: var(--azul-glass); box-shadow: var(--shadow); border-radius: var(--radius);
-  max-width: var(--max-card); width: 100%; margin: 0 auto; padding: 2.3rem 2.6rem 2.2rem 2.6rem; display: flex; flex-direction: row; align-items: stretch; border: 2.3px solid #49c2fa33; min-height: 320px;
-}
-#robo-pergunta { width: 88px; min-width: 78px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin-right: 26px; }
-#robo-pergunta .robo-ball { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(120deg,#f8fafd 85%,#49c2fa 100%); box-shadow: 0 3px 22px #49c2fa1b; display: flex; align-items: center; justify-content: center; animation: roboGrande 2.2s infinite alternate cubic-bezier(.41,0,.54,1); margin-bottom: 5px; border: 2.2px solid #fff; }
-#robo-pergunta svg { width: 38px;height:38px;}
-#robo-pergunta .balao-pergunta {
-  background: #fff; color: #2576f7; font-size: 1.08rem; font-weight: 800; border-radius: 1.3rem 1.5rem 1.5rem 0.9rem;
-  box-shadow: 0 2px 18px #49c2fa0d; padding: 14px 22px 15px 14px; margin-top: 2px; min-width: 100px; max-width: 375px; text-align: left; animation: falaIn .6s; min-height: 35px; display: flex; align-items: center; word-break: break-word;
-}
-#quiz-content-main { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 180px; }
-.pergunta { font-size: 1.11rem; font-weight: 800; color: #f8fafd; margin-bottom: 1.3rem; line-height: 1.47; width: 100%; min-height: 2.1rem;}
-.opcoes { display: flex; flex-direction: column; gap: 1.08rem; width: 100%; align-items: center; margin-bottom: 0.5rem; }
-.btn-quiz { width: 98%; max-width: 340px; background: linear-gradient(90deg, #2576f7 70%, #49c2fa 100%); color: #fff; border: none; border-radius: 2rem; font-size: 1.09rem; font-weight: 900; padding: 1.06rem 0; margin: 0 auto; cursor: pointer; box-shadow: 0 6px 18px #2576f733; outline: none; text-align: center; transition: background .11s, transform .09s, box-shadow .11s; letter-spacing: .01em; position:relative; overflow:hidden;}
-.btn-quiz:active::after { content:""; display:block; position:absolute; left:50%;top:50%; width:150px;height:150px; transform:translate(-50%,-50%); background:radial-gradient(circle, #fff4 10%,transparent 80%); opacity:.13; z-index:0; pointer-events:none;}
-.btn-quiz:hover, .btn-quiz:focus { background: linear-gradient(90deg, #49c2fa 85%, #2576f7 100%); transform: scale(1.022);}
-.btn-quiz[disabled] { background: #233451; color: #88adc2; cursor: not-allowed;}
-.btn-voltar { background: none; border: none; color: #7bf7f7; font-weight: 800; font-size: 1.02rem; margin-top: 17px; cursor: pointer; text-align: center; display: block;}
-input[type="text"] { width: 94%; border-radius: 1.1rem; border: 1.5px solid #22304b; padding: 1.03rem 1rem; margin-bottom: 1.06rem; font-size: 1.07rem; background: #22304bb7; font-family: inherit; color: #fff; transition: border-color .11s; font-weight: 700; outline: none; display: block; margin-left: auto; margin-right: auto;}
-input[type="text"]:focus { border-color: #49c2fa;}
-#progress-bar-container { width: 98vw; max-width: var(--max-card); height: 8px; margin: 0 auto 12px auto; background: #22385d; border-radius: 9px; box-shadow: 0 1px 4px #49c2fa08; overflow: hidden; position: relative; z-index: 2;}
-#progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #49c2fa 60%, #2576f7 100%); border-radius: 9px; transition: width .19s cubic-bezier(.67,0,.28,1);}
-footer { z-index: 2; text-align: center; font-size: 1.09rem; padding: 20px 0 14px 0; color: #b4d8ed; font-weight: 800; background: #182a42ee; border-top: 1.1px solid #22395a; letter-spacing: .01em;}
-@media (max-width: 900px) {
-  .cabecalho-content { max-width: 99vw; gap: 13px; }
-  .cabecalho h1 { font-size: 1.19rem; }
-  .cabecalho { min-height: 60px; }
-  main { margin-top: 70px; }
-  .splash-hero, .card-glass { max-width: 99vw; padding: 2.2rem 0.7rem;}
-}
-@media (max-width: 650px) {
-  .cabecalho {min-height:42px;}
-  .cabecalho-content {gap:8px;}
-  #robo-cabecalho {width:32px;height:32px;}
-  .splash-hero, .card-glass {flex-direction:column;align-items:center;}
-  .splash-hero .robo-quadro, #robo-pergunta {margin-right:0;}
-  .splash-hero .robo-quadro, #robo-pergunta {width:100%;min-width:0;max-width:99vw;}
-  .splash-hero .balao, #robo-pergunta .balao-pergunta {max-width:92vw;}
-  .splash-hero .inicial-content, #quiz-content-main {min-width:0;}
-}
+    body {
+      margin:0; padding:0; background:#111a26; font-family:Inter,sans-serif;
+      min-height:100vh; color:#f7fcff;
+      background: radial-gradient(ellipse at 70% 25%, #223c6299 0%, #111a26 80%);
+    }
+    #container {
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+      min-height:100vh; width:100vw; padding-top:70px;
+    }
+    .quiz-box {
+      width:100%; max-width:700px; min-height:330px;
+      margin:38px auto 0 auto; background:rgba(24,35,50,0.96);
+      box-shadow: 0 7px 32px #223c6260; border-radius:2.5rem;
+      display:flex; flex-direction:row; align-items:flex-start; position:relative;
+      border:2px solid #247df94a; padding:2.1rem 2.2rem 2.4rem 2.2rem;
+      gap:34px;
+    }
+    .robo-wrap {
+      min-width:120px; max-width:210px; display:flex; flex-direction:column; align-items:center;
+    }
+    .robo-face { width:62px; height:62px; background:#fff; border-radius:50%; margin-bottom:8px; box-shadow:0 2px 18px #7bf7f724; display:flex;align-items:center;justify-content:center;}
+    .robo-face svg { width:36px;height:36px;}
+    .balao {
+      background: #fff; color:#247df9; font-weight:900; font-size:1.08rem;
+      border-radius:1.3rem 1.3rem 1.3rem .8rem; box-shadow: 0 2px 14px #7bf7f715;
+      padding:17px 21px 17px 17px; text-align:left; max-width:240px; min-width:100px; word-break:break-word;
+    }
+    @media (max-width:600px) {
+      .quiz-box {flex-direction:column; padding:1.2rem 0.7rem;gap:10px; min-width:0;}
+      .robo-wrap {min-width:0;max-width:99vw;}
+      .balao {max-width:95vw;}
+    }
+    .quiz-content {flex:1; display:flex; flex-direction:column;align-items:center;justify-content:center;}
+    .pergunta {font-size:1.13rem; font-weight:800; margin-bottom:1.4rem; color:#f7fcff; text-align:center;}
+    .opcoes { display:flex; flex-direction:column; gap:1.15rem; width:100%; align-items:center;}
+    .btn-quiz {
+      background:linear-gradient(90deg, #2576f7 60%, #49c2fa 100%);
+      color:#fff;font-weight:900;font-size:1.08rem; padding:1.09rem 0;
+      border:none; border-radius:2rem; max-width:340px; width:98%;
+      margin:0 auto; cursor:pointer; box-shadow:0 5px 19px #2576f728;
+      transition:background .13s,transform .1s;
+    }
+    .btn-quiz:hover { background:linear-gradient(90deg, #49c2fa 90%, #2576f7 100%); transform:scale(1.03);}
+    .cta-final-bar { display:flex; gap:1.1rem; justify-content:center; margin:2.1rem 0 1.1rem 0;}
+    .cta-final-btn {
+      background:linear-gradient(90deg, #2576f7 57%, #49c2fa 100%);
+      color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.13rem; padding:1.08rem 0;
+      min-width:160px; transition:background .11s,transform .11s; cursor:pointer; box-shadow:0 6px 25px #49c2fa32;
+      text-align:center;
+    }
+    .cta-final-btn:hover {background:linear-gradient(90deg,#49c2fa 97%,#2576f7 100%);transform:scale(1.03);}
   </style>
 </head>
 <body>
-  <header>
-    <div class="cabecalho">
-      <div class="cabecalho-content">
-        <div id="robo-cabecalho">
-          <svg viewBox="0 0 40 40" fill="none">
-            <ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/>
-            <rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/>
-            <circle cx="16" cy="16" r="2" fill="#2576f7" />
-            <circle cx="24" cy="16" r="2" fill="#2576f7" />
-            <rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/>
-          </svg>
-        </div>
-        <div class="cabecalho-txt">
-          <h1>MANUAL DO APROVADO</h1>
-          <span class="subtitle">Estudar com estratégia é metade do caminho para a aprovação.</span>
-        </div>
-      </div>
+  <div id="container">
+    <div class="quiz-box" id="quiz-box">
+      <!-- Conteúdo do quiz entra aqui -->
     </div>
-  </header>
-  <main>
-    <div class="splash-hero" id="splash">
-      <div class="robo-quadro">
-        <div class="robo-img-balao">
-          <div id="robo-principal">
-            <svg viewBox="0 0 40 40" fill="none">
-              <ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/>
-              <rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/>
-              <circle cx="16" cy="16" r="2" fill="#2576f7" />
-              <circle cx="24" cy="16" r="2" fill="#2576f7" />
-              <rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/>
-            </svg>
-          </div>
-          <div class="balao" id="fala-inicial">Vamos juntos entender um pouco de você, para te direcionar do jeito certo.</div>
-        </div>
-      </div>
-      <div class="inicial-content">
-        <span class="badge-ini">Bem-vindo(a)!</span>
-        <h2>Parabéns, você decidiu estudar do jeito CERTO.</h2>
-        <span class="sub">Responda um diagnóstico rápido e veja como evitar os erros que travam quem está começando.</span>
-        <div class="desc">
-          Em poucos minutos, descubra como estudar com estratégia, ganhar tempo e avançar mais rápido.
-        </div>
-        <button class="btn-splash" onclick="startQuiz()">Começar Diagnóstico</button>
-        <div class="counter-diagnostico" id="counter-diagnostico"></div>
-      </div>
-    </div>
-    <div class="quiz-outer" style="display:none">
-      <div class="card-glass" id="quiz-card"></div>
-    </div>
-    <div id="progress-bar-container" style="display:none">
-      <div id="progress-bar"></div>
-    </div>
-  </main>
-  <footer>
-    © 2025 Manual do Aprovado
-  </footer>
+  </div>
   <script>
-    // Partículas
-    function createParticles() {
-      const bg = document.createElement('div');
-      bg.id = 'bg-particles';
-      document.body.prepend(bg);
-      for(let i=0; i<22; i++) {
-        let s = document.createElement('span');
-        let sz = Math.random()*2+1.6;
-        s.style = `position:absolute;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}vh;height:${sz}vh;background:#49c2fa;opacity:${Math.random()*.17+.13};border-radius:99px;filter:blur(1.2px);animation:part-move ${3+Math.random()*12}s linear infinite alternate;`;
-        bg.appendChild(s);
-      }
-    }
-    createParticles();
-    const style = document.createElement('style');
-    style.innerHTML = `@keyframes part-move {0% { transform: translateY(0) scale(.85);} 100% { transform: translateY(-26px) scale(1.05);}}`;
-    document.head.appendChild(style);
-
-    // Contador de visitas
-    function updateCounter() {
-      let base = 401 + Math.floor(Math.random()*13);
-      let el = document.getElementById("counter-diagnostico");
-      let now = base + Math.floor(performance.now()/3500);
-      el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
-      setInterval(()=>{
-        now++;
-        el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
-      }, 4200);
-    }
-    updateCounter();
-
-    // Quiz: perguntas sempre lógicas e feedback correto
+    // Fluxo lógico para iniciantes
     const steps = [
-      {
-        id: 0,
-        question: "Antes de começar, como você gostaria de ser chamado(a)?",
-        type: "input",
-        inputPlaceholder: "Digite seu nome aqui",
-        next: 1,
-      },
-      {
-        id: 1,
-        question: (s) => `Muito bem, ${s.nome || "concurseiro(a)"}! Qual dessas opções define melhor você?`,
-        options: [
-          { text: "Nunca estudei para concurso", next: 2 },
-          { text: "Já tentei estudar, mas não avancei", next: 3 },
-          { text: "Já estudo, mas sinto que travo", next: 4 }
-        ]
-      },
-      {
-        id: 2,
-        question: "Totalmente normal! Todo mundo começa do zero mesmo. O que mais te deixa travado(a) quando pensa em começar?",
-        options: [
-          { text: "Não sei nem por onde começar", next: 5 },
-          { text: "Fico perdido(a) com tanta matéria", next: 5 }
-        ]
-      },
-      {
-        id: 3,
-        question: "É muito comum travar sem orientação. Você já tentou montar alguma rotina, ciclo ou plano de estudos?",
-        options: [
-          { text: "Nunca montei", next: 5 },
-          { text: "Já tentei, mas desisto rápido", next: 5 }
-        ]
-      },
-      {
-        id: 4,
-        question: "Quando sente que não avança, normalmente é falta de estratégia ou revisão. O que mais te atrapalha hoje?",
-        options: [
-          { text: "Não consigo seguir rotina", next: 6 },
-          { text: "Não sei como revisar direito", next: 6 }
-        ]
-      },
-      {
-        id: 5,
-        question: "Você já sabe qual área ou cargo pretende focar?",
-        options: [
-          { text: "Ainda não, tô perdido(a)", next: 7 },
-          { text: "Já tenho uma ideia/foco", next: 6 }
-        ]
-      },
-      {
-        id: 6,
-        question: "Você já chegou a revisar o que estudou, ou só lê uma vez?",
-        options: [
-          { text: "Nunca revisei direito", next: 8 },
-          { text: "Reviso de vez em quando", next: 8 },
-          { text: "Faço revisão, mas sem método", next: 8 }
-        ]
-      },
-      {
-        id: 7,
-        question: "Sem problema! O Manual do Aprovado te mostra como escolher o foco certo para não desperdiçar energia. Você já tentou resolver questões antes?",
-        options: [
-          { text: "Nunca fiz questões", next: 9 },
-          { text: "Já tentei, mas erro muito", next: 9 }
-        ]
-      },
-      {
-        id: 8,
-        question: "Resolver questões é uma das melhores formas de fixar conteúdo, mas nem todo iniciante começa assim. Com que frequência faz questões?",
-        options: [
-          { text: "Nunca fiz", next: 9 },
-          { text: "Raramente", next: 9 },
-          { text: "Com frequência", next: 10 }
-        ]
-      },
-      {
-        id: 9,
-        question: "Ótimo! Agora você já tem mais clareza do que precisa melhorar. Não se cobre por não ter começado a fazer questões — com orientação, isso vai se encaixar naturalmente.",
-        options: [
-          { text: "Ver resultado", next: 10 }
-        ]
-      },
-      {
-        id: 10,
-        question: () => `
-          <div id="robo-pergunta">
-            <div class="robo-ball">
-              <svg viewBox="0 0 40 40" fill="none">
-                <ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/>
-                <rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/>
-                <circle cx="16" cy="16" r="2" fill="#2576f7" />
-                <circle cx="24" cy="16" r="2" fill="#2576f7" />
-                <rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/>
-              </svg>
-            </div>
-            <div class="balao-pergunta" style="font-size:1.12rem;">
-              <b>Agora você tem clareza do caminho! Clique para conhecer o Manual do Aprovado e destrave seus estudos de vez.</b>
-            </div>
-          </div>
-          <div id="quiz-content-main" style="width:100%;">
-            <div class="pergunta" style="font-size:1.18rem;font-weight:900;margin-bottom:1.7rem;">
-              <span style="color:#49c2fa;">Manual do Aprovado:</span> O passo a passo para sair do zero com método e evitar perder tempo como a maioria!
-            </div>
-            <ul style="margin-bottom:2rem; font-size:1.13rem; color:#fff; background:#22314c; border-radius:1.2rem; padding:1.2rem 1.4rem; box-shadow:0 2px 14px #49c2fa0b;">
-              <li>Monte sua rotina de estudos de forma simples.</li>
-              <li>Aprenda a revisar com clareza e objetividade.</li>
-              <li>Escolha materiais certos sem desperdiçar tempo.</li>
-              <li>Descubra o que realmente cai na sua prova.</li>
-              <li>Pratique questões do jeito que aprova.</li>
-            </ul>
-            <div class="cta-bar" style="margin-bottom:1.4rem;">
-              <a href="LINK_KIWIFY" class="cta-final" target="_blank">Quero estudar certo!</a>
-              <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">Ver Amostra</a>
-            </div>
-            <div style="color:#7bf7f7; margin-top:1.2rem;font-size:1.11rem;text-align:center;">
-              Você pode dar o próximo passo agora: escolha aprender com método e chegar mais longe!
-            </div>
-          </div>
-        `,
-        options: [
-          { text: "Voltar ao início", next: 0 }
-        ]
-      }
+      { id: 0, robo: "Vamos juntos entender um pouco de você, para te direcionar do jeito certo.", pergunta: "", input:true, placeholder:"Digite seu nome", next: 1 },
+      { id: 1, robo: (s)=>`Certo, ${s.nome || ""}! Qual o seu momento hoje?`, op:[
+        {t:"Nunca estudei para concurso",n:2},
+        {t:"Já tentei estudar, mas travo",n:3},
+        {t:"Já estudo, mas não evoluo",n:4}
+      ]},
+      // INICIANTE TOTAL
+      { id: 2, robo:"Totalmente normal! O que mais te trava ao pensar em estudar para concurso?", op:[
+        {t:"Não sei nem por onde começar",n:5},
+        {t:"Fico perdido(a) com tanta matéria",n:5},
+        {t:"Não entendo nada de planejamento",n:5}
+      ]},
+      // JÁ TENTOU, MAS TRAVA
+      { id: 3, robo:"Muitos travam por falta de orientação. Você já tentou algum plano de estudos?", op:[
+        {t:"Nunca montei",n:6},
+        {t:"Já tentei, mas não segui",n:6}
+      ]},
+      // JÁ ESTUDA, MAS NÃO EVOLUI
+      { id: 4, robo:"Quem já estuda, mas não avança, geralmente precisa de revisão ou método de questões. O que mais sente dificuldade?", op:[
+        {t:"Não sei revisar direito",n:6},
+        {t:"Não tenho rotina",n:6}
+      ]},
+      // INICIANTE: DEFINIU FOCO?
+      { id: 5, robo:"Você já sabe qual área ou cargo pretende estudar? (Isso faz diferença para montar o plano!)", op:[
+        {t:"Ainda não, estou perdido(a)",n:7},
+        {t:"Já tenho um foco",n:6}
+      ]},
+      // QUESTÕES
+      { id: 6, robo:"Você costuma fazer questões para fixar o conteúdo?", op:[
+        {t:"Nunca fiz",n:8},
+        {t:"Raramente",n:8},
+        {t:"Faço sempre",n:8}
+      ]},
+      // NÃO TEM FOCO DEFINIDO
+      { id: 7, robo:"Tudo bem, vamos ajudar nisso também. O importante é começar!", op:[
+        {t:"Avançar",n:6}
+      ]},
+      // FINAL
+      { id: 8, robo:"Agora você tem clareza de onde pode evoluir. Olha como o Manual do Aprovado pode te ajudar a acelerar sua aprovação:", final:true }
     ];
-    // QUIZ State & Render
-    let state = { nome: "", step: 0 };
-    let history = [];
-    function startQuiz() {
-      document.getElementById('splash').style.transition = "opacity .36s";
-      document.getElementById('splash').style.opacity = 0;
-      setTimeout(() => {
-        document.getElementById('splash').style.display = 'none';
-        document.querySelector('.quiz-outer').style.display = 'flex';
-        document.getElementById('progress-bar-container').style.display = 'block';
-        renderStep(0);
-      }, 250);
-    }
+
+    let state = { nome:"" }, history=[];
     function renderStep(stepId) {
-      const container = document.getElementById("quiz-card");
-      container.innerHTML = "";
-      if (stepId < 10) {
-        // Robô com balão de fala digitando (rápido, adaptativo)
-        container.innerHTML = `
-          <div id="robo-pergunta">
-            <div class="robo-ball">
-              <svg viewBox="0 0 40 40" fill="none">
-                <ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/>
-                <rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/>
-                <circle cx="16" cy="16" r="2" fill="#2576f7" />
-                <circle cx="24" cy="16" r="2" fill="#2576f7" />
-                <rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/>
-              </svg>
-            </div>
-            <div class="balao-pergunta" id="balao-digita"></div>
+      const s = steps.find(x=>x.id===stepId);
+      let box = document.getElementById("quiz-box");
+      box.innerHTML = `
+        <div class="robo-wrap">
+          <div class="robo-face">
+            <svg viewBox="0 0 40 40"><ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/><rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#2576f7"/><circle cx="24" cy="16" r="2" fill="#2576f7"/><rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/></svg>
           </div>
-          <div id="quiz-content-main"></div>
+          <div class="balao">${typeof s.robo==="function" ? s.robo(state) : s.robo}</div>
+        </div>
+        <div class="quiz-content"></div>
+      `;
+      let content = box.querySelector('.quiz-content');
+      if(s.input){
+        content.innerHTML = `<input type="text" id="nome" placeholder="${s.placeholder||''}" style="font-size:1.09rem;width:95%;border-radius:1.2rem;border:1.5px solid #22304b;padding:1.03rem 1rem;margin-bottom:1.2rem;">
+          <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
+        let inp = document.getElementById('nome');
+        let btn = document.getElementById('btn-next');
+        inp.addEventListener('input',()=>{btn.disabled=inp.value.trim().length<2;});
+        btn.addEventListener('click',()=>{
+          state.nome = inp.value.trim();
+          history.push(stepId);
+          renderStep(s.next);
+        });
+        return;
+      }
+      if(s.op){
+        content.innerHTML = `<div class="opcoes">${
+          s.op.map((x,i)=>`<button class="btn-quiz" data-idx="${i}">${x.t}</button>`).join('')
+        }</div>${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:15px;" id="voltar">← Voltar</button>`:''}`;
+        content.querySelectorAll('.btn-quiz').forEach((btn,i)=>{
+          if(s.op[i])btn.onclick=()=>{history.push(stepId);renderStep(s.op[i].n);}
+        });
+        let bvoltar = content.querySelector('#voltar');
+        if(bvoltar)bvoltar.onclick=()=>{if(history.length){let prev=history.pop();renderStep(prev)}};
+      }
+      if(s.final){
+        content.innerHTML = `
+          <div class="pergunta" style="font-size:1.15rem;font-weight:900;color:#49c2fa;margin-bottom:1.4rem;">Manual do Aprovado: O passo a passo para sair do zero, aprender com método e ser aprovado mais rápido.</div>
+          <ul style="font-size:1.12rem;color:#f8fafd;background:#1e2e42;border-radius:1.1rem;padding:1.1rem 1.5rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;">
+            <li>Monte sua rotina sem enrolação.</li>
+            <li>Aprenda a revisar do jeito certo.</li>
+            <li>Escolha materiais sem jogar tempo/dinheiro fora.</li>
+            <li>Descubra o que cai na sua prova e pratique o essencial.</li>
+          </ul>
+          <div class="cta-final-bar">
+            <a href="LINK_KIWIFY" class="cta-final-btn" target="_blank">Quero estudar certo!</a>
+            <a href="LINK_AMOSTRA" class="cta-final-btn" style="background:#13244c;color:#7bf7f7;border:2px solid #7bf7f7;">Ver Amostra</a>
+          </div>
+          <div style="color:#7bf7f7;margin-top:1.1rem;font-size:1.09rem;text-align:center;">Escolha aprender com estratégia. Você merece ser aprovado mais rápido!</div>
+          ${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:22px;" id="voltar">← Voltar</button>`:""}
         `;
-        let step = steps.find(s=>s.id===stepId);
-        let text = typeof step.question === "function" ? step.question(state) : step.question;
-        text = text.replace(/<br>/gi," ");
-        let i = 0, out = "";
-        let fala = document.getElementById("balao-digita");
-        let speed = Math.max(7, Math.min(17, Math.floor(170/text.length))); // Fica fluido sempre
-        let interval = setInterval(()=>{
-          out += text[i]||"";
-          fala.innerHTML = out + '<span style="opacity:.13">' + " ".repeat(Math.max(0,text.length-i-1)) + '</span>';
-          i++;
-          if (i >= text.length) clearInterval(interval);
-        },speed);
-        setTimeout(()=>{
-          showPergunta(stepId, container);
-        }, Math.max(300,13*text.length+80));
-      } else {
-        showPergunta(stepId, container);
+        let bvoltar = content.querySelector('#voltar');
+        if(bvoltar)bvoltar.onclick=()=>{if(history.length){let prev=history.pop();renderStep(prev)}};
       }
     }
-    function showPergunta(stepId, container) {
-      let step = steps.find(s => s.id === stepId);
-      updateProgressBar(stepId);
-      if(stepId<10){
-        // Render opções e input ao lado do robô
-        let main = container.querySelector("#quiz-content-main");
-        let html = "";
-        if (step.type === "input") {
-          html += `<input type="text" id="input-nome" placeholder="${step.inputPlaceholder || ""}" autocomplete="off" maxlength="30"/>
-            <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
-          main.innerHTML = html;
-          const input = document.getElementById("input-nome");
-          const btn = document.getElementById("btn-next");
-          input.addEventListener("input", () => {
-            btn.disabled = input.value.trim().length < 2;
-          });
-          btn.addEventListener("click", () => {
-            history.push(stepId);
-            state.nome = input.value.trim();
-            state[stepId] = input.value.trim();
-            goTo(step.next);
-          });
-          return;
-        }
-        if (step.options) {
-          html += `<div class="opcoes">`;
-          step.options.forEach((op, idx) => {
-            html += `<button class="btn-quiz" data-idx="${idx}">${op.text}</button>`;
-          });
-          html += `</div>`;
-        }
-        if (history.length > 0) {
-          html += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
-        }
-        main.innerHTML = html;
-        if (step.options) {
-          main.querySelectorAll(".btn-quiz").forEach((btn, idx) => {
-            btn.addEventListener("click", () => {
-              history.push(stepId);
-              state[stepId] = idx;
-              renderStep(step.options[idx].next);
-            });
-          });
-        }
-        const btnVoltar = main.querySelector("#btn-voltar");
-        if (btnVoltar) {
-          btnVoltar.addEventListener("click", () => {
-            if (history.length > 0) {
-              let prev = history.pop();
-              renderStep(prev, true);
-            }
-          });
-        }
-      } else {
-        // Fase final: robô e CTA bonita, organizada, centralizada
-        container.innerHTML = typeof step.question === "function" ? step.question(state) : step.question;
-        if (history.length > 0) {
-          container.innerHTML += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
-          const btnVoltar = container.querySelector("#btn-voltar");
-          btnVoltar.addEventListener("click", () => {
-            if (history.length > 0) {
-              let prev = history.pop();
-              renderStep(prev, true);
-            }
-          });
-        }
-      }
-    }
-    function goTo(stepId, isBack = false) {
-      state.step = stepId;
-      renderStep(stepId);
-    }
-    function updateProgressBar(stepId) {
-      const total = 10;
-      let pct = (stepId / total) * 100;
-      if (pct > 100) pct = 100;
-      document.getElementById("progress-bar").style.width = pct + "%";
-    }
+    renderStep(0);
   </script>
 </body>
 </html>
