@@ -2,293 +2,301 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Manual do Aprovado • Iniciante</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
-    /*-----------------------------------
-      VARS
-    -----------------------------------*/
     :root {
-      --dark:   #0B0E1E;
-      --blue:   #2D7BE9;
-      --cyan:   #00F0FF;
-      --white:  #F5F5F5;
-      --glass:  rgba(255,255,255,0.06);
-      --rad:    20px;
-      --sh:     0 8px 32px rgba(0,0,0,0.4);
-      --ease:   cubic-bezier(.4,0,.2,1);
+      --dark: #090D1B;
+      --blue: #2076FF;
+      --cyan: #4FF7F7;
+      --glass: rgba(255,255,255,0.11);
+      --radius: 22px;
+      --shadow: 0 8px 40px 0 rgba(35,163,255,0.22), 0 1.5px 4px #1c232e60;
+      --neon: 0 0 12px #4ff7f7,0 0 32px #2076ff60;
+      --frost: linear-gradient(120deg,rgba(40,180,255,0.13) 20%,rgba(255,255,255,0.06) 80%);
     }
-    /*-----------------------------------
-      RESET + GLOBAL
-    -----------------------------------*/
     *{margin:0;padding:0;box-sizing:border-box;}
     body,html {
-      width:100%;height:100%;overflow:hidden;
-      background: linear-gradient(120deg,var(--dark),#11142e);
-      background-size:240% 240%;animation:bgAnim 20s ease infinite;
-      font-family:'Inter',sans-serif;color:var(--white);
-      display:flex;align-items:center;justify-content:center;
+      width:100vw; min-height:100vh;
+      background:linear-gradient(125deg,#122449 60%,#2383f5 100%);
+      background-size:200% 200%; animation:animBG 18s ease-in-out infinite;
+      font-family:'Inter',sans-serif; color:#f3f3f7; overflow-x:hidden;
     }
-    @keyframes bgAnim{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+    @keyframes animBG {
+      0%{background-position:0% 0%;}
+      50%{background-position:100% 80%;}
+      100%{background-position:0% 0%;}
     }
-    /*-----------------------------------
-      SHAPES
-    -----------------------------------*/
-    .shape {
-      position:absolute;border-radius:50%;filter:blur(120px);z-index:-2;
-      animation:float 8s ease-in-out infinite alternate;
+    .frost {
+      position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:var(--frost),repeating-linear-gradient(45deg,rgba(255,255,255,0.05) 0 1px,transparent 1px 10px);
+      backdrop-filter:blur(2px);
     }
-    .shape1{width:300px;height:300px;background:var(--cyan);top:10%;left:-5%;}
-    .shape2{width:400px;height:400px;background:var(--blue);top:60%;left:70%;animation-duration:10s;}
-    @keyframes float{to{transform:translateY(40px) translateX(20px)}}
-    /*-----------------------------------
-      GLAZE (ICE TEXTURE)
-    -----------------------------------*/
-    .glaze {
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:
-        repeating-linear-gradient(45deg,rgba(255,255,255,0.04)0 2px,transparent 2px 6px),
-        repeating-linear-gradient(-45deg,rgba(255,255,255,0.04)0 2px,transparent 2px 6px);
-      pointer-events:none;z-index:-1;
+    /* ---------- Container ---------- */
+    #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
+    .shell {
+      position:relative;
+      z-index:1;
+      width:100%; max-width:410px;
+      margin:32px auto;
+      padding:32px 0 32px 0;
     }
-    /*-----------------------------------
-      LIGHTNING
-    -----------------------------------*/
+    /* ---------- Cards Glass ---------- */
+    .card, .card-glass {
+      background:var(--glass);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:36px 30px 28px 30px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      margin-bottom:32px;
+      animation:fadeIn 1s both;
+    }
+    .card-glass {
+      background:var(--glass),var(--frost);
+      border:1.5px solid #48c6ff66;
+      box-shadow:var(--neon);
+    }
+    @keyframes fadeIn {
+      from{opacity:0;transform:translateY(24px) scale(0.97);}
+      to{opacity:1;transform:translateY(0) scale(1);}
+    }
+    /* ---------- Logo/Title/Lightning ---------- */
+    .neon-title {
+      font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;
+      color:var(--cyan); letter-spacing:1.5px; text-shadow:var(--neon),0 4px 28px #2076FF70;
+      margin-bottom:10px; position:relative;
+      display:inline-block;
+      animation:shine 2.5s cubic-bezier(.8,0,.2,1) infinite alternate;
+    }
+    @keyframes shine {
+      0%{text-shadow:var(--neon);}
+      50%{text-shadow:0 0 40px #4ff7f7,0 0 8px #fff;}
+      100%{text-shadow:var(--neon);}
+    }
     .lightning {
-      position:fixed;top:0;left:0;width:100%;height:100%;
-      background:rgba(255,255,255,0.3);opacity:0;
-      animation:flash 3s infinite step-end;
-      pointer-events:none;z-index:2;
+      width:90px;height:26px;display:block;margin:0 auto -12px auto;opacity:0.93;
     }
-    @keyframes flash{
-      0%,10%,20%,30%,100%{opacity:0;}
-      5%,25%{opacity:1;}
+    /* SVG Lightning effect, see below in HTML */
+    /* ---------- Frost Border ---------- */
+    .frost-border {
+      border: 2px solid #4ff7f7bb;
+      border-radius:20px;
+      box-shadow:0 0 32px #2076ff60, 0 0 6px #4ff7f7;
     }
-    /*-----------------------------------
-      APP CONTAINER
-    -----------------------------------*/
-    #app {
-      position:relative;z-index:1;
-      width:100%;max-width:420px;padding:40px 16px;
+    /* ---------- Button Modern ---------- */
+    .btn-main {
+      margin-top:28px; font-size:1.12rem; font-weight:700;
+      border:none; outline:none;
+      color:var(--dark); background:linear-gradient(95deg,#45ffff,#44baff 65%);
+      padding:15px 38px; border-radius:48px; cursor:pointer;
+      box-shadow:0 0 24px #4ff7f766;
+      letter-spacing:0.5px;
+      position:relative; overflow:hidden; z-index:2;
+      transition:transform 0.2s, box-shadow 0.25s;
+      animation:btnGlow 2.8s ease-in-out infinite alternate;
     }
-    .card {
-      background:var(--glass);backdrop-filter:blur(12px);
-      border-radius:var(--rad);box-shadow:var(--sh);
-      padding:32px 24px;text-align:center;margin-bottom:40px;
-      animation:fadeIn .6s var(--ease) both;
+    @keyframes btnGlow {
+      from{ box-shadow:0 0 10px #44fff6cc;}
+      to{ box-shadow:0 0 24px #2df4f7bb,0 0 12px #44baffaa;}
     }
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-    /*-----------------------------------
-      BUTTON BASE
-    -----------------------------------*/
-    .btn {
-      display:inline-block;margin-top:16px;padding:12px 32px;
-      border:none;border-radius:50px;font-weight:600;cursor:pointer;
-      position:relative;overflow:hidden;
-      transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+    .btn-main:hover{ transform:translateY(-2px) scale(1.04); }
+    /* ---------- Typewriter ---------- */
+    .typewriter {
+      font-family:'Inter',sans-serif;
+      font-size:1.13rem; min-height:48px;
+      margin-bottom:16px;
+      letter-spacing:0.04em;
+      display:inline-block;
+      white-space:pre-line;
     }
-    .btn:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,0.4);}
-    .btn::after{
-      content:'';position:absolute;top:50%;left:50%;
-      width:200%;height:200%;background:rgba(255,255,255,0.2);
-      border-radius:50%;transform:translate(-50%,-50%) scale(0);
-      transition:transform .5s var(--ease);
+    /* ---------- Option Buttons ---------- */
+    .btn-group {
+      margin-top:10px;
+      display:flex;gap:16px;justify-content:center;
     }
-    .btn:active::after{transform:translate(-50%,-50%) scale(1);transition:0s;}
-
-    /*-----------------------------------
-      LANDING
-    -----------------------------------*/
-    #landing {
-      position:fixed;inset:0;
-      display:flex;flex-direction:column;
-      align-items:center;justify-content:center;
-      background:var(--dark);z-index:3;
-      text-align:center;color:var(--cyan);
+    .btn-opt {
+      flex:1 1 0;
+      font-size:1.08rem;
+      border:none;outline:none;
+      background:linear-gradient(90deg,#1ef3fe99 30%,#2e89fbcc 100%);
+      color:#fff;
+      font-weight:700;padding:13px 0;
+      border-radius:44px;cursor:pointer;
+      box-shadow:0 0 12px #00f0ff66;
+      transition:background .17s,transform .13s;
+      position:relative;
+      overflow:hidden;
     }
-    #landing h1 {
-      font-family:'Montserrat',sans-serif;font-weight:800;
-      font-size:2.4rem;text-shadow:0 0 8px var(--cyan);
-      margin-bottom:24px;
+    .btn-opt:hover {
+      background:linear-gradient(90deg,#fff,#4ff7f7);
+      color:var(--blue);transform:scale(1.05);
+      box-shadow:0 0 18px #4ff7f7bb;
     }
-    #landing .btn-start {
-      background:var(--cyan);color:var(--dark);
-    }
-
-    /*-----------------------------------
-      ROBÔ & WELCOME
-    -----------------------------------*/
+    /* ---------- Robô Moderno ---------- */
     .robot {
-      position:relative;width:120px;height:120px;margin:0 auto 16px;
-      background:radial-gradient(circle at 30% 30%,var(--cyan),var(--blue));
-      border-radius:50%;box-shadow:0 0 16px var(--cyan),0 0 32px var(--blue);
-      animation:robotPop 1s ease-out both;
+      width:124px;height:124px;margin:0 auto 16px auto;position:relative;z-index:1;
+      border-radius:50%; background:radial-gradient(circle at 28% 35%,#b7f6fc 25%,#53bfff 80%,#0A4CAA 100%);
+      box-shadow:0 0 32px #4ff7f7,0 0 16px #2076FF80;
+      animation:robotPop 1.2s both;
     }
-    @keyframes robotPop{from{transform:scale(0.3);opacity:0;}to{transform:scale(1);opacity:1;}}
-    .robot .eye {
-      position:absolute;width:16px;height:16px;background:var(--white);
-      border-radius:50%;top:40%;animation:blink 4s infinite steps(1);
+    @keyframes robotPop{ from{transform:scale(0.5);opacity:0;} to{transform:scale(1);opacity:1;} }
+    .robot .eye{
+      position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;
+      top:40%; box-shadow:0 0 16px #fff6;
+      animation:blink 5s infinite steps(1);
     }
-    .robot .eye.left{left:30%;} .robot .eye.right{right:30%;}
-    @keyframes blink{0%,90%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
-    .robot .antenna{position:absolute;width:4px;height:32px;background:var(--white);top:-10px;left:50%;transform:translateX(-50%);}
-    .robot .antenna::after{content:'';position:absolute;width:12px;height:12px;background:var(--white);border-radius:50%;top:-8px;left:-4px;animation:blink 4s infinite steps(1) .2s;}
+    .robot .eye.left{ left:32%; }
+    .robot .eye.right{ right:32%; }
+    @keyframes blink{0%,92%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
+    .robot .antenna{position:absolute;width:5px;height:28px;background:#fff;top:-15px;left:50%;transform:translateX(-50%);}
+    .robot .antenna::after{content:'';position:absolute;width:13px;height:13px;background:var(--cyan);border-radius:50%;top:-10px;left:-5px;box-shadow:0 0 10px #4ff7f7;}
+    .robot .smile {
+      position:absolute;
+      width:46px;height:20px;
+      left:50%;top:70%;transform:translate(-50%,0);
+      border-bottom:3px solid #fff;border-radius:0 0 28px 28px;
+      opacity:.8;
+    }
+    /* ---------- Manual Card Ultra ---------- */
+    .manual-card {
+      background:rgba(10,36,70,0.94);
+      border:1.8px solid #44d2fe;
+      border-radius:28px;
+      box-shadow:0 0 52px #00f0ff66,0 0 10px #4ff7f7;
+      padding:30px 20px 30px 20px;
+      position:relative;overflow:hidden;
+      margin-top:6px;
+      animation:manualGlow 2s alternate infinite;
+    }
+    @keyframes manualGlow {
+      0%{box-shadow:0 0 30px #2bcbfd70;}
+      100%{box-shadow:0 0 62px #4ff7f7bb,0 0 12px #44baffcc;}
+    }
+    .manual-card h2 {
+      font-family:'Montserrat',sans-serif;font-size:1.48rem;font-weight:900;
+      color:var(--cyan);margin-bottom:4px;
+      letter-spacing:.01em;
+    }
+    .manual-card .version {
+      color:#fff;font-weight:600;margin-bottom:14px;letter-spacing:.03em;
+    }
+    .manual-card ul {
+      list-style:none; text-align:left; margin:18px 0 28px 0;
+    }
+    .manual-card li {
+      display:flex; align-items:center; gap:11px;
+      font-size:1.07rem;
+      opacity:0; transform:translateX(-18px);transition:all .5s;
+      padding:7px 0 7px 0;
+    }
+    .manual-card li.visible { opacity:1; transform:translateX(0);}
+    .manual-card li::before {
+      content:'✦';color:var(--cyan);font-size:1.25rem;
+      text-shadow:0 0 4px #fff,0 0 10px #4ff7f7;
+    }
+    .manual-cta {
+      display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .manual-cta a {
+      flex:1 1 48%;padding:14px 0;border-radius:50px;font-weight:700;
+      text-decoration:none;text-align:center;font-size:1.06rem;
+      background:linear-gradient(95deg,#45ffff,#44baff 65%);
+      color:var(--dark);
+      box-shadow:0 0 16px #00f0ff88;
+      transition:transform .2s,box-shadow .23s;
+    }
+    .manual-cta a:hover {
+      transform:scale(1.07);
+      box-shadow:0 0 20px #44fff688,0 0 18px #4ff7f7cc;
+      color:var(--blue);
+    }
+    /* ---------- FOOTER ---------- */
+    footer{margin-top:20px;text-align:center;font-size:.89rem;opacity:.6;}
 
-    #welcome h1 {
-      font-family:'Montserrat',sans-serif;font-weight:800;
-      font-size:1.8rem;margin-bottom:12px;color:var(--cyan);
-    }
-    #welcome p {
-      font-size:1rem;line-height:1.4;opacity:.9;margin-bottom:8px;
-    }
-
-    /*-----------------------------------
-      CHALLENGES
-    -----------------------------------*/
-    #challenges h2 {
-      font-family:'Montserrat',sans-serif;font-weight:700;
-      font-size:1.5rem;margin-bottom:16px;color:var(--cyan);
-    }
-    #challenges ul{
-      list-style:none;text-align:left;margin-bottom:24px;
-    }
-    #challenges li{
-      position:relative;padding-left:32px;margin:12px 0;
-      opacity:0;transform:translateX(-20px);
-      transition:all .4s var(--ease);
-    }
-    #challenges li.visible{opacity:1;transform:translateX(0);}
-    #challenges li::before{content:'⚠️';position:absolute;left:0;top:0;font-size:1.2rem;}
-
-    /*-----------------------------------
-      MANUAL
-    -----------------------------------*/
-    #manual h2{
-      font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:4px;color:var(--cyan);
-    }
-    #manual .version{
-      font-weight:600;margin-bottom:16px;color:var(--white);
-    }
-    #manual ul{list-style:none;text-align:left;margin-bottom:24px;}
-    #manual li{
-      display:flex;align-items:center;gap:12px;padding:8px 0;
-      border-bottom:1px solid rgba(255,255,255,0.15);
-      opacity:0;transform:translateX(-20px);
-      transition:all .4s var(--ease);
-    }
-    #manual li.visible{opacity:1;transform:translateX(0);}
-    #manual li::before{content:'✅';color:var(--cyan);font-size:1.2rem;}
-
-    .cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
-    .cta a{
-      flex:1 1 45%;padding:12px 0;border-radius:50px;font-weight:600;
-      text-decoration:none;text-align:center;
-      transition:transform .3s var(--ease),box-shadow .3s var(--ease);
-    }
-    .cta-sample{background:var(--cyan);color:var(--dark);} 
-    .cta-buy{background:var(--blue);color:var(--white);}
-    .cta a:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,0.4);}
-
-    /*-----------------------------------
-      FOOTER
-    -----------------------------------*/
-    footer{margin-top:20px;text-align:center;font-size:.85rem;opacity:.6;}
-    /*-----------------------------------
-      RESPONSIVE
-    -----------------------------------*/
-    @media(max-width:400px){
-      .cta, .btn {flex-direction:column;}
-      .cta a{flex:none;}
-    }
+    @media(max-width:480px){.shell{padding:12px 0;}.card{padding:22px 5vw;}}
   </style>
 </head>
 <body>
-  <!-- Shapes + glaze + lightning -->
+  <div class="frost"></div>
+  <!-- SHAPES DE LUZ -->
   <div class="shape shape1"></div>
   <div class="shape shape2"></div>
-  <div class="glaze"></div>
-  <div class="lightning"></div>
+  <div id="center">
+    <div class="shell">
 
-  <div id="app">
-    <!-- LANDING -->
-    <div class="card" id="landing">
-      <h1>Bem-vindo ao Manual do Aprovado</h1>
-      <button class="btn btn-start" onclick="startFlow()">Entrar</button>
-    </div>
-
-    <!-- WELCOME -->
-    <div class="card" id="welcome" style="display:none;">
-      <div class="robot">
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-        <div class="antenna"></div>
+      <!-- TELA 1: INTRO FUTURISTA -->
+      <div class="card-glass" id="screen-intro">
+        <svg class="lightning" viewBox="0 0 90 26">
+          <polyline points="1,25 20,7 31,19 46,1 55,13 68,3 89,21"
+            style="fill:none;stroke:#4ff7f7;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;
+              filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 30px #4ff7f7)"/>
+        </svg>
+        <span class="neon-title">Bem-vindo ao<br>Manual do Aprovado</span>
+        <div style="margin:18px 0 4px 0; color:#defbff;font-size:1.13rem;opacity:.96;font-weight:600;letter-spacing:.01em;text-shadow:0 0 12px #4ff7f7cc;">
+          O seu atalho para estudar <span style="color:#53f8fd;">com estratégia</span> e passar <span style="color:#45ffff;">mais rápido!</span>
+        </div>
+        <button class="btn-main" onclick="startQuiz()">Começar</button>
       </div>
-      <h1>Parabéns!</h1>
-      <p>Você acaba de encurtar seu tempo de estudos para concurso.</p>
-      <p>Se você é iniciante e quer passar rápido, está no lugar certo.</p>
-      <button class="btn btn-start" onclick="goChallenges()">Prosseguir</button>
-    </div>
 
-    <!-- CHALLENGES -->
-    <div class="card" id="challenges" style="display:none;">
-      <h2>Desafios de estudar sozinho</h2>
-      <ul id="challengeList">
-        <li>Planejar sem orientação clara</li>
-        <li>Revisar sem método eficaz</li>
-        <li>Resolver questões sem estratégia</li>
-        <li>Mant er a motivação com resultados lentos</li>
-      </ul>
-      <button class="btn btn-start btn-next" onclick="showManual()">Próximo</button>
-    </div>
-
-    <!-- MANUAL -->
-    <div class="card" id="manual" style="display:none;">
-      <h2>Manual do Aprovado</h2>
-      <p class="version">Versão do Iniciante</p>
-      <ul id="featureList">
-        <li>Como montar um ciclo de estudos estratégico e flexível</li>
-        <li>Como fazer revisões de forma prática e contínua</li>
-        <li>Como controlar suas horas líquidas e estudar com qualidade</li>
-        <li>Como usar questões no dia a dia pra fixar e avançar</li>
-        <li>Por que não fazer resumos à mão e como grifar com inteligência</li>
-        <li>Como, quando e por que ler a lei seca</li>
-        <li>Visão de longo prazo + eficiência no curto prazo</li>
-      </ul>
-      <div class="cta">
-        <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_blank">📥 Baixar Amostra</a>
-        <a class="cta-buy"    href="ADQUIRIR_AGORA_LINK"  target="_blank">💳 Adquirir Agora</a>
+      <!-- TELA 2: PERGUNTAS INTERATIVAS -->
+      <div class="card" id="screen-quiz" style="display:none;">
+        <div class="typewriter" id="qtext"></div>
+        <div class="btn-group" id="qbtns" style="display:none;">
+          <button class="btn-opt" onclick="quizReply('sim')">Sim</button>
+          <button class="btn-opt" onclick="quizReply('nao')">Não</button>
+        </div>
       </div>
-    </div>
 
-    <footer>© 2025 Manual do Aprovado • Todos os direitos reservados</footer>
-  </div>
+      <!-- TELA 3: ROBÔ -->
+      <div class="card" id="screen-robo" style="display:none;">
+        <div class="robot">
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="antenna"></div>
+          <div class="smile"></div>
+        </div>
+        <h1 style="font-size:1.24rem;font-weight:700;color:var(--cyan);margin:9px 0 0 0;letter-spacing:.01em;">Parabéns!</h1>
+        <p style="font-size:1.05rem;opacity:.93;margin-bottom:7px;margin-top:5px;">
+          Só de buscar orientação, você já está na frente de milhares de iniciantes.<br>
+          <span style="color:#00f0ff;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
+        </p>
+        <button class="btn-main" onclick="showChallenges()">Quero avançar!</button>
+      </div>
 
-  <script>
-    function startFlow(){
-      document.getElementById('landing').remove();
-      document.getElementById('welcome').style.display = 'block';
-      document.getElementById('welcome').scrollIntoView({behavior:'smooth'});
-    }
-    function goChallenges(){
-      document.getElementById('welcome').style.display = 'none';
-      const c = document.getElementById('challenges');
-      c.style.display = 'block';
-      c.scrollIntoView({behavior:'smooth'});
-      document.querySelectorAll('#challengeList li')
-        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*200));
-    }
-    function showManual(){
-      document.getElementById('challenges').style.display = 'none';
-      const m = document.getElementById('manual');
-      m.style.display = 'block';
-      m.scrollIntoView({behavior:'smooth'});
-      document.querySelectorAll('#featureList li')
-        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*150));
-    }
-  </script>
-</body>
-</html>
+      <!-- TELA 4: DESAFIOS -->
+      <div class="card-glass" id="screen-desafios" style="display:none;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;">
+          Antes do Manual, olha só se você já sentiu isso:
+        </div>
+        <div>
+          <ul id="desafiosList" style="margin-bottom:0;">
+            <li>É difícil saber por onde começar a estudar</li>
+            <li>Falta motivação para manter a rotina</li>
+            <li>Revisar e reter conteúdo parece impossível</li>
+            <li>Parece que todo mundo já está na frente</li>
+            <li>Não sabe como usar questões para avançar</li>
+            <li>Tem medo de errar o caminho e perder tempo</li>
+          </ul>
+        </div>
+        <button class="btn-main" onclick="showManual()">Quero meu Manual!</button>
+      </div>
+
+      <!-- TELA 5: MANUAL DO APROVADO -->
+      <div class="manual-card" id="screen-manual" style="display:none;">
+        <h2>Manual do Aprovado</h2>
+        <div class="version">Versão do Iniciante</div>
+        <ul id="featureList">
+          <li>Como montar um ciclo de estudos estratégico e flexível</li>
+          <li>Como fazer revisões de forma prática e contínua</li>
+          <li>Como controlar suas horas líquidas e estudar com qualidade</li>
+          <li>Como usar questões no dia a dia pra fixar e avançar</li>
+          <li>Por que não fazer resumos à mão e como grifar com inteligência</li>
+          <li>Como, quando e por que ler a lei seca</li>
+          <li>Visão de longo prazo + eficiência no curto prazo</li>
+        </ul>
+        <div class="manual-cta">
+          <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_
