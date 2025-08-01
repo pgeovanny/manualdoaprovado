@@ -55,16 +55,16 @@ header {
 .header-txt h1 { margin:0 0 1px 0; font-size:1.39rem; font-weight:900; letter-spacing:.05em; color:#fff;}
 .header-txt .subtitle { font-size:1.06rem;color:#e9fbff;font-weight:700;letter-spacing:.01em;}
 .header-insta {
-  margin-left:auto; color:#fff; font-size:1.32rem; font-weight:900; display:flex;align-items:center;gap:7px;text-decoration:none;
-  border-radius:50%; padding:7px; background:rgba(41,54,85,.19); transition:background .18s;
+  margin-left:auto; color:#fff; font-size:1.35rem; font-weight:900; display:flex;align-items:center;gap:7px;text-decoration:none;
+  border-radius:50%; padding:9px; background:rgba(41,54,85,.17); transition:background .18s;
 }
-.header-insta:hover {background:rgba(41,54,85,.31);}
-.header-insta svg {width:26px;height:26px;}
+.header-insta:hover {background:rgba(41,54,85,.34);}
+.header-insta svg {width:28px;height:28px;}
 main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-direction:column;align-items:center;}
 .quiz-box {
-  margin:43px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
+  margin:45px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
   max-width:var(--max-card); width:96vw; min-height:410px;display:flex;flex-direction:column;align-items:center;position:relative;border:2px solid #2576f74a;
-  padding:2.95rem 2.7rem 2.3rem 2.7rem;z-index:1;animation:glassin .9s cubic-bezier(.7,0,.31,1);
+  padding:3.2rem 2.7rem 2.3rem 2.7rem;z-index:1;animation:glassin .9s cubic-bezier(.7,0,.31,1);
 }
 @keyframes glassin {
   from { opacity:0; transform:translateY(42px) scale(.98);}
@@ -85,7 +85,8 @@ main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-directio
   .header-insta{font-size:1.18rem;}
 }
 .quiz-content {width:100%; display:flex; flex-direction:column;align-items:center;justify-content:center;}
-.pergunta {font-size:1.15rem; font-weight:800; margin-bottom:1.15rem; color:#f7fcff; text-align:center;}
+.pergunta {font-size:1.16rem; font-weight:900; margin-bottom:1.2rem; color:#49c2fa; text-align:center;}
+ul.itens-manu {font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.25rem 1.3rem 1.25rem 1.3rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;text-align:left;}
 .opcoes { display:flex; flex-direction:column; gap:1.08rem; width:100%; align-items:center;}
 .btn-quiz {
   background:linear-gradient(90deg, #2576f7 60%, #49c2fa 100%);
@@ -95,30 +96,39 @@ main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-directio
   transition:background .13s,transform .1s;
 }
 .btn-quiz:hover { background:linear-gradient(90deg, #49c2fa 90%, #2576f7 100%); transform:scale(1.03);}
-.cta-final-bar { display:flex; gap:1.25rem; justify-content:center; margin:2.1rem 0 1.1rem 0;}
+.cta-final-bar { display:flex; gap:1.2rem; justify-content:center; margin:2.2rem 0 1.3rem 0;}
 .cta-final-btn {
   background:linear-gradient(90deg, #2576f7 57%, #49c2fa 100%);
-  color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.13rem; padding:1.13rem 0;
+  color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.16rem; padding:1.13rem 0;
   min-width:175px; transition:background .11s,transform .11s; cursor:pointer; box-shadow:0 6px 25px #49c2fa32;
-  text-align:center;
+  text-align:center; outline:none;
 }
 .cta-final-btn:hover {background:linear-gradient(90deg,#49c2fa 97%,#2576f7 100%);transform:scale(1.03);}
 #contador {
-  color:#49c2fa;font-size:1.08rem;font-weight:700;text-align:center;
-  background:#223859; border-radius:2rem; padding:8px 0 7px 0; margin-top:20px; margin-bottom:-7px;
+  color:#49c2fa;font-size:1.15rem;font-weight:900;text-align:center;
+  background:#223859; border-radius:2rem; padding:11px 0 9px 0; margin-top:20px; margin-bottom:0;
   box-shadow:0 1px 8px #49c2fa11;
-  width:90%;max-width:320px;
+  width:90%;max-width:380px; letter-spacing:.01em;
+}
+.depoimento {
+  color:#fff; background:#13244c; border-radius:1.1rem; font-size:1.1rem; margin:1.6rem auto 0 auto; padding:1.15rem 1.35rem 1.09rem 1.35rem; text-align:center; max-width:430px; font-weight:700; box-shadow:0 2px 12px #49c2fa14;
+  border-left:6px solid #49c2fa; border-right:6px solid #2576f7;
+  animation: fadein .7s;
+}
+@keyframes fadein {from{opacity:0;} to{opacity:1;}}
+.confetti {
+  pointer-events:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:99;
 }
 footer {
-  width:100vw; text-align:center; font-size:1.13rem; padding:26px 0 18px 0; color:#b4d8ed; font-weight:800;
+  width:100vw; text-align:center; font-size:1.13rem; padding:27px 0 18px 0; color:#b4d8ed; font-weight:900;
   background: #182a42ee; border-top: 1.1px solid #22395a; letter-spacing: .01em; margin-top: 40px; display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
 }
 .footer-insta {
-  margin-top:4px;font-size:1.17rem;color:#7bf7f7;font-weight:900;display:flex;align-items:center;gap:8px;justify-content:center;
-  text-decoration:none; border-radius:50%; padding:7px 8px 7px 7px; background:rgba(41,54,85,.16); transition:background .17s;
+  margin-top:4px;font-size:1.18rem;color:#7bf7f7;font-weight:900;display:flex;align-items:center;gap:8px;justify-content:center;
+  text-decoration:none; border-radius:50%; padding:7px 9px 7px 8px; background:rgba(41,54,85,.18); transition:background .17s;
 }
 .footer-insta:hover {background:rgba(41,54,85,.26);}
-.footer-insta svg {width:24px;height:24px;}
+.footer-insta svg {width:25px;height:25px;}
   </style>
 </head>
 <body>
@@ -153,6 +163,7 @@ footer {
     <div class="quiz-box" id="quiz-box"></div>
     <div id="contador"></div>
   </main>
+  <div id="confetti-container"></div>
   <footer>
     <div>© 2025 Manual do Aprovado</div>
     <a href="https://instagram.com/manualdoaprovado_" class="footer-insta" target="_blank" title="Instagram Manual do Aprovado">
@@ -172,7 +183,7 @@ footer {
     style.innerHTML = `@keyframes part-move {0% { transform: translateY(0) scale(.89);} 100% { transform: translateY(-28px) scale(1.06);}}`;
     document.head.appendChild(style);
 
-    // Contador de visitantes (salva em localStorage para simular "visitantes reais")
+    // Contador de visitantes (localStorage para simulação gratuita)
     function atualizaContador() {
       let key = "visitantes_manual_aprovado";
       let visitas = localStorage.getItem(key);
@@ -180,11 +191,11 @@ footer {
       visitas = parseInt(visitas) + 1;
       localStorage.setItem(key, visitas);
       document.getElementById("contador").innerHTML =
-        `<span>${visitas.toLocaleString("pt-BR")} pessoas já acessaram esta página!</span>`;
+        `<span>${visitas.toLocaleString("pt-BR")} pessoas já começaram a estudar certo.</span>`;
     }
     atualizaContador();
 
-    // Fluxo lógico, claro, sem prints
+    // Fluxo
     const steps = [
       { id: 0, prof: "Parabéns por estar aqui! Você já está um passo à frente, buscando o caminho certo para estudar e ser aprovado.<br><br>Me diz seu nome para eu te ajudar do jeito mais personalizado possível.", input:true, placeholder:"Digite seu nome", next: 1, digitando:true },
       { id: 1, prof: (s)=>`Muito bom, ${s.nome || ""}! Qual o seu maior desafio para começar a estudar?`, op:[
@@ -203,7 +214,53 @@ footer {
         <span style="color:#7bf7f7;font-weight:900;">Veja o que você vai aprender:</span>`, final:true }
     ];
 
+    // Efeito confete
+    function disparaConfete() {
+      let conf = document.createElement("canvas");
+      conf.width = window.innerWidth;
+      conf.height = window.innerHeight;
+      conf.className = "confetti";
+      document.getElementById("confetti-container").appendChild(conf);
+      let ctx = conf.getContext("2d");
+      let pieces = [];
+      let colors = ["#49c2fa", "#2576f7", "#7bf7f7", "#fff"];
+      for (let i=0;i<120;i++){
+        pieces.push({
+          x:Math.random()*conf.width,
+          y:Math.random()*-conf.height,
+          w:8+Math.random()*9,
+          h:5+Math.random()*7,
+          color: colors[Math.floor(Math.random()*colors.length)],
+          speed: 2+Math.random()*4,
+          rot: Math.random()*2*Math.PI,
+          rotSpeed: Math.random()*0.08-0.04
+        });
+      }
+      let t=0;
+      function draw(){
+        ctx.clearRect(0,0,conf.width,conf.height);
+        for (let p of pieces){
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+          ctx.restore();
+          p.y += p.speed;
+          p.rot += p.rotSpeed;
+          if(p.y > conf.height+16){
+            p.y = -18; p.x=Math.random()*conf.width;
+          }
+        }
+        t++;
+        if (t<110) requestAnimationFrame(draw);
+        else setTimeout(()=>conf.remove(),900);
+      }
+      draw();
+    }
+
     let state = { nome:"" }, history=[];
+    let confeteDisparado = false;
     function renderStep(stepId) {
       const s = steps.find(x=>x.id===stepId);
       let box = document.getElementById("quiz-box");
@@ -267,11 +324,17 @@ footer {
         if(bvoltar)bvoltar.onclick=()=>{if(history.length){let prev=history.pop();renderStep(prev)}};
       }
       if(s.final){
+        // Confete na primeira visita
+        if (!confeteDisparado && !localStorage.getItem('confeteOk_manualaprovado')) {
+          disparaConfete();
+          confeteDisparado = true;
+          localStorage.setItem('confeteOk_manualaprovado',1);
+        }
         content.innerHTML = `
-          <div class="pergunta" style="font-size:1.18rem;font-weight:900;color:#49c2fa;margin-bottom:1.18rem;text-align:center;">
+          <div class="pergunta">
             Você vai aprender, na prática:
           </div>
-          <ul style="font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.2rem 1.3rem 1.19rem 1.3rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;">
+          <ul class="itens-manu">
             <li>Como escolher os melhores sites de questões.</li>
             <li>Entender as bancas principais e os tipos de prova.</li>
             <li>Montar seu ciclo de estudos e revisar de verdade.</li>
@@ -283,7 +346,11 @@ footer {
             <a href="LINK_KIWIFY" class="cta-final-btn" target="_blank">Quero estudar certo!</a>
             <a href="LINK_AMOSTRA" class="cta-final-btn" style="background:#13244c;color:#7bf7f7;border:2px solid #7bf7f7;">Ver Amostra</a>
           </div>
-          <div style="color:#7bf7f7;margin-top:1.14rem;font-size:1.09rem;text-align:center;">Siga o método e encurte anos de estudo. Qualquer dúvida, chame no Instagram!</div>
+          <div class="depoimento">
+            <span style="font-size:1.25rem; color:#7bf7f7; font-weight:900;">Já são centenas de alunos aprovados!</span><br>
+            "Eu não sabia nem por onde começar. Depois do Manual, consegui montar uma rotina e finalmente comecei a acertar nas provas!"<br>
+            <span style="color:#49c2fa; font-weight:700;">— Novo Concurseiro, 2025</span>
+          </div>
           ${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:22px;" id="voltar">← Voltar</button>`:""}
         `;
         let bvoltar = content.querySelector('#voltar');
