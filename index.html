@@ -4,30 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Manual do Aprovado - Diagnóstico Inteligente</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
   <style>
 :root {
-  --azul: #3386ff;
-  --azul2: #1dcaff;
-  --azul3: #113a7a;
-  --glass: rgba(255,255,255,0.98);
-  --glass-blur: 14px;
-  --glass-border: rgba(51,134,255,0.15);
-  --shadow: 0 12px 38px 0 rgba(51,134,255,0.16);
-  --radius: 2.2rem;
-  --max-card: 510px;
+  --azul-escuro: #121d32;
+  --azul-medio: #1645a0;
+  --azul-claro: #29bfff;
+  --cinza: #e6edf6;
+  --glass: rgba(30,35,55,0.95);
+  --glass-border: #21346555;
+  --radius: 2.3rem;
+  --shadow: 0 12px 44px 0 #0e243d44;
+  --max-card: 520px;
 }
 html, body {
   min-height: 100vh;
-  background: linear-gradient(130deg, #eaf5ff 0%, #c6e5ff 100%);
+  background: linear-gradient(120deg, #182538 0%, #224275 100%);
   font-family: 'Inter', Arial, sans-serif;
-  color: #102040;
   margin: 0;
+  color: #eaf6ff;
+  overflow-x: hidden;
 }
-body {
-  display: flex;
-  flex-direction: column;
+body { display: flex; flex-direction: column; }
+
+#bg-particles {
+  pointer-events: none;
+  position: fixed;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+  top: 0; left: 0;
+  background: transparent;
 }
+
 header {
   width: 100vw;
   padding: 0;
@@ -35,99 +43,99 @@ header {
 }
 .splash-hero {
   margin: 0 auto;
-  margin-top: 46px;
-  margin-bottom: 34px;
-  max-width: 520px;
-  padding: 2.2rem 1.8rem 1.8rem 1.8rem;
+  margin-top: 58px;
+  margin-bottom: 32px;
+  max-width: 550px;
+  padding: 2.5rem 2.1rem 2rem 2.1rem;
   background: var(--glass);
   border-radius: 2.4rem;
-  box-shadow: 0 12px 48px #1dcaff28;
-  border: 1.5px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  border: 2.2px solid var(--glass-border);
   text-align: center;
-  animation: splashReveal .9s cubic-bezier(.7,0,.32,1);
   position: relative;
+  animation: glassIn .7s cubic-bezier(.64,0,.34,1);
 }
-@keyframes splashReveal {
-  from { opacity:0; transform: scale(.92) translateY(-65px) blur(4px);}
+@keyframes glassIn {
+  from { opacity:0; transform: scale(.9) translateY(-60px) blur(7px);}
   to   { opacity:1; transform: scale(1) translateY(0) blur(0);}
 }
 .badge-ini {
   display: inline-block;
-  background: linear-gradient(90deg,#1dcaff 30%,#3386ff 100%);
+  background: linear-gradient(90deg,#00b3f7 20%,#1645a0 100%);
   color: #fff;
   font-weight: 800;
-  font-size: 1.01rem;
-  padding: 7px 22px 7px 14px;
+  font-size: 1.03rem;
+  padding: 7px 22px 7px 13px;
   border-radius: 99px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   margin-top: -2px;
   letter-spacing: .04em;
   box-shadow: 0 2px 14px #3386ff17;
   position: relative;
+  border: 1.4px solid #1645a0;
 }
-.badge-ini:before {
-  content: "🚀";
-  margin-right: 7px;
-}
+.badge-ini:before { content: "🤖"; margin-right: 7px;}
 .splash-hero h1 {
-  font-size: 1.58rem;
+  font-size: 1.7rem;
   font-weight: 900;
-  color: var(--azul);
+  color: var(--azul-claro);
   margin-bottom: 10px;
-  letter-spacing: .04em;
-  text-shadow: 0 2px 16px #3386ff18;
+  letter-spacing: .03em;
+  text-shadow: 0 3px 24px #1645a066;
+  font-family: 'Inter', Arial, sans-serif;
 }
 .splash-hero .sub {
-  font-size: 1.09rem;
-  color: #20b8f0;
+  font-size: 1.13rem;
+  color: #81dfff;
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 600;
   display: block;
 }
 .splash-hero .desc {
-  color: #173669;
-  font-size: 1.13rem;
-  margin-bottom: 28px;
-  font-weight: 600;
-  line-height: 1.55;
+  color: #b7cbea;
+  font-size: 1.15rem;
+  margin-bottom: 26px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 .splash-hero .btn-splash {
-  background: linear-gradient(90deg, #3386ff 70%, #1dcaff 100%);
+  background: linear-gradient(90deg, #29bfff 60%, #1645a0 100%);
   color: #fff;
   border: none;
-  border-radius: 2rem;
-  font-size: 1.16rem;
+  border-radius: 2.1rem;
+  font-size: 1.15rem;
   font-weight: 900;
-  padding: 1.08rem 0;
+  padding: 1.14rem 0;
   width: 98%;
-  max-width: 290px;
+  max-width: 320px;
   margin: 0 auto;
   cursor: pointer;
-  box-shadow: 0 6px 22px #3386ff2c;
-  transition: background .15s, transform .11s, box-shadow .13s;
+  box-shadow: 0 8px 36px #29bfff22;
+  transition: background .14s, transform .11s, box-shadow .14s;
   display: block;
   letter-spacing: .01em;
+  border: 2.2px solid #132745;
+  position: relative;
+  overflow: hidden;
 }
 .splash-hero .btn-splash:hover {
-  background: linear-gradient(90deg, #1dcaff 80%, #3386ff 100%);
-  transform: scale(1.045);
-  box-shadow: 0 11px 35px #1dcaff27;
+  background: linear-gradient(90deg, #00b3f7 90%, #1645a0 100%);
+  transform: scale(1.04);
+  box-shadow: 0 14px 45px #1645a039;
 }
-
 main {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
-
 .quiz-outer {
   width: 100vw;
   min-height: 68vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 14px;
 }
 .card-glass {
   background: var(--glass);
@@ -136,97 +144,154 @@ main {
   max-width: var(--max-card);
   width: 98vw;
   margin: 0 auto;
-  padding: 2.5rem 1.8rem 1.4rem 1.8rem;
+  padding: 2.6rem 1.7rem 1.5rem 1.7rem;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  animation: fadeInCard .7s cubic-bezier(.77,0,.18,1);
+  animation: fadeInCard .66s cubic-bezier(.77,0,.18,1);
+  border: 2px solid #22355a66;
+  min-height: 350px;
+  transition: box-shadow .2s;
 }
 @keyframes fadeInCard {
-  from { opacity: 0; transform: translateY(38px) scale(.97);}
+  from { opacity: 0; transform: translateY(32px) scale(.96);}
   to { opacity: 1; transform: translateY(0) scale(1);}
 }
+#robo-box {
+  display: flex; align-items: center; justify-content: center;
+  gap: 13px; margin-bottom: 18px; width: 100%;
+  flex-direction: column;
+  min-height: 76px;
+}
+#robo-svg {
+  width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg,#1dcaff 40%,#1645a0 100%);
+  box-shadow: 0 2px 24px #29bfff33;
+  display: flex; align-items: center; justify-content: center;
+}
+#robo-svg svg { width:32px;height:32px; }
+#typewriter {
+  color: #c9eafd;
+  font-size: 1.09rem;
+  letter-spacing: .03em;
+  font-family: 'Inter', monospace;
+  min-height: 18px;
+  margin-top: 2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dots {
+  display: inline-block; width: 22px; text-align:left;
+}
+.dots span {
+  display:inline-block; width:6px; height:6px; margin-right:1.6px; background:#81dfff;
+  border-radius:50%; opacity:.45; animation: dotAnim 1.1s infinite;
+}
+.dots span:nth-child(2){animation-delay:.14s}
+.dots span:nth-child(3){animation-delay:.26s}
+@keyframes dotAnim{
+  0%, 80%, 100%{ opacity:.25;}
+  40%{ opacity:.75;}
+}
 .pergunta {
-  font-size: 1.13rem;
+  font-size: 1.12rem;
   font-weight: 900;
-  color: var(--azul3);
-  margin-bottom: 1.6rem;
-  line-height: 1.52;
+  color: #f4faff;
+  margin-bottom: 1.1rem;
+  line-height: 1.48;
   width: 100%;
-  min-height: 2.5rem;
+  min-height: 2.1rem;
+  animation: fadeInPerg .4s;
+}
+@keyframes fadeInPerg {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 .opcoes {
   display: flex;
   flex-direction: column;
-  gap: 1.08rem;
+  gap: 1.1rem;
   width: 100%;
   align-items: center;
   margin-bottom: 0.5rem;
+  animation: fadeInBtns .38s cubic-bezier(.8,0,.18,1);
+}
+@keyframes fadeInBtns {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 .btn-quiz {
-  width: 96%;
-  max-width: 350px;
-  background: linear-gradient(90deg, var(--azul) 68%, var(--azul2) 100%);
+  width: 98%;
+  max-width: 340px;
+  background: linear-gradient(90deg, var(--azul-medio) 65%, var(--azul-claro) 100%);
   color: #fff;
   border: none;
   border-radius: 2.1rem;
-  font-size: 1.09rem;
+  font-size: 1.11rem;
   font-weight: 900;
   padding: 1.09rem 0;
   margin: 0 auto;
   cursor: pointer;
-  box-shadow: 0 6px 24px #3386ff26;
+  box-shadow: 0 7px 22px #1645a033;
   outline: none;
   text-align: center;
-  transition: background .14s, transform .11s, box-shadow .14s;
-  letter-spacing: 0.01em;
+  transition: background .13s, transform .10s, box-shadow .13s;
+  letter-spacing: .01em;
+  position:relative;
+  overflow:hidden;
+}
+.btn-quiz:active::after {
+  content:"";
+  display:block; position:absolute; left:50%;top:50%;
+  width:200px;height:200px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, #fff4 8%,transparent 80%);
+  opacity:.18;
+  z-index:0;
+  pointer-events:none;
 }
 .btn-quiz:hover, .btn-quiz:focus {
-  background: linear-gradient(90deg, #1dcaff 85%, #3386ff 100%);
-  transform: scale(1.035);
-  box-shadow: 0 16px 44px #1dcaff2a;
+  background: linear-gradient(90deg, #0a2256 95%, #29bfff 100%);
+  transform: scale(1.03);
+  box-shadow: 0 14px 32px #1645a02e;
 }
 .btn-quiz[disabled] {
-  background: #e5eefd;
-  color: #a0b5d7;
+  background: #23395a;
+  color: #879cbf;
   cursor: not-allowed;
 }
 .btn-voltar {
   background: none;
   border: none;
-  color: var(--azul);
+  color: var(--azul-claro);
   font-weight: 900;
-  font-size: 1.05rem;
-  margin-top: 18px;
+  font-size: 1.07rem;
+  margin-top: 19px;
   cursor: pointer;
   text-align: center;
   display: block;
 }
-
 input[type="text"] {
-  width: 90%;
+  width: 93%;
   border-radius: 1.2rem;
-  border: 1.5px solid #c9e3fc;
-  padding: 1.02rem 1rem;
-  margin-bottom: 1.2rem;
-  font-size: 1.06rem;
-  background: #f7fcffbb;
+  border: 1.7px solid #183c65;
+  padding: 1.08rem 1rem;
+  margin-bottom: 1.05rem;
+  font-size: 1.07rem;
+  background: #263856bb;
   font-family: inherit;
-  color: #1c2860;
-  transition: border-color .17s;
+  color: #f4faff;
+  transition: border-color .15s;
   font-weight: 700;
   outline: none;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-input[type="text"]:focus {
-  border-color: var(--azul);
-  outline: 1px solid #e3f0ff;
-}
-
+input[type="text"]:focus { border-color: var(--azul-claro);}
 ul {
   margin: 1.1rem 0 0.2rem 0;
   padding-left: 1.1em;
@@ -234,30 +299,32 @@ ul {
   display: inline-block;
 }
 li {
-  font-size: 1.04rem;
-  margin-bottom: 0.18rem;
+  font-size: 1.03rem;
+  margin-bottom: 0.14rem;
   line-height: 1.33;
   font-weight: 600;
-  color: #2266cc;
+  color: #29bfff;
 }
-
 .cta-final-expl {
-  color: var(--azul3);
-  font-size: 1.10rem;
+  color: #e0f1ff;
+  font-size: 1.12rem;
   font-weight: 700;
   text-align: center;
-  margin: 0 auto 2.1rem auto;
+  margin: 0 auto 2.2rem auto;
   margin-top: 0.2rem;
-  padding: 0 0.5rem 0.4rem 0.5rem;
-  line-height: 1.55;
+  padding: 0 0.5rem 0.2rem 0.5rem;
+  line-height: 1.52;
   border-radius: 1rem;
-  max-width: 410px;
+  max-width: 450px;
+  box-shadow: 0 0 32px #29bfff19;
+  border: 1.1px solid #183c65;
+  background: linear-gradient(105deg, #142442 80%, #18385c 100%);
 }
 .cta-bar {
   display: flex;
-  gap: 1.0rem;
+  gap: 1.1rem;
   justify-content: center;
-  margin: 2.1rem 0 0.3rem 0;
+  margin: 2.1rem 0 0.4rem 0;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -266,46 +333,51 @@ li {
   min-width: 135px;
   padding: 1.04rem 0;
   border-radius: 2rem;
-  font-size: 1.09rem;
+  font-size: 1.12rem;
   font-weight: 900;
   text-decoration: none;
   transition: background .12s, color .12s, transform .10s, box-shadow .12s;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
   text-align: center;
-  box-shadow: 0 2px 8px #3386ff18;
+  box-shadow: 0 2px 18px #29bfff19;
   outline: none;
   border: none;
+  margin-bottom:4px;
+  position:relative;
+  overflow:hidden;
 }
 .cta-final {
-  background: linear-gradient(90deg, var(--azul) 55%, var(--azul2) 100%);
+  background: linear-gradient(90deg, #1645a0 60%, #29bfff 100%);
   color: #fff;
-  box-shadow: 0 8px 24px #1dcaff2e;
+  box-shadow: 0 11px 33px #1645a037,0 0 12px #29bfff55;
+  border:2.1px solid #29bfff;
+  font-size: 1.14rem;
 }
 .cta-final:hover {
-  background: linear-gradient(90deg, #1dcaff 95%, #3386ff 100%);
-  transform: scale(1.045);
-  box-shadow: 0 14px 36px #1dcaff34;
+  background: linear-gradient(90deg, #0e2749 92%, #29bfff 100%);
+  transform: scale(1.05);
+  box-shadow: 0 18px 54px #29bfff44,0 0 24px #29bfff66;
 }
 .cta-demo {
-  background: #fff;
-  color: var(--azul);
-  border: 2px solid var(--azul);
+  background: #20375d;
+  color: #29bfff;
+  border: 2px solid #29bfff;
 }
 .cta-demo:hover {
-  background: #d9f7ff;
-  color: var(--azul);
-  border-color: #20aaff;
-  transform: scale(1.025);
-  box-shadow: 0 2px 8px #3386ff16;
+  background: #162d4a;
+  color: #fff;
+  border-color: #29bfff;
+  transform: scale(1.028);
+  box-shadow: 0 4px 20px #29bfff14;
 }
 #progress-bar-container {
   width: 98vw;
   max-width: var(--max-card);
   height: 8px;
   margin: 0 auto 12px auto;
-  background: #ddeafd;
+  background: #1b2a45;
   border-radius: 12px;
-  box-shadow: 0 1px 4px #3386ff0e;
+  box-shadow: 0 1px 4px #29bfff0a;
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -313,46 +385,46 @@ li {
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--azul) 60%, var(--azul2) 100%);
+  background: linear-gradient(90deg, #29bfff 60%, #1645a0 100%);
   border-radius: 12px;
-  transition: width .28s cubic-bezier(.66,0,.28,1);
+  transition: width .26s cubic-bezier(.66,0,.28,1);
 }
 footer {
   z-index: 2;
   text-align: center;
   font-size: 1.04rem;
   padding: 18px 0 10px 0;
-  color: #306;
+  color: #b5eaff;
   font-weight: 800;
-  background: #fff7;
-  border-top: 1.1px solid #d9eafd;
-  box-shadow: 0 -2px 10px #3386ff0c;
+  background: #161e2aee;
+  border-top: 1.1px solid #23395a;
   letter-spacing: .01em;
 }
 @media (max-width: 650px) {
   .splash-hero {
-    padding: 2rem 2vw 1.4rem 2vw;
-    border-radius: 1.4rem;
+    padding: 2rem 2vw 1.5rem 2vw;
+    border-radius: 1.3rem;
   }
   .card-glass, #progress-bar-container {
-    min-width: 98vw;
-    max-width: 99vw;
-    border-radius: 1.6rem;
-    padding: 7vw 2vw 6vw 2vw;
+    min-width: 99vw;
+    max-width: 100vw;
+    border-radius: 1.5rem;
+    padding: 7vw 2vw 7vw 2vw;
   }
   .cta-bar { flex-direction: column; gap: 1rem; }
+  .pergunta { font-size: 1rem; }
 }
   </style>
 </head>
 <body>
+  <div id="bg-particles"></div>
   <header>
     <div class="splash-hero" id="splash">
       <span class="badge-ini">Especial para Iniciantes</span>
       <h1>Pronto para sair do zero e ser aprovado mais rápido?</h1>
-      <span class="sub">Descubra o método que vai acelerar sua aprovação já nos primeiros meses.</span>
+      <span class="sub">Diagnóstico inteligente feito por um robô IA. Descubra como estudar certo e passar sem perder anos tentando.</span>
       <div class="desc">
-        Responda algumas perguntas e receba um diagnóstico personalizado para sair da estagnação.<br>
-        <b>Você vai aprender a estudar de verdade, economizar tempo e evitar os erros que reprovam milhares de iniciantes todo ano.</b>
+        Responda ao diagnóstico interativo e <b>veja o que trava sua evolução</b>. <br>Em poucos minutos, descubra seu roteiro prático para não perder mais tempo.
       </div>
       <button class="btn-splash" onclick="startQuiz()">Começar Diagnóstico</button>
     </div>
@@ -369,23 +441,43 @@ footer {
     © 2025 Manual do Aprovado
   </footer>
   <script>
-    // CONTADOR DE VISITAS (simulação)
+    // Fundo com partículas
+    function createParticles() {
+      const bg = document.getElementById('bg-particles');
+      for(let i=0; i<24; i++) {
+        let s = document.createElement('span');
+        let sz = Math.random()*2+1.7;
+        s.style = `position:absolute;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}vh;height:${sz}vh;background:#29bfff;opacity:${Math.random()*.26+.13};border-radius:99px;filter:blur(1.5px);animation:part-move ${3+Math.random()*13}s linear infinite alternate;`;
+        bg.appendChild(s);
+      }
+    }
+    createParticles();
+
+    // Partículas animadas
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes part-move {
+      0% { transform: translateY(0) scale(.88);}
+      100% { transform: translateY(-36px) scale(1.03);}
+    }`;
+    document.head.appendChild(style);
+
+    // Contador de visitas
     function updateCounter() {
       let base = 390 + Math.floor(Math.random()*20);
       let el = document.createElement('div');
       el.id = "counter-diagnostico";
-      el.style = "margin-top:10px;font-size:.98rem;color:#17a2c5;font-weight:700;";
+      el.style = "margin-top:10px;font-size:.97rem;color:#7bdfff;font-weight:700;";
       let now = base + Math.floor(performance.now()/3400);
       el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
       document.getElementById("splash").appendChild(el);
       setInterval(()=>{
         now++;
         el.textContent = `${now} pessoas já fizeram seu diagnóstico hoje.`;
-      }, 5200);
+      }, 4400);
     }
     updateCounter();
 
-    // FLUXO QUIZ (lógica emocional e impacto)
+    // Lógica do quiz
     const steps = [
       {
         id: 0,
@@ -405,7 +497,7 @@ footer {
       },
       {
         id: 2,
-        question: "Esse é o melhor momento para criar bons hábitos! <br><b>Você sente dificuldade para montar rotina ou escolher material?</b>",
+        question: "Esse é o melhor momento para criar bons hábitos! <br>Você sente dificuldade para montar rotina ou escolher material?",
         options: [
           { text: "Sim, tudo parece confuso", next: 5 },
           { text: "Mais ou menos, tenho dúvidas", next: 5 },
@@ -414,7 +506,7 @@ footer {
       },
       {
         id: 3,
-        question: "A maioria dos iniciantes sente travas porque tenta estudar tudo igual, sem método. <br><b>Você já tentou algum plano, ciclo ou revisão programada?</b>",
+        question: "A maioria sente travas porque tenta estudar tudo igual, sem método. <br>Você já tentou algum plano, ciclo ou revisão programada?",
         options: [
           { text: "Nunca tentei", next: 5 },
           { text: "Já tentei, mas não funcionou", next: 5 },
@@ -423,7 +515,7 @@ footer {
       },
       {
         id: 4,
-        question: "Quando não evolui, normalmente é porque falta clareza, revisão ou método de questões. <br><b>Qual sente mais dificuldade hoje?</b>",
+        question: "Quando não evolui, normalmente falta clareza, revisão ou método de questões. <br>Qual sente mais dificuldade hoje?",
         options: [
           { text: "Montar ciclo ou rotina", next: 5 },
           { text: "Revisar com método", next: 5 },
@@ -432,7 +524,7 @@ footer {
       },
       {
         id: 5,
-        question: "Você já definiu a área/cargo para focar?<br><span style='font-weight:400'>(Definir o alvo é o que mais acelera o resultado de quem começa do zero.)</span>",
+        question: "Você já definiu a área/cargo para focar?<br><span style='font-weight:400'>(Definir o alvo é o que mais acelera quem começa do zero.)</span>",
         options: [
           { text: "Ainda não", next: 6 },
           { text: "Já tenho um alvo", next: 7 }
@@ -449,7 +541,7 @@ footer {
       },
       {
         id: 7,
-        question: "Parabéns, você já está na frente! Só falta implementar método validado para acelerar de verdade.<br>Você resolve questões TODO DIA?",
+        question: "Parabéns, você já está na frente! Só falta implementar método validado para acelerar.<br>Você resolve questões TODO DIA?",
         options: [
           { text: "Nunca", next: 8 },
           { text: "Às vezes", next: 8 },
@@ -458,14 +550,14 @@ footer {
       },
       {
         id: 8,
-        question: "Esse é um dos maiores erros dos iniciantes.<br>Sem revisão e questões diárias, todo mundo acaba esquecendo.<br><b>Quer ver como sair desse ciclo?</b>",
+        question: "Esse é um dos maiores erros dos iniciantes.<br>Sem revisão e questões diárias, todo mundo esquece. <br>Quer ver como sair desse ciclo?",
         options: [
           { text: "Quero sim!", next: 9 }
         ]
       },
       {
         id: 9,
-        question: "Pronto! Você já está à frente da maioria só por buscar diagnóstico.<br>Veja como o Manual vai te guiar na direção certa.",
+        question: "Pronto! Você já está à frente só por buscar diagnóstico.<br>Veja como o Manual vai te guiar na direção certa.",
         options: [
           { text: "Ver resultado", next: 10 }
         ]
@@ -475,29 +567,29 @@ footer {
         question: (s) => `
           <div class="cta-final-expl">
             <b>O Manual do Aprovado é o atalho para estudar do zero, economizar tempo e ser aprovado mais rápido.</b><br><br>
-            Feito 100% para iniciantes.<br>
-            <span style="color:#2266cc"><b>Com ele, você vai aprender a:</b></span>
+            <span style="color:#29bfff"><b>Feito 100% para iniciantes.</b></span><br>
+            <b>Você vai:</b>
             <ul>
-              <li>Montar seu ciclo e rotina mesmo sem experiência;</li>
-              <li>Nunca mais travar em revisão ou planejamento;</li>
-              <li>Escolher materiais certos sem gastar à toa;</li>
-              <li>Definir sua área e criar um plano realista;</li>
-              <li>Aprender de verdade resolvendo questões (com método);</li>
+              <li>Montar seu ciclo e rotina mesmo sem experiência.</li>
+              <li>Nunca mais travar em revisão ou planejamento.</li>
+              <li>Escolher materiais certos sem gastar à toa.</li>
+              <li>Definir sua área e criar um plano realista.</li>
+              <li>Aprender de verdade resolvendo questões (com método).</li>
               <li>Evitar perder anos tentando sozinho.</li>
             </ul>
             <b>Bônus exclusivos:</b>
             <ul>
-              <li>Checklist de rotina para iniciantes.</li>
-              <li>Modelos prontos de plano de estudo.</li>
-              <li>Suporte para dúvidas iniciais.</li>
-              <li>Acesso a atualizações 2025.</li>
+              <li>✔️ Checklist de rotina para iniciantes.</li>
+              <li>✔️ Modelos prontos de plano de estudo.</li>
+              <li>✔️ Suporte para dúvidas iniciais.</li>
+              <li>✔️ Acesso a atualizações 2025.</li>
             </ul>
           </div>
           <div class="cta-bar">
             <a href="LINK_KIWIFY" class="cta-final" target="_blank">Quero estudar certo!</a>
             <a href="LINK_AMOSTRA" class="cta-demo" target="_blank">Ver Amostra</a>
           </div>
-          <div style="color:#217; margin-top:1.2rem;font-size:1.05rem">
+          <div style="color:#89eafd; margin-top:1.2rem;font-size:1.08rem">
             Dê o próximo passo inteligente e estude como quem já foi aprovado.
           </div>
         `,
@@ -506,6 +598,31 @@ footer {
         ]
       }
     ];
+
+    // Robô typing effect (quando troca pergunta)
+    function roboTyping(texto, callback) {
+      let box = document.createElement('div');
+      box.id = "robo-box";
+      box.innerHTML = `
+        <div id="robo-svg">
+          <svg viewBox="0 0 32 32" fill="none">
+            <ellipse cx="16" cy="24" rx="10" ry="3" fill="#193a70" opacity=".18"/>
+            <rect x="7" y="7" width="18" height="12" rx="5" fill="url(#g2)" stroke="#29bfff" stroke-width="2"/>
+            <defs>
+              <linearGradient id="g2" x1="7" y1="7" x2="25" y2="19" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#29bfff"/><stop offset="1" stop-color="#1645a0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="13" cy="14" r="1.1" fill="#fff" />
+            <circle cx="19" cy="14" r="1.1" fill="#fff" />
+          </svg>
+        </div>
+        <div id="typewriter">
+          <span>Digitando</span>
+          <span class="dots"><span>.</span><span>.</span><span>.</span></span>
+        </div>`;
+      return box;
+    }
 
     // QUIZ STATE & RENDER
     let state = { nome: "", step: 0 };
@@ -518,13 +635,45 @@ footer {
     }
     function renderStep(stepId) {
       const container = document.getElementById("quiz-card");
+      container.innerHTML = "";
+      // Mostra robô digitando
+      const roboBox = roboTyping("Digitando pergunta...");
+      container.appendChild(roboBox);
+
+      setTimeout(()=>{
+        showPergunta(stepId, container);
+      }, 950 + Math.random()*220); // Timing para dar efeito typing
+    }
+    function showPergunta(stepId, container) {
       const step = steps.find(s => s.id === stepId);
       updateProgressBar(stepId);
+
+      // Remove robo typing, coloca robô fixo em cima (estático)
+      container.innerHTML = "";
+      const roboBox = document.createElement('div');
+      roboBox.id = "robo-box";
+      roboBox.innerHTML = `
+        <div id="robo-svg">
+          <svg viewBox="0 0 32 32" fill="none">
+            <ellipse cx="16" cy="24" rx="10" ry="3" fill="#193a70" opacity=".18"/>
+            <rect x="7" y="7" width="18" height="12" rx="5" fill="url(#g2)" stroke="#29bfff" stroke-width="2"/>
+            <defs>
+              <linearGradient id="g2" x1="7" y1="7" x2="25" y2="19" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#29bfff"/><stop offset="1" stop-color="#1645a0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="13" cy="14" r="1.1" fill="#fff" />
+            <circle cx="19" cy="14" r="1.1" fill="#fff" />
+          </svg>
+        </div>
+      `;
+      container.appendChild(roboBox);
+
       let html = `<div class="pergunta">${typeof step.question === "function" ? step.question(state) : step.question}</div>`;
       if (step.type === "input") {
         html += `<input type="text" id="input-nome" placeholder="${step.inputPlaceholder || ""}" autocomplete="off" maxlength="30"/>
           <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
-        container.innerHTML = html;
+        container.innerHTML += html;
         const input = document.getElementById("input-nome");
         const btn = document.getElementById("btn-next");
         input.addEventListener("input", () => {
@@ -548,13 +697,16 @@ footer {
       if (history.length > 0) {
         html += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
       }
-      container.innerHTML = html;
+      container.innerHTML += html;
       if (step.options) {
         container.querySelectorAll(".btn-quiz").forEach((btn, idx) => {
           btn.addEventListener("click", () => {
+            // Efeito ripple visual no botão
+            btn.classList.add('active');
+            setTimeout(()=>{ btn.classList.remove('active'); },220);
             history.push(stepId);
             state[stepId] = idx;
-            goTo(step.options[idx].next);
+            renderStep(step.options[idx].next);
           });
         });
       }
@@ -563,19 +715,10 @@ footer {
         btnVoltar.addEventListener("click", () => {
           if (history.length > 0) {
             let prev = history.pop();
-            goTo(prev, true);
+            renderStep(prev, true);
           }
         });
       }
-    }
-    function goTo(stepId, isBack = false) {
-      state.step = stepId;
-      const container = document.getElementById("quiz-card");
-      container.classList.remove("show");
-      setTimeout(() => {
-        renderStep(stepId);
-        container.classList.add("show");
-      }, isBack ? 100 : 210);
     }
     function updateProgressBar(stepId) {
       const total = 10;
