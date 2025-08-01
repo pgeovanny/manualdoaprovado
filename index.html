@@ -1,114 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Manual do Aprovado – Iniciante</title>
   <style>
-    /* ===== ROOT ===== */
+    /* ROOT */
     :root {
-      --bg-dark: #0f121a;
-      --bg-light: #F5FAFF;
-      --text-light: #F5FAFF;
+      --bg-dark: #0d111f;
+      --bg-light: #f5faff;
+      --glass: rgba(255,255,255,0.12);
+      --accent1: #38c1f3;
+      --accent2: #2a6bba;
+      --text-light: #f5faff;
       --text-dark: #233241;
-      --accent1: #38C1F3;
-      --accent2: #2A6BBA;
-      --glass: rgba(255,255,255,0.15);
-      --radius: 18px;
+      --radius: 16px;
       --shadow: 0 8px 24px rgba(0,0,0,0.15);
-      --transition: 0.3s ease;
+      --transition: .3s ease;
     }
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    body,html { width:100%; height:100%; overflow:hidden; font-family:'Inter',sans-serif; background:var(--bg-dark); color:var(--text-light); }
-    button { cursor:pointer; outline:none; border:none; font-family:inherit; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body,html{width:100%;height:100%;overflow:hidden;font-family:Inter,sans-serif;background:var(--bg-dark);color:var(--text-light);}
+    #wrapper{position:relative;width:100vw;height:100vh;overflow:hidden;}
+    canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
 
-    /* ===== CANVAS PARTICLES ===== */
-    #canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+    .screen{position:absolute;top:0;left:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;padding:24px;transition:opacity var(--transition);z-index:1;}
+    .screen.active{display:flex;opacity:1;}
 
-    /* ===== WRAPPER & SCREENS ===== */
-    #wrapper { position:relative; width:100vw; height:100vh; overflow:hidden; }
-    .screen { position:absolute; top:0; left:0; width:100%; height:100%; display:none; align-items:center; justify-content:center; padding:24px; transition:opacity var(--transition); z-index:1; }
-    .screen.active { display:flex; opacity:1; }
+    .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);width:100%;max-width:420px;position:relative;text-align:center;}
+    h1{font-size:2.2rem;color:var(--accent1);text-shadow:0 0 6px var(--accent1);}
+    .subtitle{margin-top:16px;font-size:1rem;color:var(--text-light);line-height:1.4;}
+    .btn-main{margin-top:24px;padding:16px;border:none;border-radius:28px;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#fff;font-size:1.05rem;font-weight:700;position:relative;overflow:hidden;transition:transform .2s;}
+    .btn-main:hover{transform:scale(1.03);}
+    .btn-main::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.2);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+    .btn-main:hover::after{transform:scaleX(1);}
 
-    /* ===== ROBÔ E PROGRESS ===== */
-    #robot { position:absolute; top:24px; right:24px; width:64px; height:64px; z-index:2; animation:bob 3s infinite ease-in-out; cursor:default; }
-    @keyframes bob { 0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);} }
-    .halo { fill:none; stroke-width:6; stroke-linecap:round; transition:stroke var(--transition); }
-    .face { fill:var(--text-light); }
+    /* Robô + progresso */
+    #robot{position:absolute;top:24px;right:24px;width:60px;height:60px;z-index:2;}
+    .halo{fill:none;stroke-width:6;stroke-linecap:round;stroke:var(--accent1);transition:stroke var(--transition);}
+    .face{fill:var(--text-light);}
+    @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+    #robot{animation:bob 3s infinite ease-in-out;}
 
-    /* ===== HERO ===== */
-    #screen-intro .card { background:var(--glass); backdrop-filter:blur(12px); border-radius:var(--radius); box-shadow:var(--shadow); text-align:center; padding:32px; }
-    #screen-intro h1 { font-family:'Montserrat',sans-serif; color:var(--accent1); font-size:2.4rem; opacity:0; animation:fadeIn 1s forwards .3s; }
-    #screen-intro .subtitle { margin:16px 0; font-size:1rem; opacity:0; animation:fadeIn 1s forwards .7s; }
-    #screen-intro .btn-main { margin-top:24px; padding:16px 0; width:100%; border-radius:28px;
-      background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#fff; font-size:1.05rem; font-weight:700;
-      box-shadow:0 0 12px var(--accent1); position:relative; overflow:hidden; transition:transform .2s; }
-    #screen-intro .btn-main::after {
-      content:""; position:absolute; top:0; left:0; width:100%; height:100%;
-      background:rgba(255,255,255,0.2); transform:scaleX(0); transform-origin:left; transition:transform .4s;
-    }
-    #screen-intro .btn-main:hover { transform:scale(1.03); }
-    #screen-intro .btn-main:hover::after { transform:scaleX(1); }
+    /* QUIZ */
+    .card-quiz{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);width:100%;max-width:420px;}
+    .progress-container{width:100px;height:100px;margin:0 auto 16px;}
+    .progress-bg {cx:50;cy:50;r:45;fill:none;stroke:rgba(255,255,255,0.2);stroke-width:8;}
+    .progress-bar{cx:50;cy:50;r:45;fill:none;stroke:var(--accent1);stroke-width:8;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset .5s;}
+    .question{font-size:1.05rem;min-height:60px;line-height:1.4;margin:16px 0;position:relative;}
+    .input-box{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.3);transition:var(--transition);}
+    .input-box:focus-within{border-color:var(--accent1);box-shadow:0 0 12px rgba(56,193,248,0.5);}
+    .btn-group{display:flex;gap:12px;justify-content:center;margin-top:16px;}
+    .btn-sml{flex:1;padding:12px 0;border:none;border-radius:20px;color:#fff;font-weight:600;transition:opacity .2s;}
+    .btn-sim{background:var(--accent1);} 
+    .btn-nao{background:var(--accent2);} 
+    .btn-back{background:var(--bg-light);color:var(--accent2);border:1px solid var(--accent2);}
+    .btn-sml:hover{opacity:.85;}
+    .typing{border-right:2px solid var(--text-light);white-space:nowrap;overflow:hidden;}
 
-    /* ===== QUIZ GLASS ===== */
-    .card-quiz { background:var(--glass); backdrop-filter:blur(12px); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px; width:100%; max-width:420px; text-align:center; }
-    .progress-container { position:relative; width:100px; height:100px; margin:0 auto 16px; }
-    progress-bg { stroke:rgba(255,255,255,0.2); }
-    .progress-bg, .progress-bar { cx:50; cy:50; r:45; }
-    .progress-bar { stroke:var(--accent1); stroke-dasharray:283; stroke-dashoffset:283; }
-    #screen-quiz svg { transform:rotate(-90deg); }
-    .question { font-size:1.05rem; line-height:1.4; margin:16px 0; min-height:60px; position:relative; }
-    .input-box { padding:16px; border-radius:14px; border:1px solid rgba(255,255,255,0.3); transition:var(--transition); }
-    .input-box:focus-within { border-color:var(--accent1); box-shadow:0 0 12px rgba(56,193,248,0.5); }
-    .btn-group { display:flex; gap:12px; justify-content:center; margin-top:16px; }
-    .btn-sml { flex:1; padding:12px 0; border-radius:24px; font-size:.95rem; font-weight:600; color:#fff; transition:opacity .2s; }
-    .btn-sim { background:var(--accent1); }
-    .btn-nao { background:var(--accent2); }
-    .btn-back { background:var(--bg-light); color:var(--accent2); border:1px solid var(--accent2); }
-    .btn-sml:hover { opacity:.85; }
+    /* Persuasão */
+    .persuasion{display:none;background:rgba(56,193,248,0.12);border-left:4px solid var(--accent2);padding:16px;margin:20px 0;border-radius:8px;animation:slideIn .4s;}
+    @keyframes slideIn{0%{opacity:0;transform:translateX(20px);}100%{opacity:1;transform:translateX(0);} }
 
-    /* TYPEWRITER */
-    .typing { border-right:2px solid var(--text-light); white-space:nowrap; overflow:hidden; }
+    /* Dores */
+    .card-dor{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);text-align:left;max-width:420px;width:100%;}
+    .card-dor h2{text-align:center;color:var(--accent1);margin-bottom:16px;}
+    .list{list-style:none;padding:0;margin:0;}
+    .list li{position:relative;padding-left:24px;margin:12px 0;color:var(--text-light);}
+    .list li::before{content:'✔';position:absolute;left:0;top:2px;color:var(--accent1);}
 
-    /* ===== PERSUASION ===== */
-    .persuasion { display:none; background:rgba(56,193,248,0.12); border-left:4px solid var(--accent2); padding:16px; margin:18px 0; border-radius:8px; animation:slideIn .4s; }
-    .persuasion .btn-group { margin-top:8px; }
+    /* Manual final */
+    .card-manual{background:var(--bg-light);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);width:100%;max-width:420px;transform-style:preserve-3d;transition:transform .3s;}
+    .card-manual:hover{transform:perspective(600px) rotateY(3deg) rotateX(2deg);}
+    .card-manual h2{text-align:center;color:var(--accent2);margin-bottom:16px;}
+    #featureList{list-style:none;padding:0;margin:0;}
+    #featureList li{position:relative;padding-left:24px;margin:12px 0;color:var(--text-dark);opacity:0;transition:opacity .5s;}
+    #featureList li::before{content:'✔';position:absolute;left:0;top:2px;color:var(--accent2);}
+    .subtitle-final{text-align:center;margin:20px 0;color:var(--text-dark);}
+    .cta-group{display:flex;gap:12px;margin-top:16px;}
+    .cta-group a{flex:1;padding:14px 0;border-radius:28px;text-align:center;color:#fff;font-weight:700;transition:transform .2s;}
+    .cta-sample{background:var(--accent1);} 
+    .cta-buy{background:var(--accent2);}
+    .cta-group a:hover{transform:scale(1.05);}
+    .btn-finish{margin:24px auto 0;padding:12px 0;width:80%;border:none;border-radius:24px;background:var(--accent2);color:#fff;font-weight:700;transition:transform .2s;}
+    .btn-finish:hover{transform:scale(1.03);}
 
-    /* ===== DOR CARD ===== */
-    .card-dor { background:var(--glass); backdrop-filter:blur(12px); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px; width:100%; max-width:420px; text-align:left; }
-    .card-dor h2 { text-align:center; color:var(--accent1); margin-bottom:12px; }
-    .list { list-style:none; padding:0; }
-    .list li { position:relative; padding-left:24px; margin:8px 0; color:var(--text-light); }
-    .list li::before { content:'✔'; position:absolute; left:0; top:2px; color:var(--accent1); }
-
-    /* ===== MANUAL FINAL ===== */
-    .card-manual { background:var(--bg-light); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px; width:100%; max-width:420px; text-align:left; transform-style:preserve-3d; transition:transform .3s; }
-    .card-manual:hover { transform:perspective(600px) rotateY(4deg) rotateX(2deg); }
-    .card-manual h2 { text-align:center; color:var(--accent2); margin-bottom:12px; }
-    #featureList { list-style:none; padding:0; margin:16px 0; }
-    #featureList li { position:relative; padding-left:24px; margin:10px 0; opacity:0; transition:opacity .5s; }
-    #featureList li::before { content:'◆'; position:absolute; left:0; top:2px; color:var(--accent2); }
-    .subtitle-final { text-align:center; margin:18px 0; color:var(--text-dark); }
-    .cta-group { display:flex; gap:12px; }
-    .cta-group a { flex:1; padding:14px 0; border-radius:28px; text-align:center; font-weight:700; color:#fff; transition:transform .2s; }
-    .cta-sample { background:var(--accent1); }
-    .cta-buy { background:var(--accent2); }
-    .cta-group a:hover { transform:scale(1.05); }
-    .btn-finish { display:block; margin:24px auto 0; padding:12px 0; width:80%; border:none; border-radius:24px; background:var(--accent2); color:#fff; font-weight:700; transition:transform .2s; }
-    .btn-finish:hover { transform:scale(1.03); }
-
-    /* ===== UTIL ===== */
-    @keyframes fadeIn { 0%{opacity:0;} 100%{opacity:1;} }
-    @keyframes slideIn { 0%{opacity:0;transform:translateX(30px);} 100%{opacity:1;transform:translateX(0);} }
+    @keyframes fadeIn{0%{opacity:0;}100%{opacity:1;}}
   </style>
 </head>
 <body>
   <div id="wrapper">
     <canvas id="canvas"></canvas>
 
-    <!-- ROBÔ -->
+    <!-- Robô -->
     <div id="robot">
-      <svg width="64" height="64" viewBox="0 0 100 100">
+      <svg width="60" height="60" viewBox="0 0 100 100">
         <circle class="halo" cx="50" cy="50" r="45"/>
         <circle class="face" cx="50" cy="50" r="30"/>
         <circle class="eye" cx="38" cy="45" r="4"/>
@@ -117,22 +102,22 @@
       </svg>
     </div>
 
-    <!-- INTRO -->
+    <!-- Intro -->
     <div id="screen-intro" class="screen active">
       <div class="card">
-        <h1 class="intro-title">Manual do Aprovado</h1>
-        <div class="subtitle intro-sub">Estude com estratégia e avance rápido.</div>
+        <h1>Manual do Aprovado</h1>
+        <div class="subtitle">Estude com estratégia e avance rápido.</div>
         <button class="btn-main" onclick="startQuiz()">Começar</button>
       </div>
     </div>
 
-    <!-- QUIZ -->
+    <!-- Quiz -->
     <div id="screen-quiz" class="screen">
       <div class="card-quiz">
         <div class="progress-container">
           <svg width="100" height="100">
-            <circle class="progress-bg" cx="50" cy="50" r="45"/>
-            <circle class="progress-bar" id="bar" cx="50" cy="50" r="45"/>
+            <circle class="progress-bg"/>
+            <circle class="progress-bar" id="bar"/>
           </svg>
         </div>
         <div id="qtext" class="question typing input-box"></div>
@@ -141,7 +126,8 @@
           <button class="btn-sml btn-nao" onclick="answer('nao')">Não</button>
           <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
         </div>
-        <div id="persuasion" class="persuasion"><div id="persuadeTxt" class="typing"></div>
+        <div id="persuasion" class="persuasion">
+          <div id="persuadeTxt" class="typing"></div>
           <div class="btn-group">
             <button class="btn-sml btn-sim" onclick="advanceAfterNo()">Avançar</button>
             <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
@@ -151,38 +137,38 @@
       </div>
     </div>
 
-    <!-- DOR -->
+    <!-- Dores -->
     <div id="screen-dor" class="screen">
       <div class="card-dor">
         <h2>Dificuldades comuns</h2>
         <ul class="list">
-          <li>Horas perdidas sem direção.</li>
-          <li>Revisões ineficazes e memória falha.</li>
-          <li>Desconhecimento da lei seca.</li>
-          <li>Métodos que sugam seu tempo.</li>
+          <li>Falta de direção no estudo.</li>
+          <li>Esquece o conteúdo rapidamente.</li>
+          <li>Não sabe revisar a lei seca.</li>
+          <li>Medo de métodos ineficazes.</li>
         </ul>
         <button class="btn-main" onclick="showManual()">Ver Solução</button>
         <button class="btn-sml btn-back" onclick="quizBack()">Voltar</button>
       </div>
     </div>
 
-    <!-- MANUAL -->
+    <!-- Manual -->
     <div id="screen-manual" class="screen">
       <div class="card-manual">
         <h2>Manual do Aprovado</h2>
         <ul id="featureList">
-          <li>Plano estratégico e flexível.</li>
-          <li>Revisões práticas e contínuas.</li>
-          <li>Controle de horas líquidas.</li>
-          <li>Uso de questões para fixar.</li>
-          <li>Grifo inteligente sem resumos manuais.</li>
-          <li>Leitura eficaz da lei seca.</li>
-          <li>Visão de longo prazo e ação eficiente.</li>
+          <li>Como montar um ciclo de estudos estratégico e flexível</li>
+          <li>Como revisar de forma prática e contínua</li>
+          <li>Como controlar suas horas líquidas e estudar com qualidade</li>
+          <li>Como usar questões no dia a dia para fixar e avançar</li>
+          <li>Por que não fazer resumos à mão e como grifar com inteligência</li>
+          <li>Como, quando e por que ler a lei seca</li>
+          <li>Visão de longo prazo, mas agindo com eficiência no curto prazo</li>
         </ul>
         <div class="subtitle-final">Seu tempo de estudo vai finalmente render!</div>
         <div class="cta-group">
-          <a class="cta-sample" href="LINK_DA_AMOSTRA" target="_blank">Baixar Amostra</a>
-          <a class="cta-buy" href="LINK_DE_AQUISICAO" target="_blank">Adquirir Agora</a>
+          <a class="cta-sample" href="#" target="_blank">Baixar Amostra</a>
+          <a class="cta-buy" href="#" target="_blank">Adquirir Agora</a>
         </div>
         <button class="btn-finish" onclick="restart()">Voltar ao Início</button>
         <div class="small" id="visit-manual"></div>
@@ -191,25 +177,21 @@
   </div>
 
   <script>
-    // PARTICLES BACKGROUND
+    // PARTICLES
     const canvas = document.getElementById('canvas'), ctx = canvas.getContext('2d');
-    let w,h,parts=[];
-    function init(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; parts=[];
-      for(let i=0;i<120;i++){ parts.push({x:Math.random()*w,y:Math.random()*h,r:1+Math.random()*2,dx:-.2+Math.random()*.4,dy:-.2+Math.random()*.4});}
+    let w,h,pars=[];
+    function init(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; pars=[];
+      for(let i=0;i<80;i++) pars.push({x:Math.random()*w,y:Math.random()*h,r:1+Math.random()*2,dx:-.2+Math.random()*.4,dy:-.2+Math.random()*.4});
     }
-    function draw(){ ctx.clearRect(0,0,w,h);
-      parts.forEach(p=>{ p.x+=p.dx; p.y+=p.dy;
-        if(p.x<0||p.x>w)p.dx*=-1; if(p.y<0||p.y>h)p.dy*=-1;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI); ctx.fillStyle='rgba(56,193,248,0.2)'; ctx.fill();
-      }); requestAnimationFrame(draw);
-    }
+    function draw(){ ctx.clearRect(0,0,w,h); pars.forEach(p=>{
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>w)p.dx*=-1; if(p.y<0||p.y>h)p.dy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI); ctx.fillStyle='rgba(56,193,248,0.2)'; ctx.fill();
+    }); requestAnimationFrame(draw);}
     init(); draw(); onresize=init;
 
-    // ROBÔ CORE
-    const robot=document.querySelector('#robot .halo'), colors=['#38C1F3','#2A6BBA','#00D084','#A14AE3'];
-    function updateRobot(step){
-      robot.setAttribute('stroke',colors[step]||colors[0]);
-    }
+    // ROBÔ HALO
+    const halo = document.querySelector('.halo'), colors=['#38c1f3','#2a6bba','#00d084','#a14ae3'];
 
     // VISITORS
     fetch('https://api.countapi.xyz/hit/manualdoaprovado/iniciante')
@@ -219,28 +201,35 @@
       });
 
     // TYPEWRITER
-    function typeWriter(el,t,s=50,cb){ el.textContent=''; let i=0; (function f(){ if(i<t.length){ el.textContent+=t[i++]; setTimeout(f,s);} else if(cb)cb(); })(); }
+    function typeWriter(el,text,speed=40,cb){
+      el.textContent=''; let i=0;
+      (function t(){ if(i<text.length){ el.textContent+=text[i++]; setTimeout(t,speed);}else if(cb)cb(); })();
+    }
 
-    /* FLOW */
-    const screens=['screen-intro','screen-quiz','screen-dor','screen-manual'];
-    const qs=[ "Você já se sentiu perdido sem saber por onde começar?",
-               "Quantas horas você já perdeu revisando sem resultado?",
-               "Quer usar questões como atalho para o acerto?",
-               "Estudar sozinho te deixa inseguro?" ];
-    const ps=[ "Perder tempo é doloroso. Quer ver o método que aprova rápido?",
-               "Memória falha? Descubra a revisão que fixa em 24h!",
-               "Questões são segredos dos aprovados. Avançar para dominar?",
-               "Suporte muda tudo. Avançar para descobrir como?" ];
+    // FLOW
+    const screens=['screen-intro','screen-quiz','screen-dor','screen-manual'],
+          qs=[
+            "Você já se sentiu perdido sem saber por onde começar?",
+            "Você revisa e logo esquece o que estudou?",
+            "Quer usar questões como atalho para avançar?",
+            "Estudar sozinho te deixa inseguro?"
+          ],
+          ps=[
+            "Perder tempo é doloroso. Que tal aprender o método dos aprovados?",
+            "Revisões ineficazes? Descubra como fixar em 24h!",
+            "Questões são segredos dos aprovados. Avançar para dominar?",
+            "Suporte faz toda diferença. Avançar para ver como?"
+          ];
     let idx=0;
-    function show(id){ screens.forEach(s=>document.getElementById(s).classList.remove('active')); document.getElementById(id).classList.add('active'); }
-    function startQuiz(){ idx=0; document.getElementById('persuasion').style.display='none'; updateRobot(0); showQuestion(); show('screen-quiz'); }
+    function show(id){screens.forEach(s=>document.getElementById(s).classList.remove('active'));document.getElementById(id).classList.add('active');}
+    function updateRobot(step){halo.setAttribute('stroke',colors[step]||colors[0]);}
+    function startQuiz(){idx=0;updateRobot(0);document.getElementById('persuasion').style.display='none';showQuestion();show('screen-quiz');}
     function showQuestion(){
       updateRobot(idx);
       const qel=document.getElementById('qtext');
       qel.classList.add('typing');
       typeWriter(qel,qs[idx],50,()=>qel.classList.remove('typing'));
-      const bar=document.getElementById('bar');
-      bar.style.strokeDashoffset=283 - (283*(idx/qs.length));
+      document.getElementById('bar').style.strokeDashoffset=283 - (283*(idx/qs.length));
       document.getElementById('qbtns').style.display='flex';
     }
     function answer(res){
@@ -252,18 +241,18 @@
         typeWriter(ptxt,ps[idx],40,()=>ptxt.classList.remove('typing'));
       } else {
         idx++;
-        if(idx<qs.length){ document.getElementById('persuasion').style.display='none'; showQuestion(); }
+        if(idx<qs.length){document.getElementById('persuasion').style.display='none';showQuestion();}
         else show('screen-dor');
       }
     }
-    function advanceAfterNo(){ answer('sim'); }
-    function quizBack(){ if(idx>0){ idx--; document.getElementById('persuasion').style.display='none'; showQuestion(); } else show('screen-intro'); }
+    function advanceAfterNo(){answer('sim');}
+    function quizBack(){if(idx>0){idx--;document.getElementById('persuasion').style.display='none';showQuestion();}else show('screen-intro');}
     function showManual(){
-      show('screen-manual');
       updateRobot(3);
-      document.querySelectorAll('#featureList li').forEach((li,i)=>setTimeout(()=>li.classList.add('visible'),i*120));
+      show('screen-manual');
+      document.querySelectorAll('#featureList li').forEach((li,i)=>setTimeout(()=>li.style.opacity=1,i*120));
     }
-    function restart(){ show('screen-intro'); updateRobot(0); }
+    function restart(){show('screen-intro');updateRobot(0);}
   </script>
 </body>
 </html>
