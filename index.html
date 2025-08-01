@@ -7,135 +7,190 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --primary: #2473b7;
-      --accent: #34cdf7;
-      --bg-main: #f7fafd;
-      --gray: #232f3d;
-      --radius: 17px;
-      --shadow: 0 4px 16px #2473b71b, 0 2px 8px #34cdf710;
+      --primary: #2673c2;
+      --accent: #49e0fe;
+      --bg1: #e9f3fd;
+      --bg2: #f7fafd;
+      --gray: #243241;
+      --radius: 19px;
+      --shadow: 0 4px 16px #2673c21c, 0 2px 8px #49e0fe11;
+      --manual-glow: 0 0 28px #49e0febd, 0 2px 8px #2673c218;
     }
     body, html {
       min-height:100vh; margin:0;padding:0;
       font-family:'Inter',sans-serif;
       background:linear-gradient(120deg,#e9f3fd 0,#f7fafd 90%);
       color:var(--gray);
+      overflow-x:hidden;
     }
-    #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
-    .shell { max-width:430px; margin:0 auto; width:100%; padding:32px 0 16px 0;}
+    /* Fundo animado com gradiente e partículas leves */
+    #animated-bg {
+      position:fixed; z-index:0;
+      top:0; left:0; width:100vw; height:100vh;
+      background: linear-gradient(120deg, #dbeffc 0%, #f0faff 100%);
+      animation:bgmove 8s infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes bgmove {
+      0% { filter: brightness(1) blur(0.5px);}
+      100% { filter: brightness(1.06) blur(1.5px);}
+    }
+    .particles {
+      position:absolute; z-index:1; width:100%; height:100%; pointer-events:none;
+    }
+    .particle {
+      position:absolute; border-radius:50%; background:rgba(73,224,254,0.14); 
+      animation:floatY 8s linear infinite;
+    }
+    @keyframes floatY {
+      0%{transform:translateY(0);}
+      100%{transform:translateY(-25vh);}
+    }
+    /* Container central */
+    #center { min-height:100vh; display:flex; align-items:center; justify-content:center; z-index:10; position:relative;}
+    .shell { max-width:440px; margin:0 auto; width:100%; padding:36px 0 14px 0; z-index:10;}
     .card, .manual-card, .card-glass {
-      background:#fff;
+      background:rgba(255,255,255,0.96);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      border:1px solid #dde8f2;
-      padding:36px 24px 30px 24px;
-      margin-bottom:24px;
+      border:1px solid #d9e6f3;
+      padding:38px 22px 27px 22px;
+      margin-bottom:23px;
       animation:fadeIn .6s;
       position:relative;
+      z-index:10;
     }
     @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
     .title-main {
       font-family:'Montserrat',sans-serif;
-      font-size:2.1rem;
+      font-size:2.22rem;
       font-weight:900;
       color:var(--primary);
       text-align:center;
       letter-spacing:.01em;
-      margin-bottom:6px;
+      margin-bottom:4px;
       margin-top:0;
-      text-shadow:0 2px 8px #2473b73a;
+      text-shadow:0 2px 10px #2673c228;
+      opacity:0;
+      animation:titleIn .9s .2s forwards cubic-bezier(.7,0,.3,1);
     }
+    @keyframes titleIn {from{opacity:0;transform:translateY(-28px);}to{opacity:1;transform:translateY(0);}}
     .iniciante-badge {
       display:inline-block;
       font-family:'Montserrat',sans-serif;
       font-weight:900;
-      font-size:1.07rem;
-      padding:4px 16px;
-      background:linear-gradient(93deg,#34cdf7 20%,#2473b7 95%);
+      font-size:1.13rem;
+      padding:5px 18px 5px 18px;
+      background:linear-gradient(90deg,#49e0fe 20%,#2673c2 100%);
       color:#fff;
-      border-radius: 15px;
-      margin:0 auto 10px auto;
-      letter-spacing:0.5px;
+      border-radius: 16px;
+      margin:0 auto 9px auto;
+      letter-spacing:0.7px;
       text-align:center;
-      box-shadow:0 0 7px #34cdf733;
+      box-shadow:0 0 10px #49e0fe48;
+      opacity:0; animation:badgeIn .8s .55s forwards cubic-bezier(.7,0,.3,1);
     }
+    @keyframes badgeIn {from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
     .intro-blur {
       font-size:1.13rem;
       font-weight:600;
-      background:rgba(36,115,183,0.07);
+      background:rgba(36,115,194,0.09);
       color:var(--primary);
       border-radius:13px;
-      padding:14px 17px;
+      padding:14px 16px 13px 16px;
       margin:14px 0 14px 0;
       text-align:center;
       width:100%;
+      opacity:0; animation:introIn .8s .83s forwards cubic-bezier(.7,0,.3,1);
     }
-    .btn-main, .btn-opt, .btn-back, .btn-final {
-      font-size:1.13rem;
-      font-weight:700;
+    @keyframes introIn {from{opacity:0;transform:scale(1.09);}to{opacity:1;transform:scale(1);}}
+    .btn-main {
+      font-size:1.18rem;
+      font-weight:800;
       border:none; outline:none;
-      border-radius:36px;
+      border-radius:38px;
       cursor:pointer;
-      box-shadow:0 2px 7px #34cdf721;
-      padding:15px 0;
-      min-width:115px;
-      margin:0 6px 0 0;
-      transition:background .16s, color .16s, transform .16s;
+      box-shadow:0 2px 7px #49e0fe26;
+      padding:18px 0;
+      width:98%;
+      margin:24px 0 0 0;
+      background:linear-gradient(91deg,var(--primary),var(--accent) 92%);
+      color:#fff;
+      letter-spacing:.5px;
+      transition:background .16s, color .16s, transform .15s, box-shadow .16s;
+      opacity:0; animation:btnIn .8s 1.15s forwards cubic-bezier(.7,0,.3,1);
     }
-    .btn-main, .btn-final {
-      background:linear-gradient(93deg,var(--primary),var(--accent) 90%);
-      color:#fff; width:99%; margin:19px 0 0 0;
-    }
-    .btn-main:hover, .btn-final:hover { background:linear-gradient(96deg,var(--accent),var(--primary)); color:var(--primary);}
-    .btn-opt { flex:1 1 0; background:linear-gradient(95deg,var(--primary),var(--accent)); color:#fff; }
-    .btn-opt:hover { background:linear-gradient(92deg,#fff,var(--accent)); color:var(--primary);}
-    .btn-back { background:#eaf2fb; color:var(--primary); min-width:78px; border:1px solid #dde7f3;}
-    .btn-back:hover { background:var(--accent); color:#fff;}
-    .btn-duplo {display:flex; gap:21px; margin:27px 0 13px 0; justify-content:center;}
-    .btn-duplo a {
-      display:inline-block; width:48%; text-align:center;
-      background:linear-gradient(91deg,var(--primary) 58%,var(--accent) 100%);
-      color:#fff; border-radius:30px; font-weight:700; font-size:1.09rem;
-      text-decoration:none; padding:13px 0; box-shadow:0 1px 7px #34cdf72a;
-      transition:background .14s, color .14s, transform .13s;
-    }
-    .btn-duplo a:hover{background:linear-gradient(96deg,var(--accent),var(--primary)); color:var(--primary);}
+    @keyframes btnIn {from{opacity:0;transform:translateY(14px) scale(.99);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .btn-main:hover { background:linear-gradient(94deg,var(--accent),var(--primary) 88%); color:var(--primary); box-shadow:0 2px 15px #49e0fe66; transform:scale(1.03);}
     .frase-chave {
-      color:var(--accent); font-family:'Montserrat',sans-serif;
-      font-size:1.01rem; font-weight:700;
-      margin:20px 0 12px 0; padding-left:13px;
+      color:var(--accent);
+      font-family:'Montserrat',sans-serif;
+      font-size:1.01rem;
+      font-weight:700;
+      margin:20px 0 12px 0;
+      padding-left:13px;
       border-left:3px solid var(--accent);
-      background:rgba(36,115,183,0.05);
-      border-radius:8px; display:block;
+      background:rgba(36,115,194,0.06);
+      border-radius:8px;
+      display:block;
+      opacity:0; animation:fraseIn .7s 1.43s forwards cubic-bezier(.7,0,.3,1);
     }
+    @keyframes fraseIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+    /* Quiz & Balão */
     .progress-bar {
       position:absolute; left:0; top:0; height:5px; width:100%;
-      background:rgba(36,115,183,0.11);
+      background:rgba(36,115,194,0.13);
       border-radius:17px 17px 0 0;
       overflow:hidden;
     }
     .progress { height:100%; background:linear-gradient(90deg,var(--primary),var(--accent) 80%); transition:width .37s;}
-    .typewriter { background:rgba(36,115,183,0.09); border-radius:9px; min-height:46px; padding:12px 14px; font-size:1.11rem; margin-bottom:8px;}
-    .motiva { margin:9px 0 0 0; color:var(--primary); font-weight:700; font-size:1rem;}
-    .card-dor {background:rgba(52,205,247,0.07); border-radius:13px; box-shadow:0 1px 6px #34cdf715; margin:18px 0 0 0; padding:16px 16px 9px 16px;}
-    .card-dor .titulo { font-weight:700; color:var(--primary); font-size:1.09rem; margin-bottom:8px; font-family:'Montserrat',sans-serif;}
+    .typewriter { background:rgba(36,115,194,0.09); border-radius:9px; min-height:46px; padding:13px 14px; font-size:1.16rem; margin-bottom:8px; font-weight:600;}
+    .btn-group { display:flex; gap:13px; margin-top:17px; justify-content:center;}
+    .btn-opt { flex:1 1 0; background:linear-gradient(95deg,var(--primary),var(--accent)); color:#fff; font-size:1.08rem; font-weight:700; border-radius:31px; border:none; min-width:91px; padding:13px 0; cursor:pointer; transition:box-shadow .12s,transform .12s;}
+    .btn-opt:hover { background:linear-gradient(92deg,#fff,var(--accent)); color:var(--primary); box-shadow:0 2px 14px #49e0fe4a; transform:scale(1.03);}
+    .btn-back { background:#eaf2fb; color:var(--primary); min-width:80px; border:1px solid #dde7f3; border-radius:33px; font-weight:700; font-size:1.02rem; }
+    .btn-back:hover { background:var(--accent); color:#fff;}
+    .persuasao-box {
+      display:none;
+      margin:22px 0 5px 0;
+      padding:16px 14px 14px 16px;
+      background:linear-gradient(95deg,#eefaff 78%,#d0f2fe 100%);
+      border-left:6px solid var(--accent);
+      border-radius:12px;
+      color:var(--primary);
+      font-size:1.06rem;
+      font-weight:600;
+      animation:fadeInPersu .6s;
+      box-shadow:0 3px 9px #49e0fe14;
+      text-align:left;
+    }
+    @keyframes fadeInPersu {from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+    /* Card das dores */
+    .card-dor {background:rgba(73,224,254,0.08); border-radius:13px; box-shadow:0 1px 7px #49e0fe1a; margin:18px 0 0 0; padding:19px 17px 10px 17px;}
+    .card-dor .titulo { font-weight:800; color:var(--primary); font-size:1.13rem; margin-bottom:10px; font-family:'Montserrat',sans-serif;}
     .card-dor ul {margin:0 0 10px 0; padding:0 0 0 13px;}
-    .card-dor li {font-size:1.05rem; color:var(--gray); margin-bottom:6px;}
+    .card-dor li {font-size:1.08rem; color:var(--gray); margin-bottom:7px;}
     /* Manual */
     .manual-card {
       text-align:justify;
       color:var(--gray);
-      animation:fadeInManual .7s cubic-bezier(.7,0,.3,1);
-      box-shadow:0 0 13px #34cdf712;
-      padding:22px 12px 16px 12px;
-    }
-    @keyframes fadeInManual{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-    .manual-capa {
-      display:block; margin:0 auto 18px auto; width:142px; height:192px;
-      border-radius:13px;
-      background:linear-gradient(126deg,#34cdf7 70%,#fff 100%);
-      box-shadow:0 6px 22px #34cdf72a;
+      animation:fadeInManual .8s cubic-bezier(.7,0,.3,1);
+      box-shadow:0 0 13px #49e0fe13;
+      padding:27px 12px 19px 12px;
+      z-index:12;
       position:relative;
     }
+    @keyframes fadeInManual{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+    .manual-capa {
+      display:block; margin:0 auto 22px auto; width:150px; height:196px;
+      border-radius:15px;
+      background:linear-gradient(125deg,#49e0fe 73%,#fff 100%);
+      box-shadow:var(--manual-glow);
+      position:relative;
+      overflow:hidden;
+      animation:manualCapa .8s;
+    }
+    @keyframes manualCapa {from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
     .manual-capa-svg { width:100%; height:100%; display:block;}
     .manual-card h2 {
       font-family:'Montserrat',sans-serif; font-size:1.22rem; font-weight:900; color:var(--primary); margin-bottom:2px; text-align:center;
@@ -147,55 +202,79 @@
     .manual-card ul {
       list-style:none;
       text-align:left;
-      margin:15px 0 14px 0;
+      margin:19px 0 15px 0;
       padding:0 0 0 7px;
     }
     .manual-card li{
-      display:flex; align-items:center; gap:9px; font-size:1.05rem; color:var(--gray);
-      padding:5px 0 5px 0; opacity:0; transform:translateX(-9px); transition:all .7s;
+      display:flex; align-items:center; gap:10px; font-size:1.10rem; color:var(--gray);
+      padding:7px 0 7px 0; opacity:0; transform:translateX(-13px); transition:all .8s;
     }
     .manual-card li.visible{opacity:1;transform:translateX(0);}
     .manual-card li:before{
       content:'✔';
       color:var(--accent);
-      font-size:1.18rem;
+      font-size:1.19rem;
       line-height:.95;
       margin-right:7px;
     }
     .manual-final {
       text-align:center;
-      margin:23px 0 5px 0;
-      font-weight:700;
+      margin:21px 0 5px 0;
+      font-weight:800;
       color:var(--primary);
-      font-size:1.08rem;
+      font-size:1.09rem;
     }
-    .btn-final { display:block; margin:17px auto 0 auto; width:97%;}
+    .btn-duplo {
+      display:flex; gap:25px; margin:28px 0 13px 0; justify-content:center;
+    }
+    .btn-duplo a {
+      display:inline-block; width:48%; text-align:center;
+      background:linear-gradient(91deg,var(--primary) 58%,var(--accent) 100%);
+      color:#fff; border-radius:30px; font-weight:800; font-size:1.09rem;
+      text-decoration:none; padding:14px 0; box-shadow:0 1px 12px #49e0fe2a;
+      transition:background .14s, color .14s, transform .14s;
+      letter-spacing:.5px;
+    }
+    .btn-duplo a:hover{background:linear-gradient(96deg,var(--accent),var(--primary)); color:var(--primary); box-shadow:0 2px 16px #49e0fe5c; transform:scale(1.04);}
+    .btn-final { display:block; margin:19px auto 0 auto; width:97%;}
     .visitantes {text-align:center;font-size:.93rem;opacity:.75;margin-bottom:3px;}
-    footer{margin-top:15px;text-align:center;font-size:.92rem;opacity:.54;}
-    @media(max-width:520px){.shell{padding:5px 0;}.card, .manual-card {padding:7px 2vw;}.title-main{font-size:1.35rem;}}
+    footer{margin-top:15px;text-align:center;font-size:.95rem;opacity:.52;}
+    @media(max-width:520px){.shell{padding:5px 0;}.card, .manual-card {padding:8px 2vw;}.title-main{font-size:1.25rem;}}
   </style>
 </head>
 <body>
+  <div id="animated-bg"></div>
+  <div id="particles" class="particles"></div>
   <div id="center">
     <div class="shell">
       <!-- TELA 1: Boas-vindas -->
       <div class="card-glass" id="screen-intro">
         <div class="title-main">Manual do Aprovado</div>
         <span class="iniciante-badge">INICIANTE</span>
-        <div class="intro-blur">Parabéns! Você acaba de encurtar seu tempo de estudos para concurso.<br>Se você é iniciante e quer passar rápido, está no lugar certo.</div>
+        <div class="intro-blur">
+          Chegou a sua vez de estudar com inteligência.<br>
+          <b>Parabéns!</b> Você acaba de encurtar seu tempo de estudos para concurso.<br>
+          <span style="font-weight:500;color:#1976d2;">Se você é iniciante e quer passar rápido, está no lugar certo.</span>
+        </div>
         <button class="btn-main" id="btnStart">Quero Começar</button>
-        <span class="frase-chave">Estudar com estratégia é metade do caminho para a aprovação.</span>
+        <span class="frase-chave">O segredo dos aprovados está na estratégia, não no tempo.</span>
         <div class="visitantes" id="visitantes"></div>
       </div>
       <!-- TELA 2: Quiz -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="progress-bar"><div class="progress" id="progressBar" style="width:0%"></div></div>
         <div class="typewriter" id="qtext"></div>
-        <div id="motiva" class="motiva"></div>
-        <div class="btn-group" id="qbtns" style="display:none;">
+        <div class="btn-group" id="qbtns" style="margin-top:21px;">
           <button class="btn-opt" onclick="quizReply('sim')">Sim</button>
           <button class="btn-opt" onclick="quizReply('nao')">Não</button>
           <button class="btn-back" onclick="quizBack()">Voltar</button>
+        </div>
+        <div id="persuasao" class="persuasao-box" style="display:none;">
+          <span id="persuasaoMsg"></span>
+          <div style="margin-top:12px;display:flex;gap:12px;">
+            <button class="btn-opt" onclick="avancarDepoisNao()">Avançar</button>
+            <button class="btn-back" onclick="quizBack()">Voltar</button>
+          </div>
         </div>
       </div>
       <!-- TELA 3: Resumo dos desafios -->
@@ -216,19 +295,19 @@
       <div class="manual-card" id="screen-manual" style="display:none;">
         <div class="manual-capa">
           <!-- Simulação de capa minimalista -->
-          <svg class="manual-capa-svg" viewBox="0 0 142 192" fill="none">
-            <rect width="142" height="192" rx="15" fill="#34cdf7"/>
-            <rect x="13" y="25" width="116" height="142" rx="9" fill="#fff"/>
-            <text x="50%" y="55" dominant-baseline="middle" text-anchor="middle"
-              font-size="22" font-family="Montserrat" font-weight="900" fill="#2473b7" letter-spacing="1">INICIANTE</text>
-            <text x="50%" y="90" dominant-baseline="middle" text-anchor="middle"
-              font-size="14" font-family="Montserrat" font-weight="600" fill="#34cdf7" letter-spacing=".6">
+          <svg class="manual-capa-svg" viewBox="0 0 150 196" fill="none">
+            <rect width="150" height="196" rx="16" fill="#49e0fe"/>
+            <rect x="13" y="25" width="124" height="146" rx="10" fill="#fff"/>
+            <text x="50%" y="60" dominant-baseline="middle" text-anchor="middle"
+              font-size="24" font-family="Montserrat" font-weight="900" fill="#2673c2" letter-spacing="1">INICIANTE</text>
+            <text x="50%" y="105" dominant-baseline="middle" text-anchor="middle"
+              font-size="16" font-family="Montserrat" font-weight="600" fill="#49e0fe" letter-spacing=".5">
               Manual do Aprovado
             </text>
           </svg>
         </div>
         <h2>Manual do Aprovado</h2>
-        <div class="version"><span class="iniciante-badge" style="font-size:1.03rem;">INICIANTE</span></div>
+        <div class="version"><span class="iniciante-badge" style="font-size:1.09rem;">INICIANTE</span></div>
         <ul id="featureList">
           <li>Como montar um ciclo de estudos estratégico e flexível.</li>
           <li>Como revisar de forma simples e eficiente.</li>
@@ -251,6 +330,19 @@
     </div>
   </div>
   <script>
+    // Fundo animado: partículas leves!
+    function createParticles() {
+      const n = 19, p=document.getElementById('particles');
+      for(let i=0;i<n;i++){
+        let s=18+Math.random()*45, left=Math.random()*100, delay=Math.random()*9;
+        let e=document.createElement('div');
+        e.className='particle';
+        e.style.width=s+'px'; e.style.height=s+'px'; e.style.left=left+'vw';
+        e.style.bottom=(-s-15)+'px'; e.style.animationDelay=delay+'s';
+        p.appendChild(e);
+      }
+    } createParticles();
+
     // VISITOR COUNTER - countapi.xyz (gratuito)
     const visitorsBox = document.getElementById('visitantes');
     fetch('https://api.countapi.xyz/hit/manualdoaprovado/iniciante')
@@ -266,13 +358,13 @@
       "Sabe como transformar teoria em resultado usando questões e revisões inteligentes?",
       "Você se sente sozinho (a) estudando para concurso?"
     ];
-    const motivas = [
-      "Fica tranquilo, a maioria começa sem direção. Mas existe um caminho!",
-      "É comum esquecer, mas revisão certa resolve isso.",
-      "A maioria aprende na prática — não se cobre tanto!",
-      "Ninguém chega lá sozinho. Eu vou te mostrar o próximo passo!"
+    const persuasoes = [
+      "Muita gente sente o mesmo, mas não desista: com orientação certa, isso muda! Quer avançar para descobrir como resolver?",
+      "É normal ter dificuldade com revisões no começo. Você quer descobrir um jeito prático de revisar sem perder tempo?",
+      "A maioria só aprende a usar questões depois de errar muito! Quer aprender como transformar erro em aprovação?",
+      "Ninguém precisa caminhar sozinho. Com apoio, tudo fica mais fácil. Que tal avançar?"
     ];
-    let perguntaIdx = 0, quizStarted = false, ultimaRespostaNao = false;
+    let perguntaIdx = 0;
     function hideAll() {
       ["screen-intro","screen-quiz","screen-dor","screen-manual"].forEach(id=>{
         let el = document.getElementById(id); if(el) el.style.display = "none";
@@ -282,22 +374,23 @@
       hideAll();
       document.getElementById("screen-quiz").style.display = "block";
       perguntaIdx = 0;
-      quizStarted = true;
       showPergunta();
       updateProgress();
-      document.getElementById('motiva').innerText = "";
+      document.getElementById('persuasao').style.display = "none";
+      document.getElementById('qbtns').style.display = "flex";
     };
     function quizBack(){
       if(perguntaIdx>0) {
         perguntaIdx--;
         showPergunta();
         updateProgress();
-        document.getElementById('motiva').innerText = "";
+        document.getElementById('persuasao').style.display = "none";
+        document.getElementById('qbtns').style.display = "flex";
       } else {
         hideAll();
         document.getElementById("screen-intro").style.display = "block";
-        quizStarted = false;
-        document.getElementById('motiva').innerText = "";
+        document.getElementById('persuasao').style.display = "none";
+        document.getElementById('qbtns').style.display = "flex";
       }
     }
     function restart() {
@@ -307,25 +400,25 @@
     function showPergunta() {
       const t = document.getElementById("qtext");
       const btns = document.getElementById("qbtns");
-      btns.style.display = "none";
+      document.getElementById('persuasao').style.display = "none";
+      btns.style.display = "flex";
       let i = 0, text = perguntas[perguntaIdx];
       t.innerHTML = "";
       function typing() {
         if (i < text.length) {
           t.innerHTML += text.charAt(i);
           i++;
-          setTimeout(typing, 16 + Math.random()*19);
+          setTimeout(typing, 13 + Math.random()*22);
         } else { btns.style.display="flex"; }
       }
       typing();
     }
     window.quizReply = function(resp) {
-      const motiva = document.getElementById('motiva');
       if(resp === "nao") {
-        motiva.innerText = motivas[perguntaIdx] || "";
-        ultimaRespostaNao = true;
+        document.getElementById('persuasaoMsg').innerText = persuasoes[perguntaIdx];
+        document.getElementById('persuasao').style.display = "block";
+        document.getElementById('qbtns').style.display = "none";
       } else {
-        motiva.innerText = "";
         perguntaIdx++;
         if(perguntaIdx < perguntas.length) {
           showPergunta();
@@ -335,15 +428,24 @@
           document.getElementById("screen-dor").style.display = "block";
         }
       }
-      // Se ele clicar em não, não avança até clicar sim ou voltar.
-      // Se ele clicar sim depois do não, avança normalmente.
+    }
+    function avancarDepoisNao(){
+      document.getElementById('persuasao').style.display = "none";
+      document.getElementById('qbtns').style.display = "flex";
+      perguntaIdx++;
+      if(perguntaIdx < perguntas.length) {
+        showPergunta();
+        updateProgress();
+      } else {
+        hideAll();
+        document.getElementById("screen-dor").style.display = "block";
+      }
     }
     function showManual(){
       hideAll();
       document.getElementById("screen-manual").style.display = "block";
-      // Anima os benefícios
       document.querySelectorAll('#featureList li')
-        .forEach((li,i)=>{li.classList.remove('visible'); setTimeout(()=>li.classList.add('visible'), i*140);});
+        .forEach((li,i)=>{li.classList.remove('visible'); setTimeout(()=>li.classList.add('visible'), i*160);});
     }
     function updateProgress() {
       let pct = ((perguntaIdx)/(perguntas.length))*100;
