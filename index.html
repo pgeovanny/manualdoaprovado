@@ -295,4 +295,66 @@
   <script>
     // Perguntas indutivas (modifique como quiser)
     const perguntas = [
-      "
+      "Você sente que está perdido, sem saber por onde começar a estudar para concursos?",
+      "Já ficou desmotivado(a) por não ver progresso nos estudos?",
+      "Tem dificuldade de revisar e lembrar o que estudou?",
+      "Gostaria de um caminho testado para acelerar sua aprovação?"
+    ];
+    let perguntaIdx = 0;
+    // Typewriter Effect
+    function typeWriter(element, text, cb) {
+      let i = 0;
+      element.innerHTML = "";
+      function typing() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, 18 + Math.random()*28);
+        } else if(cb) { cb(); }
+      }
+      typing();
+    }
+    // Transições
+    function hideAll() {
+      ["screen-intro","screen-quiz","screen-robo","screen-desafios","screen-manual"].forEach(id=>{
+        let el = document.getElementById(id); if(el) el.style.display = "none";
+      });
+    }
+    // Início
+    document.getElementById("btnStart").onclick = function() {
+      hideAll();
+      document.getElementById("screen-quiz").style.display = "block";
+      perguntaIdx = 0;
+      showPergunta();
+    };
+    function showPergunta() {
+      const t = document.getElementById("qtext");
+      const btns = document.getElementById("qbtns");
+      btns.style.display = "none";
+      typeWriter(t, perguntas[perguntaIdx], ()=>{ btns.style.display="flex"; });
+    }
+    window.quizReply = function(resp) {
+      perguntaIdx++;
+      if(perguntaIdx < perguntas.length) {
+        showPergunta();
+      } else {
+        hideAll();
+        document.getElementById("screen-robo").style.display = "block";
+      }
+    }
+    function showChallenges(){
+      hideAll();
+      document.getElementById("screen-desafios").style.display = "block";
+      // animar desafios
+      document.querySelectorAll('#desafiosList li')
+        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*140));
+    }
+    function showManual(){
+      hideAll();
+      document.getElementById("screen-manual").style.display = "block";
+      document.querySelectorAll('#featureList li')
+        .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*120));
+    }
+  </script>
+</body>
+</html>
