@@ -11,10 +11,10 @@
       --blue: #1E90FF;
       --cyan: #30F6FF;
       --white: #F6F8FF;
-      --glass: rgba(255,255,255,0.08);
+      --glass: rgba(255,255,255,0.10);
       --radius: 24px;
-      --shadow: 0 8px 40px 0 rgba(30,144,255,0.16), 0 2px 8px #263b5860;
-      --neon: 0 0 14px #30f6ff,0 0 38px #1e90ff60;
+      --shadow: 0 8px 40px 0 rgba(30,144,255,0.14), 0 2px 8px #263b5860;
+      --neon: 0 0 12px #30f6ff,0 0 38px #1e90ff60;
       --frost: linear-gradient(120deg,rgba(48,246,255,0.11) 20%,rgba(255,255,255,0.05) 80%);
     }
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -45,7 +45,7 @@
     .shell {
       position:relative;
       z-index:1;
-      width:100%; max-width:410px;
+      width:100%; max-width:420px;
       margin:32px auto;
       padding:32px 0 32px 0;
     }
@@ -69,7 +69,6 @@
       from{opacity:0;transform:translateY(24px) scale(0.97);}
       to{opacity:1;transform:translateY(0) scale(1);}
     }
-    /* Neon Title */
     .neon-title {
       font-family:'Montserrat',sans-serif;font-size:2.25rem;font-weight:900;
       color:var(--cyan); letter-spacing:1.5px; text-shadow:var(--neon),0 4px 22px #1E90FF70;
@@ -84,7 +83,18 @@
     .lightning {
       width:88px;height:26px;display:block;margin:0 auto -12px auto;opacity:0.91;
     }
-    /* Botão principal */
+    .frase-chave {
+      margin:10px 0 8px 0;
+      color:#2ee5ef;
+      font-family:'Montserrat',sans-serif;
+      font-size:1.04rem;
+      letter-spacing:.02em;
+      text-shadow:0 0 10px #2ee5efb8;
+      font-weight:700;
+      border-left:3.5px solid #30f6ff;
+      padding-left:13px;
+      text-align:left;
+    }
     .btn-main {
       margin-top:28px; font-size:1.12rem; font-weight:700;
       border:none; outline:none;
@@ -101,38 +111,61 @@
       to{ box-shadow:0 0 22px #30f6ffbb,0 0 9px #1E90FFaa;}
     }
     .btn-main:hover{ transform:translateY(-2px) scale(1.05);}
-    /* Typewriter */
-    .typewriter {
-      font-family:'Inter',sans-serif;
-      font-size:1.13rem; min-height:48px;
-      margin-bottom:16px;
-      letter-spacing:0.04em;
-      display:inline-block;
-      white-space:pre-line;
-      background:rgba(20,38,58,0.29);
-      border-radius:13px;padding:14px 10px 12px 15px;
-      box-shadow:0 0 5px #30f6ff40;
-    }
-    /* Botões opções */
-    .btn-group {
-      margin-top:10px;
-      display:flex;gap:16px;justify-content:center;
+    .btn-group { margin-top:10px; display:flex;gap:16px;justify-content:center; }
+    .btn-opt, .btn-back {
+      font-size:1.06rem;font-weight:700;
+      border:none;outline:none;
+      border-radius:44px;cursor:pointer;
+      transition:background .16s,transform .12s;
+      position:relative; overflow:hidden;
+      padding:13px 0;
+      box-shadow:0 0 10px #00f0ff66;
+      min-width:85px;
     }
     .btn-opt {
       flex:1 1 0;
-      font-size:1.09rem;
-      border:none;outline:none;
       background:linear-gradient(90deg,#1ef3fe99 30%,#1e90ffcc 100%);
-      color:#fff;font-weight:700;padding:13px 0;
-      border-radius:44px;cursor:pointer;
-      box-shadow:0 0 12px #00f0ff66;
-      transition:background .18s,transform .14s;
-      position:relative; overflow:hidden;
+      color:#fff;
     }
     .btn-opt:hover {
       background:linear-gradient(90deg,#fff,#30f6ff);
-      color:var(--blue);transform:scale(1.04);
-      box-shadow:0 0 16px #30f6ffbb;
+      color:var(--blue);transform:scale(1.05);
+      box-shadow:0 0 15px #30f6ffbb;
+    }
+    .btn-back {
+      background:linear-gradient(95deg,#253858,#33567d 90%);
+      color:#fff;
+      margin-left:2px;
+      min-width:65px;
+      box-shadow:0 0 8px #222b3e40;
+    }
+    .btn-back:hover {
+      background:linear-gradient(90deg,#30f6ff77,#1e90ff);
+      color:var(--dark);transform:scale(1.06);
+    }
+    /* Pop-up Pensamento */
+    .popup-thought {
+      position:fixed;
+      min-width:170px;
+      max-width:250px;
+      padding:12px 20px;
+      background:rgba(20,40,70,0.97);
+      color:#fff;
+      border-radius:18px 18px 30px 18px;
+      font-size:.98rem;
+      font-weight:500;
+      z-index:30;
+      box-shadow:0 4px 22px #1E90FF55,0 0 13px #30f6ff;
+      opacity:0;
+      pointer-events:none;
+      animation:popThought .7s forwards;
+      border-left:4px solid #30f6ff;
+      text-align:left;
+    }
+    @keyframes popThought {
+      from{transform:scale(0.7) translateY(22px);opacity:0;}
+      60%{transform:scale(1.03) translateY(-8px);}
+      to{transform:scale(1) translateY(0);opacity:1;}
     }
     /* Robô */
     .robot {
@@ -153,7 +186,6 @@
     .robot .antenna{position:absolute;width:5px;height:28px;background:#fff;top:-15px;left:50%;transform:translateX(-50%);}
     .robot .antenna::after{content:'';position:absolute;width:13px;height:13px;background:var(--cyan);border-radius:50%;top:-10px;left:-5px;box-shadow:0 0 10px #30f6ff;}
     .robot .smile {position:absolute;width:46px;height:20px;left:50%;top:70%;transform:translate(-50%,0);border-bottom:3px solid #fff;border-radius:0 0 28px 28px;opacity:.8;}
-    /* Manual Card */
     .manual-card {
       background:rgba(10,36,70,0.94);
       border:2.2px solid #30f6ff;
@@ -163,6 +195,7 @@
       position:relative;overflow:hidden;
       margin-top:6px;
       animation:manualGlow 2s alternate infinite;
+      text-align:justify;
     }
     @keyframes manualGlow {
       0%{box-shadow:0 0 18px #30f6ff70;}
@@ -207,8 +240,11 @@
       box-shadow:0 0 20px #30f6ff88,0 0 13px #1E90FFcc;
       color:var(--blue);
     }
+    /* Justifica textos de perguntas/desafios/manuais */
+    #qtext, .manual-card, .card-glass, #desafiosList, #featureList { text-align:justify; }
+    .card-glass ul { margin-left:0;margin-right:0;}
+    /* Footer */
     footer{margin-top:20px;text-align:center;font-size:.93rem;opacity:.65;}
-
     @media(max-width:480px){.shell{padding:10px 0;}.card{padding:18px 4vw;}}
   </style>
 </head>
@@ -218,6 +254,7 @@
   <div class="shape shape2"></div>
   <div id="center">
     <div class="shell">
+
       <!-- TELA 1: INTRO FUTURISTA -->
       <div class="card-glass" id="screen-intro">
         <svg class="lightning" viewBox="0 0 90 26">
@@ -226,19 +263,25 @@
               filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 18px #30f6ff)"/>
         </svg>
         <span class="neon-title">Bem-vindo ao<br>Manual do Aprovado</span>
-        <div style="margin:18px 0 4px 0; color:#dafbff;font-size:1.14rem;opacity:.97;font-weight:600;letter-spacing:.01em;text-shadow:0 0 11px #30f6ffcc;">
+        <div style="margin:18px 0 4px 0; color:#dafbff;font-size:1.13rem;opacity:.96;font-weight:600;letter-spacing:.01em;text-shadow:0 0 11px #30f6ffcc;">
           O seu atalho para estudar <span style="color:#30f6ff;">com estratégia</span> e passar <span style="color:#1e90ff;">mais rápido!</span>
+        </div>
+        <div class="frase-chave">
+          Estudar com estratégia é metade do caminho para a aprovação.
         </div>
         <button class="btn-main" id="btnStart">Começar</button>
       </div>
+
       <!-- TELA 2: PERGUNTAS INTERATIVAS -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="typewriter" id="qtext"></div>
         <div class="btn-group" id="qbtns" style="display:none;">
           <button class="btn-opt" onclick="quizReply('sim')">Sim</button>
           <button class="btn-opt" onclick="quizReply('nao')">Não</button>
+          <button class="btn-back" onclick="quizBack()">Voltar</button>
         </div>
       </div>
+
       <!-- TELA 3: ROBÔ -->
       <div class="card" id="screen-robo" style="display:none;">
         <div class="robot">
@@ -247,16 +290,18 @@
           <div class="antenna"></div>
           <div class="smile"></div>
         </div>
-        <h1 style="font-size:1.22rem;font-weight:700;color:var(--cyan);margin:9px 0 0 0;letter-spacing:.01em;">Parabéns!</h1>
-        <p style="font-size:1.05rem;opacity:.95;margin-bottom:7px;margin-top:5px;">
+        <h1 style="font-size:1.22rem;font-weight:700;color:var(--cyan);margin:9px 0 0 0;letter-spacing:.01em;text-align:center;">Parabéns!</h1>
+        <p style="font-size:1.05rem;opacity:.95;margin-bottom:7px;margin-top:5px;text-align:justify;">
           Só de buscar orientação, você já está na frente de milhares de iniciantes.<br>
           <span style="color:#30f6ff;font-weight:700;">Vamos descobrir juntos como sair do básico ao avançado?</span>
         </p>
         <button class="btn-main" onclick="showChallenges()">Quero avançar!</button>
+        <button class="btn-back" onclick="backToQuiz()">Voltar</button>
       </div>
+
       <!-- TELA 4: DESAFIOS -->
       <div class="card-glass" id="screen-desafios" style="display:none;">
-        <div style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:1.18rem;font-weight:700;color:#fff;margin-bottom:12px;text-align:center;">
           Antes do Manual, olha só se você já sentiu isso:
         </div>
         <div>
@@ -270,7 +315,9 @@
           </ul>
         </div>
         <button class="btn-main" onclick="showManual()">Quero meu Manual!</button>
+        <button class="btn-back" onclick="backToRobo()">Voltar</button>
       </div>
+
       <!-- TELA 5: MANUAL DO APROVADO -->
       <div class="manual-card" id="screen-manual" style="display:none;">
         <h2>Manual do Aprovado</h2>
@@ -293,15 +340,51 @@
     </div>
   </div>
   <script>
-    // Perguntas indutivas (modifique como quiser)
+    // Perguntas indutivas e respostas "não"
     const perguntas = [
-      "Você sente que está perdido, sem saber por onde começar a estudar para concursos?",
+      "Você sente que está perdido(a), sem saber por onde começar a estudar para concursos?",
       "Já ficou desmotivado(a) por não ver progresso nos estudos?",
       "Tem dificuldade de revisar e lembrar o que estudou?",
-      "Gostaria de um caminho testado para acelerar sua aprovação?"
+      "Sente que faz resumos, mas nunca revisa de verdade?",
+      "Você gostaria de ter uma estratégia já testada para estudar e acelerar sua aprovação?",
+      "Quer saber como usar questões para realmente aprender (e não só marcar X)?"
     ];
-    let perguntaIdx = 0;
-    // Typewriter Effect
+    const persuasaoNao = [
+      "É normal negar, mas todo mundo precisa de um método. Não se cobre tanto, mas busque mudar!",
+      "A desmotivação é mais comum do que parece — você não está sozinho. O segredo é estratégia e constância.",
+      "Sem revisão, você esquece até 80% em uma semana. Não caia nessa armadilha!",
+      "Resumos acumulam, mas revisão bem feita muda tudo. Não é culpa sua — faltou orientação!",
+      "Você pode economizar anos de tentativa e erro com um caminho já validado.",
+      "Quem aprende por questões chega à aprovação mais rápido. Não é dom, é técnica!"
+    ];
+    const popups = [
+      "Serviço público: estabilidade para a vida toda!",
+      "Mudança de vida começa com um passo!",
+      "Mais tempo para família, menos insegurança.",
+      "Salários acima da média do mercado.",
+      "Reconhecimento profissional e crescimento.",
+      "Você também pode chegar lá!",
+      "Não importa onde você começa. O que importa é continuar!"
+    ];
+    let perguntaIdx = 0, answeredNo = false, popupTimeouts = [];
+    // Popups motivacionais
+    function showPopup(){
+      let msg = popups[Math.floor(Math.random()*popups.length)];
+      let popup = document.createElement('div');
+      popup.className = 'popup-thought';
+      popup.innerHTML = msg;
+      let corner = Math.random();
+      if(corner<.33) {popup.style.top="38px"; popup.style.left="10px";}
+      else if(corner<.66) {popup.style.bottom="54px"; popup.style.right="10px";}
+      else {popup.style.top="36px"; popup.style.right="24px";}
+      document.body.appendChild(popup);
+      setTimeout(()=>{popup.style.opacity="1";},50);
+      setTimeout(()=>{popup.style.opacity="0";popup.remove();},3500);
+    }
+    function schedulePopup() {
+      popupTimeouts.push(setTimeout(showPopup, 700 + Math.random()*1400));
+    }
+    // Typewriter
     function typeWriter(element, text, cb) {
       let i = 0;
       element.innerHTML = "";
@@ -309,12 +392,12 @@
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
           i++;
-          setTimeout(typing, 18 + Math.random()*28);
+          setTimeout(typing, 17 + Math.random()*25);
         } else if(cb) { cb(); }
       }
       typing();
     }
-    // Transições
+    // Esconde tudo
     function hideAll() {
       ["screen-intro","screen-quiz","screen-robo","screen-desafios","screen-manual"].forEach(id=>{
         let el = document.getElementById(id); if(el) el.style.display = "none";
@@ -326,26 +409,68 @@
       document.getElementById("screen-quiz").style.display = "block";
       perguntaIdx = 0;
       showPergunta();
+      schedulePopup();
     };
+    // Voltar nas perguntas
+    function quizBack(){
+      if(perguntaIdx>0) {
+        perguntaIdx--;
+        showPergunta();
+        schedulePopup();
+      } else {
+        hideAll();
+        document.getElementById("screen-intro").style.display = "block";
+      }
+    }
+    function backToQuiz(){
+      hideAll();
+      document.getElementById("screen-quiz").style.display = "block";
+      showPergunta();
+      schedulePopup();
+    }
+    function backToRobo(){
+      hideAll();
+      document.getElementById("screen-robo").style.display = "block";
+    }
     function showPergunta() {
+      answeredNo = false;
       const t = document.getElementById("qtext");
       const btns = document.getElementById("qbtns");
       btns.style.display = "none";
       typeWriter(t, perguntas[perguntaIdx], ()=>{ btns.style.display="flex"; });
     }
     window.quizReply = function(resp) {
-      perguntaIdx++;
-      if(perguntaIdx < perguntas.length) {
-        showPergunta();
-      } else {
-        hideAll();
-        document.getElementById("screen-robo").style.display = "block";
+      if(resp==="sim"){
+        perguntaIdx++;
+        if(perguntaIdx < perguntas.length) {
+          showPergunta();
+          schedulePopup();
+        } else {
+          hideAll();
+          document.getElementById("screen-robo").style.display = "block";
+        }
+      } else if(resp==="nao"){
+        // Mostra frase persuasiva para o "não" e só depois libera continuar
+        if(!answeredNo) {
+          answeredNo = true;
+          let t = document.getElementById("qtext");
+          let fr = persuasaoNao[perguntaIdx]||persuasaoNao[0];
+          t.innerHTML += `<br><span style="color:#30f6ff;font-weight:700;display:block;margin-top:8px;">${fr}</span>`;
+        } else {
+          perguntaIdx++;
+          if(perguntaIdx < perguntas.length) {
+            showPergunta();
+            schedulePopup();
+          } else {
+            hideAll();
+            document.getElementById("screen-robo").style.display = "block";
+          }
+        }
       }
     }
     function showChallenges(){
       hideAll();
       document.getElementById("screen-desafios").style.display = "block";
-      // animar desafios
       document.querySelectorAll('#desafiosList li')
         .forEach((li,i)=>setTimeout(()=>li.classList.add('visible'), i*140));
     }
