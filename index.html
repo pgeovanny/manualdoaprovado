@@ -7,16 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
 :root {
-  --azul-forte: #2576f7;
-  --azul-leve: #49c2fa;
-  --azul-bg: #0e1828;
-  --azul-bg2: #152036;
-  --neon: #7bf7f7;
-  --branco: #f8fafd;
+  --azul1: #2576f7;
+  --azul2: #49c2fa;
   --glass: rgba(24,35,50,0.98);
+  --branco: #f8fafd;
   --radius: 2.3rem;
   --shadow: 0 10px 60px 0 #223c6290;
-  --max-card: 750px;
+  --max-card: 600px;
 }
 html, body {
   margin:0; padding:0; min-height:100vh; width:100vw;
@@ -36,54 +33,57 @@ html, body {
 }
 header {
   position:fixed;top:0;left:0;width:100vw;z-index:12;
-  background: linear-gradient(90deg,var(--azul-forte) 50%,var(--azul-leve) 100%);
+  background: linear-gradient(90deg,var(--azul1) 50%,var(--azul2) 100%);
   box-shadow: 0 3px 18px #19325d67;
   padding: 0;
 }
 .header-content {
-  max-width: 900px; margin:0 auto;display:flex;align-items:center;gap:20px;
-  padding: 15px 28px 12px 18px;justify-content:flex-start;
+  max-width: 800px; margin:0 auto;display:flex;align-items:center;gap:20px;
+  padding: 14px 24px 12px 18px;justify-content:flex-start;
 }
-.logo-robo {
-  width:49px;height:49px;min-width:49px;background:#fff;border-radius:50%;
-  box-shadow:0 2px 17px #49c2fa2b;display:flex;align-items:center;justify-content:center;
-  margin-right:5px;
+.professor-avatar {
+  width:49px;height:49px;min-width:49px;background:#fff;border-radius:50%;box-shadow:0 2px 18px #49c2fa22;
+  display:flex;align-items:center;justify-content:center;margin-right:5px;border:2.2px solid #49c2fa6e;
+  overflow:hidden;
 }
-.logo-robo svg { width:31px;height:31px;}
+.professor-avatar svg { width:40px;height:40px;}
 .header-txt {
   display:flex;flex-direction:column;align-items:flex-start;
 }
-.header-txt h1 { margin:0 0 1px 0; font-size:1.52rem; font-weight:900; letter-spacing:.05em; color:#fff;}
-.header-txt .subtitle { font-size:1.06rem;color:#e9fbff;font-weight:700;letter-spacing:.01em;}
-main { width:100vw; margin-top:80px; min-height:85vh; display:flex;flex-direction:column;align-items:center;}
+.header-txt h1 { margin:0 0 2px 0; font-size:1.44rem; font-weight:900; letter-spacing:.05em; color:#fff;}
+.header-txt .subtitle { font-size:1.05rem;color:#e9fbff;font-weight:700;letter-spacing:.01em;}
+main { width:100vw; margin-top:82px; min-height:85vh; display:flex;flex-direction:column;align-items:center;}
 .quiz-box {
-  margin:35px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
-  max-width:var(--max-card); width:98vw; min-height:350px;display:flex;flex-direction:row;align-items:flex-start;position:relative;border:2px solid #2576f74a;
-  padding:2.1rem 2.2rem 2.3rem 2.2rem;gap:35px;z-index:1;
+  margin:40px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
+  max-width:var(--max-card); width:97vw; min-height:390px;display:flex;flex-direction:column;align-items:center;position:relative;border:2px solid #2576f74a;
+  padding:2.8rem 2.6rem 2.5rem 2.6rem;z-index:1;animation:glassin .8s cubic-bezier(.75,0,.33,1);
 }
-.robo-wrap { min-width:120px;max-width:210px;display:flex;flex-direction:column;align-items:center;}
-.robo-face { width:58px; height:58px; background:#fff; border-radius:50%; margin-bottom:7px; box-shadow:0 2px 18px #7bf7f724; display:flex;align-items:center;justify-content:center;}
-.robo-face svg { width:31px;height:31px;}
+@keyframes glassin {
+  from { opacity:0; transform:translateY(35px) scale(.98);}
+  to   { opacity:1; transform:translateY(0) scale(1);}
+}
+.prof-wrap {display:flex;align-items:flex-start;gap:22px;width:100%;margin-bottom:18px;}
+.prof-face { width:59px; height:59px; background:#fff; border-radius:50%; box-shadow:0 2px 15px #2576f722; display:flex;align-items:center;justify-content:center;}
+.prof-face svg { width:38px;height:38px;}
 .balao {
-  background: #fff; color:#2576f7; font-weight:900; font-size:1.07rem;
-  border-radius:1.3rem 1.3rem 1.3rem .8rem; box-shadow: 0 2px 14px #7bf7f715;
-  padding:17px 19px 17px 15px; text-align:left; max-width:240px; min-width:120px; word-break:break-word;
-  min-height:32px; display:flex;align-items:center;
+  background: #fff; color:#2576f7; font-weight:900; font-size:1.07rem; border-radius:1.3rem 1.3rem 1.3rem .8rem; box-shadow: 0 2px 14px #49c2fa14;
+  padding:17px 22px 17px 15px; text-align:left; min-width:100px; max-width:350px; word-break:break-word; min-height:35px; display:flex;align-items:center;
+  transition: box-shadow .17s, background .17s;
+  border:2px solid #e2eefe2a;
 }
-#digitando { font-weight:700;letter-spacing:.07em;}
 @media (max-width:600px) {
-  .quiz-box {flex-direction:column; padding:1.1rem 0.7rem;gap:10px; min-width:0;}
-  .robo-wrap {min-width:0;max-width:99vw;}
-  .balao {max-width:96vw;}
-  .header-content {padding:9px 7vw 9px 2vw;}
+  .quiz-box {padding:1.2rem 0.6rem;min-width:0;}
+  .prof-wrap {gap:8px;}
+  .balao {max-width:98vw;}
+  .header-content {padding:8px 4vw 8px 2vw;}
 }
-.quiz-content {flex:1; display:flex; flex-direction:column;align-items:center;justify-content:center;}
-.pergunta {font-size:1.13rem; font-weight:800; margin-bottom:1.3rem; color:#f7fcff; text-align:center;}
+.quiz-content {width:100%; display:flex; flex-direction:column;align-items:center;justify-content:center;}
+.pergunta {font-size:1.14rem; font-weight:800; margin-bottom:1.25rem; color:#f7fcff; text-align:center;}
 .opcoes { display:flex; flex-direction:column; gap:1.1rem; width:100%; align-items:center;}
 .btn-quiz {
   background:linear-gradient(90deg, #2576f7 60%, #49c2fa 100%);
-  color:#fff;font-weight:900;font-size:1.08rem; padding:1.09rem 0;
-  border:none; border-radius:2rem; max-width:340px; width:98%;
+  color:#fff;font-weight:900;font-size:1.08rem; padding:1.13rem 0;
+  border:none; border-radius:2rem; max-width:330px; width:97%;
   margin:0 auto; cursor:pointer; box-shadow:0 5px 19px #2576f728;
   transition:background .13s,transform .1s;
 }
@@ -91,24 +91,28 @@ main { width:100vw; margin-top:80px; min-height:85vh; display:flex;flex-directio
 .cta-final-bar { display:flex; gap:1.2rem; justify-content:center; margin:2.1rem 0 1.1rem 0;}
 .cta-final-btn {
   background:linear-gradient(90deg, #2576f7 57%, #49c2fa 100%);
-  color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.13rem; padding:1.08rem 0;
-  min-width:170px; transition:background .11s,transform .11s; cursor:pointer; box-shadow:0 6px 25px #49c2fa32;
+  color:#fff;font-weight:900; border:none; border-radius:2rem; font-size:1.13rem; padding:1.13rem 0;
+  min-width:175px; transition:background .11s,transform .11s; cursor:pointer; box-shadow:0 6px 25px #49c2fa32;
   text-align:center;
 }
 .cta-final-btn:hover {background:linear-gradient(90deg,#49c2fa 97%,#2576f7 100%);transform:scale(1.03);}
-footer {
-  width:100vw; text-align:center; font-size:1.09rem; padding:19px 0 13px 0; color:#b4d8ed; font-weight:800;
-  background: #182a42ee; border-top: 1.1px solid #22395a; letter-spacing: .01em;
-  margin-top: 32px;
-}
   </style>
 </head>
 <body>
   <div id="particles-bg"></div>
   <header>
     <div class="header-content">
-      <div class="logo-robo">
-        <svg viewBox="0 0 40 40"><ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/><rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#2576f7"/><circle cx="24" cy="16" r="2" fill="#2576f7"/><rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/></svg>
+      <div class="professor-avatar">
+        <!-- Avatar SVG "professor simpático" -->
+        <svg viewBox="0 0 44 44" fill="none">
+          <ellipse cx="22" cy="34" rx="15" ry="6" fill="#193a70" opacity=".10"/>
+          <ellipse cx="22" cy="21" rx="13" ry="13" fill="#e6f8ff"/>
+          <ellipse cx="22" cy="22" rx="10" ry="10" fill="#fff"/>
+          <ellipse cx="17.5" cy="20" rx="1.7" ry="2.2" fill="#49c2fa"/>
+          <ellipse cx="26.5" cy="20" rx="1.7" ry="2.2" fill="#49c2fa"/>
+          <ellipse cx="22" cy="26.4" rx="6.6" ry="2.2" fill="#e3ecfa"/>
+          <path d="M15.5 30c2.8 2.2 10.2 2.2 13 0" stroke="#7bf7f7" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="header-txt">
         <h1>Manual do Aprovado</h1>
@@ -121,53 +125,32 @@ footer {
   </main>
   <footer>© 2025 Manual do Aprovado</footer>
   <script>
-    // Partículas de fundo
+    // Fundo partículas
     const pbg = document.getElementById('particles-bg');
-    for(let i=0;i<24;i++){
+    for(let i=0;i<18;i++){
       let s=document.createElement('span');
-      let sz=Math.random()*2+1.7;
-      s.style=`position:absolute;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}vh;height:${sz}vh;background:#49c2fa;opacity:${Math.random()*.19+.13};border-radius:99px;filter:blur(1.3px);animation:part-move ${3+Math.random()*14}s linear infinite alternate;`;
+      let sz=Math.random()*2+1.4;
+      s.style=`position:absolute;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}vh;height:${sz}vh;background:#49c2fa;opacity:${Math.random()*.18+.13};border-radius:99px;filter:blur(1.2px);animation:part-move ${3+Math.random()*13}s linear infinite alternate;`;
       pbg.appendChild(s);
     }
     const style = document.createElement('style');
-    style.innerHTML = `@keyframes part-move {0% { transform: translateY(0) scale(.86);} 100% { transform: translateY(-34px) scale(1.04);}}`;
+    style.innerHTML = `@keyframes part-move {0% { transform: translateY(0) scale(.89);} 100% { transform: translateY(-22px) scale(1.07);}}`;
     document.head.appendChild(style);
 
-    // Fluxo lógico
+    // Perguntas premium, curto, lógico
     const steps = [
-      { id: 0, robo: "Vamos juntos entender um pouco de você, para te direcionar do jeito certo.", input:true, placeholder:"Digite seu nome", next: 1 },
-      { id: 1, robo: s=>`Certo, ${s.nome || ""}! Qual o seu momento hoje?`, op:[
-        {t:"Nunca estudei para concurso",n:2},
-        {t:"Já tentei estudar, mas travo",n:3},
-        {t:"Já estudo, mas não evoluo",n:4}
+      { id: 0, prof: "Parabéns! Você está começando do jeito certo.<br>Me diga seu nome para te ajudar ainda melhor.", input:true, placeholder:"Digite seu nome", next: 1, digitando:true },
+      { id: 1, prof: (s)=>`Prazer, ${s.nome || ""}! O que mais te preocupa quando pensa em estudar para concursos?`, op:[
+        {t:"Não sei por onde começar",n:2},
+        {t:"Fico perdido com tanta matéria",n:2},
+        {t:"Falta organização/routine",n:2}
       ]},
-      { id: 2, robo:"Totalmente normal! O que mais te trava ao pensar em estudar para concurso?", op:[
-        {t:"Não sei nem por onde começar",n:5},
-        {t:"Fico perdido(a) com tanta matéria",n:5},
-        {t:"Não entendo nada de planejamento",n:5}
-      ]},
-      { id: 3, robo:"Muitos travam por falta de orientação. Você já tentou algum plano de estudos?", op:[
-        {t:"Nunca montei",n:6},
-        {t:"Já tentei, mas não segui",n:6}
-      ]},
-      { id: 4, robo:"Quem já estuda, mas não avança, geralmente precisa de revisão ou método de questões. O que mais sente dificuldade?", op:[
-        {t:"Não sei revisar direito",n:6},
-        {t:"Não tenho rotina",n:6}
-      ]},
-      { id: 5, robo:"Você já sabe qual área ou cargo pretende estudar? (Isso faz diferença para montar o plano!)", op:[
-        {t:"Ainda não, estou perdido(a)",n:7},
-        {t:"Já tenho um foco",n:6}
-      ]},
-      { id: 6, robo:"Você costuma fazer questões para fixar o conteúdo?", op:[
-        {t:"Nunca fiz",n:8},
-        {t:"Raramente",n:8},
-        {t:"Faço sempre",n:8}
-      ]},
-      { id: 7, robo:"Tudo bem, vamos ajudar nisso também. O importante é começar!", op:[
-        {t:"Avançar",n:6}
+      { id: 2, prof:"Você já tentou estudar antes ou está começando agora?", op:[
+        {t:"Vou começar agora",n:3},
+        {t:"Já tentei, mas não consegui manter",n:3}
       ]},
       // FINAL
-      { id: 8, robo:"Agora veja como o Manual do Aprovado - Versão Iniciante pode te destravar de verdade:", final:true }
+      { id: 3, prof:"O Manual do Aprovado — Versão Iniciante foi criado exatamente para evitar que você perca tempo e aprenda certo desde o começo.<br><br>Olha só o que você vai dominar:", final:true }
     ];
 
     let state = { nome:"" }, history=[];
@@ -175,27 +158,40 @@ footer {
       const s = steps.find(x=>x.id===stepId);
       let box = document.getElementById("quiz-box");
       box.innerHTML = `
-        <div class="robo-wrap">
-          <div class="robo-face">
-            <svg viewBox="0 0 40 40"><ellipse cx="20" cy="32" rx="13" ry="5" fill="#193a70" opacity=".11"/><rect x="8" y="8" width="24" height="14" rx="7" fill="#f8fafd" stroke="#49c2fa" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="#2576f7"/><circle cx="24" cy="16" r="2" fill="#2576f7"/><rect x="14" y="22" width="12" height="2" rx="1" fill="#49c2fa" opacity=".5"/></svg>
+        <div class="prof-wrap">
+          <div class="prof-face">
+            <!-- Avatar professor simpático -->
+            <svg viewBox="0 0 44 44" fill="none">
+              <ellipse cx="22" cy="34" rx="15" ry="6" fill="#193a70" opacity=".10"/>
+              <ellipse cx="22" cy="21" rx="13" ry="13" fill="#e6f8ff"/>
+              <ellipse cx="22" cy="22" rx="10" ry="10" fill="#fff"/>
+              <ellipse cx="17.5" cy="20" rx="1.7" ry="2.2" fill="#49c2fa"/>
+              <ellipse cx="26.5" cy="20" rx="1.7" ry="2.2" fill="#49c2fa"/>
+              <ellipse cx="22" cy="26.4" rx="6.6" ry="2.2" fill="#e3ecfa"/>
+              <path d="M15.5 30c2.8 2.2 10.2 2.2 13 0" stroke="#7bf7f7" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
           </div>
-          <div class="balao" id="balao-robo"></div>
+          <div class="balao" id="balao-prof"></div>
         </div>
         <div class="quiz-content"></div>
       `;
-      // Efeito digitando
-      let texto = typeof s.robo==="function" ? s.robo(state) : s.robo;
-      let i=0, out="", fala=document.getElementById("balao-robo");
-      fala.innerHTML = '<span id="digitando"></span>';
-      let dig= setInterval(()=>{
-        out += texto[i]||"";
-        fala.innerHTML = `<span id="digitando">${out}<span style="opacity:.21">${".".repeat(3 - (i%4))}</span></span>`;
-        i++;
-        if(i>=texto.length){clearInterval(dig);fala.innerHTML=out;}
-      }, Math.max(8, 140/texto.length));
+      let texto = typeof s.prof==="function" ? s.prof(state) : s.prof;
+      let fala=document.getElementById("balao-prof");
+      if(s.digitando){
+        let i=0,out="";
+        let speed = 14;
+        let dig = setInterval(()=>{
+          out += texto[i]||"";
+          fala.innerHTML = out + '<span style="opacity:.18">' + " ".repeat(Math.max(0,texto.length-i-1)) + '</span>';
+          i++;
+          if(i>=texto.length){clearInterval(dig);}
+        },speed);
+      } else {
+        fala.innerHTML = texto;
+      }
       let content = box.querySelector('.quiz-content');
       if(s.input){
-        content.innerHTML = `<input type="text" id="nome" placeholder="${s.placeholder||''}" style="font-size:1.09rem;width:95%;border-radius:1.2rem;border:1.5px solid #22304b;padding:1.03rem 1rem;margin-bottom:1.2rem;">
+        content.innerHTML = `<input type="text" id="nome" placeholder="${s.placeholder||''}" style="font-size:1.09rem;width:96%;border-radius:1.2rem;border:1.5px solid #22304b;padding:1.03rem 1rem;margin-bottom:1.3rem;">
           <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
         let inp = document.getElementById('nome');
         let btn = document.getElementById('btn-next');
@@ -219,20 +215,22 @@ footer {
       }
       if(s.final){
         content.innerHTML = `
-          <div class="pergunta" style="font-size:1.19rem;font-weight:900;color:#49c2fa;margin-bottom:1.7rem;">Manual do Aprovado — Versão Iniciante: o que você vai aprender?</div>
-          <ul style="font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.2rem 1.5rem;margin-bottom:2rem;box-shadow:0 2px 10px #49c2fa0c;">
+          <div class="pergunta" style="font-size:1.16rem;font-weight:900;color:#49c2fa;margin-bottom:1.5rem;text-align:center;">
+            O Manual ensina, passo a passo:
+          </div>
+          <ul style="font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:1.15rem;padding:1.25rem 1.4rem;margin-bottom:2.1rem;box-shadow:0 2px 10px #49c2fa0c;">
             <li>Escolher site de questões.</li>
             <li>Entender as Bancas principais.</li>
             <li>Revisar com método.</li>
             <li>Criar seu Ciclo de Estudos.</li>
-            <li>Marcar corretamente nos materiais.</li>
-            <li>E muito mais!</li>
+            <li>Fazer marcações certeiras nos materiais.</li>
+            <li>Parar de perder tempo com erro de iniciante.</li>
           </ul>
           <div class="cta-final-bar">
             <a href="LINK_KIWIFY" class="cta-final-btn" target="_blank">Quero estudar certo!</a>
             <a href="LINK_AMOSTRA" class="cta-final-btn" style="background:#13244c;color:#7bf7f7;border:2px solid #7bf7f7;">Ver Amostra</a>
           </div>
-          <div style="color:#7bf7f7;margin-top:1.1rem;font-size:1.09rem;text-align:center;">Quem aprende com método sai na frente. Bora começar?</div>
+          <div style="color:#7bf7f7;margin-top:1.2rem;font-size:1.09rem;text-align:center;">Faça como quem já foi aprovado: estude com método, evite anos de tentativa e erro!</div>
           ${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:22px;" id="voltar">← Voltar</button>`:""}
         `;
         let bvoltar = content.querySelector('#voltar');
