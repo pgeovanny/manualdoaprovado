@@ -1,3 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manual do Aprovado - Diagnóstico Interativo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background"></div>
+  <header>
+    <div class="header-glass">
+      <span class="avatar">📘</span>
+      <h1>Manual do Aprovado</h1>
+      <span class="subtitle">Diagnóstico Interativo</span>
+    </div>
+  </header>
+  <main>
+    <div class="card-glass" id="quiz-card">
+      <!-- Fluxo renderizado aqui -->
+    </div>
+    <div id="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+  </main>
+  <footer>
+    <span>© 2025 Manual do Aprovado</span>
+    <a href="https://instagram.com/pg_concursos_" target="_blank">@pg_concursos_</a>
+  </footer>
+  <script>
+    // ================= FLUXO LÓGICO ======================
+    const steps = [
+      // STEP 0: Nome
+      {
+        id: 0,
+        question: "Antes de começar: qual seu nome?",
+        type: "input",
+        inputPlaceholder: "Digite seu nome aqui",
+        next: 1,
+      },
+      // STEP 1: PROBLEMA CENTRAL
+      {
+        id: 1,
+        question: (state) => `Olá, ${state.nome || "concurseiro(a)"}! Você sente que estuda muito, mas não vê evolução real nos seus resultados?`,
+        options: [
+          { text: "Sim, sinto isso", next: 2 },
+          { text: "Não, estou progredindo", next: 10 },
+        ],
+      },
+      // STEP 2: Tentou mudar método?
+      {
+        id: 2,
+        question: "Você já tentou mudar o método de estudo pra resolver esse problema?",
         options: [
           { text: "Já tentei, mas não adiantou", next: 3 },
           { text: "Nunca tentei, sigo estudando do meu jeito", next: 3 },
@@ -55,7 +109,6 @@
       {
         id: 8,
         question: (state) => {
-          // Diagnóstico dinâmico com base no que respondeu
           let problemas = [];
           if (state[1] === 0) problemas.push("falta de evolução nos estudos");
           if (state[3] !== 0) problemas.push("ausência de planejamento estruturado");
@@ -137,19 +190,14 @@
     function renderStep(stepId) {
       const container = document.getElementById("quiz-card");
       const step = steps.find(s => s.id === stepId);
-      // Barra de progresso
       updateProgressBar(stepId);
 
-      // Avatar de apoio (personalização)
       let avatar = `<div class="avatar-float"></div>`;
-
       let html = avatar;
 
-      // Pergunta simples
       let question = typeof step.question === "function" ? step.question(state) : step.question;
       html += `<div class="pergunta">${question}</div>`;
 
-      // Campo input
       if (step.type === "input") {
         html += `<input type="text" id="input-nome" placeholder="${step.inputPlaceholder || ""}" autocomplete="off" maxlength="30"/>
           <button class="btn-quiz" id="btn-next" disabled>Avançar</button>`;
@@ -165,11 +213,9 @@
           state[stepId] = input.value.trim();
           goTo(step.next);
         });
-        // Não mostra botão voltar no início
         return;
       }
 
-      // Opções
       if (step.options) {
         html += `<div class="opcoes">`;
         step.options.forEach((op, idx) => {
@@ -178,13 +224,11 @@
         html += `</div>`;
       }
 
-      // Botão voltar
       if (history.length > 0) {
         html += `<button class="btn-voltar" id="btn-voltar">← Voltar</button>`;
       }
       container.innerHTML = html;
 
-      // Listeners de opção
       if (step.options) {
         container.querySelectorAll(".btn-quiz").forEach((btn, idx) => {
           btn.addEventListener("click", () => {
@@ -194,7 +238,6 @@
           });
         });
       }
-      // Listener botão voltar
       const btnVoltar = document.getElementById("btn-voltar");
       if (btnVoltar) {
         btnVoltar.addEventListener("click", () => {
@@ -208,7 +251,6 @@
 
     function goTo(stepId, isBack = false) {
       state.step = stepId;
-      // Pequena animação ao trocar
       const container = document.getElementById("quiz-card");
       container.classList.remove("show");
       setTimeout(() => {
@@ -218,13 +260,11 @@
     }
 
     function updateProgressBar(stepId) {
-      // Do 0 a 9 = fluxo principal
       const total = 9;
       const percent = Math.min((stepId / total) * 100, 100);
       document.getElementById("progress-bar").style.width = percent + "%";
     }
 
-    // Inicialização
     window.onload = () => {
       renderStep(0);
       document.getElementById("quiz-card").classList.add("show");
