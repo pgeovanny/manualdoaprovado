@@ -7,158 +7,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg-main: #f5faff;
-      --primary: #2a6bba;
-      --accent: #2bb6e6;
-      --gray-dark: #232f3d;
-      --gray: #617086;
-      --radius: 18px;
-      --shadow: 0 4px 20px #2bb6e60e, 0 2px 8px #232f3d11;
+      --primary: #2473b7;
+      --accent: #34cdf7;
+      --bg-main: #f7fafd;
+      --gray: #232f3d;
+      --radius: 17px;
+      --shadow: 0 4px 16px #2473b71b, 0 2px 8px #34cdf710;
     }
     body, html {
       min-height:100vh; margin:0;padding:0;
-      font-family: 'Inter',sans-serif;
-      background:linear-gradient(120deg,#e4eefb 0,#f5faff 90%);
-      color:var(--gray-dark);
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(120deg,#e9f3fd 0,#f7fafd 90%);
+      color:var(--gray);
     }
     #center { min-height:100vh; display:flex; align-items:center; justify-content:center; }
-    .shell { max-width:430px; margin:0 auto; width:100%; padding:38px 0 12px 0; }
-    .card, .card-glass, .manual-card {
+    .shell { max-width:430px; margin:0 auto; width:100%; padding:32px 0 16px 0;}
+    .card, .manual-card, .card-glass {
       background:#fff;
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      border:1.1px solid #d8e4f5;
-      padding:34px 22px 26px 22px;
+      border:1px solid #dde8f2;
+      padding:36px 24px 30px 24px;
       margin-bottom:24px;
-      text-align:justify;
-      animation:fadeIn .9s;
+      animation:fadeIn .6s;
       position:relative;
     }
-    @keyframes fadeIn {from{opacity:0;transform:translateY(26px) scale(.96);} to{opacity:1;transform:translateY(0) scale(1);}}
-    .neon-title {
+    @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .title-main {
       font-family:'Montserrat',sans-serif;
-      font-size:2.15rem;
+      font-size:2.1rem;
       font-weight:900;
       color:var(--primary);
       text-align:center;
-      margin-bottom:7px;
       letter-spacing:.01em;
-      line-height:1.08;
-      text-shadow:0 2px 8px #2bb6e622;
+      margin-bottom:6px;
+      margin-top:0;
+      text-shadow:0 2px 8px #2473b73a;
     }
     .iniciante-badge {
       display:inline-block;
       font-family:'Montserrat',sans-serif;
       font-weight:900;
-      font-size:1.17rem;
-      padding:4px 17px;
-      background:linear-gradient(92deg,#2bb6e6 20%,#2a6bba 90%);
+      font-size:1.07rem;
+      padding:4px 16px;
+      background:linear-gradient(93deg,#34cdf7 20%,#2473b7 95%);
       color:#fff;
       border-radius: 15px;
-      margin:0 auto 9px auto;
+      margin:0 auto 10px auto;
       letter-spacing:0.5px;
-      text-shadow:0 1.5px 8px #2bb6e644;
-      box-shadow:0 0 7px #2bb6e610;
       text-align:center;
-      display:block;
-      width:fit-content;
+      box-shadow:0 0 7px #34cdf733;
     }
     .intro-blur {
       font-size:1.13rem;
       font-weight:600;
-      background:rgba(43,182,230,0.07);
+      background:rgba(36,115,183,0.07);
       color:var(--primary);
       border-radius:13px;
-      padding:12px 15px;
-      margin:12px 0 10px 0;
+      padding:14px 17px;
+      margin:14px 0 14px 0;
       text-align:center;
       width:100%;
     }
-    .frase-chave {
-      color:var(--accent);
-      font-family:'Montserrat',sans-serif;
-      font-size:1.03rem;
-      font-weight:700;
-      margin:18px 0 12px 0;
-      padding-left:13px;
-      border-left:3px solid var(--accent);
-      background:rgba(43,182,230,0.08);
-      border-radius:8px;
-      display:block;
-    }
     .btn-main, .btn-opt, .btn-back, .btn-final {
-      font-size:1.09rem;
+      font-size:1.13rem;
       font-weight:700;
       border:none; outline:none;
       border-radius:36px;
       cursor:pointer;
-      box-shadow:0 2px 7px #2bb6e622;
-      padding:14px 0;
+      box-shadow:0 2px 7px #34cdf721;
+      padding:15px 0;
       min-width:115px;
-      margin:0 4px;
+      margin:0 6px 0 0;
       transition:background .16s, color .16s, transform .16s;
     }
     .btn-main, .btn-final {
-      background:linear-gradient(92deg,var(--primary),var(--accent) 90%);
-      color:#fff; width:97%; margin:19px 2% 0 2%; font-size:1.13rem;
+      background:linear-gradient(93deg,var(--primary),var(--accent) 90%);
+      color:#fff; width:99%; margin:19px 0 0 0;
     }
-    .btn-main:hover, .btn-final:hover { background:linear-gradient(95deg,var(--accent),var(--primary)); color:var(--primary);}
-    .btn-opt { flex:1 1 0; background:linear-gradient(95deg,var(--primary),var(--accent)); color:#fff;}
+    .btn-main:hover, .btn-final:hover { background:linear-gradient(96deg,var(--accent),var(--primary)); color:var(--primary);}
+    .btn-opt { flex:1 1 0; background:linear-gradient(95deg,var(--primary),var(--accent)); color:#fff; }
     .btn-opt:hover { background:linear-gradient(92deg,#fff,var(--accent)); color:var(--primary);}
-    .btn-back { background:#eaf2fb; color:var(--primary); min-width:77px; border:1px solid #dde7f3;}
+    .btn-back { background:#eaf2fb; color:var(--primary); min-width:78px; border:1px solid #dde7f3;}
     .btn-back:hover { background:var(--accent); color:#fff;}
-    .typewriter { background:rgba(43,182,230,0.09); border-radius:9px; min-height:47px; padding:12px 12px; font-size:1.09rem; margin-bottom:9px;}
-    .btn-group { display:flex; gap:13px; margin-top:13px; justify-content:center;}
-    .progress-bar { position:absolute; left:0; top:0; height:5px; width:100%; background:rgba(43,182,230,0.14); border-radius:18px 18px 0 0; overflow:hidden;}
-    .progress { height:100%; background:linear-gradient(90deg,var(--primary),var(--accent) 80%); transition:width .36s cubic-bezier(.7,0,.3,1);}
-    /* Depoimentos */
-    .depoimentos-bloco {
-      background:rgba(43,182,230,0.06);
-      border-radius:13px;
-      padding:15px 15px 10px 15px;
-      margin:18px 0 0 0;
-      box-shadow:0 1px 6px #2bb6e614;
+    .btn-duplo {display:flex; gap:21px; margin:27px 0 13px 0; justify-content:center;}
+    .btn-duplo a {
+      display:inline-block; width:48%; text-align:center;
+      background:linear-gradient(91deg,var(--primary) 58%,var(--accent) 100%);
+      color:#fff; border-radius:30px; font-weight:700; font-size:1.09rem;
+      text-decoration:none; padding:13px 0; box-shadow:0 1px 7px #34cdf72a;
+      transition:background .14s, color .14s, transform .13s;
     }
-    .dep-titulo {
-      font-weight:700;
-      color:var(--primary);
-      font-size:1.03rem;
-      margin-bottom:8px;
-      font-family:'Montserrat',sans-serif;
+    .btn-duplo a:hover{background:linear-gradient(96deg,var(--accent),var(--primary)); color:var(--primary);}
+    .frase-chave {
+      color:var(--accent); font-family:'Montserrat',sans-serif;
+      font-size:1.01rem; font-weight:700;
+      margin:20px 0 12px 0; padding-left:13px;
+      border-left:3px solid var(--accent);
+      background:rgba(36,115,183,0.05);
+      border-radius:8px; display:block;
     }
-    .dep-list { display:flex; flex-direction:column; gap:7px;}
-    .dep {
-      font-size:0.99rem;
-      color:var(--gray-dark);
-      padding:8px 0 2px 0;
-      border-bottom:1px solid #eaf4fa;
-      display:flex; flex-direction:column;
+    .progress-bar {
+      position:absolute; left:0; top:0; height:5px; width:100%;
+      background:rgba(36,115,183,0.11);
+      border-radius:17px 17px 0 0;
+      overflow:hidden;
     }
-    .dep:last-child { border-bottom:none;}
-    .dep-nome { font-weight:700; color:var(--primary); font-size:.97rem;}
-    .dep-msg { margin-left:0; font-style:italic; color:var(--gray);}
+    .progress { height:100%; background:linear-gradient(90deg,var(--primary),var(--accent) 80%); transition:width .37s;}
+    .typewriter { background:rgba(36,115,183,0.09); border-radius:9px; min-height:46px; padding:12px 14px; font-size:1.11rem; margin-bottom:8px;}
+    .motiva { margin:9px 0 0 0; color:var(--primary); font-weight:700; font-size:1rem;}
+    .card-dor {background:rgba(52,205,247,0.07); border-radius:13px; box-shadow:0 1px 6px #34cdf715; margin:18px 0 0 0; padding:16px 16px 9px 16px;}
+    .card-dor .titulo { font-weight:700; color:var(--primary); font-size:1.09rem; margin-bottom:8px; font-family:'Montserrat',sans-serif;}
+    .card-dor ul {margin:0 0 10px 0; padding:0 0 0 13px;}
+    .card-dor li {font-size:1.05rem; color:var(--gray); margin-bottom:6px;}
     /* Manual */
     .manual-card {
       text-align:justify;
-      color:var(--gray-dark);
+      color:var(--gray);
       animation:fadeInManual .7s cubic-bezier(.7,0,.3,1);
-      box-shadow:0 0 14px #2bb6e615;
+      box-shadow:0 0 13px #34cdf712;
       padding:22px 12px 16px 12px;
     }
-    @keyframes fadeInManual{from{opacity:0;transform:translateY(28px) scale(.97);} to{opacity:1;transform:translateY(0) scale(1);}}
+    @keyframes fadeInManual{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
     .manual-capa {
-      display:block;
-      margin:0 auto 13px auto;
-      width:140px;
-      height:188px;
+      display:block; margin:0 auto 18px auto; width:142px; height:192px;
       border-radius:13px;
-      background:linear-gradient(128deg,#2bb6e6 70%,#fff 100%);
-      box-shadow:0 6px 22px #2bb6e62c;
+      background:linear-gradient(126deg,#34cdf7 70%,#fff 100%);
+      box-shadow:0 6px 22px #34cdf72a;
       position:relative;
     }
     .manual-capa-svg { width:100%; height:100%; display:block;}
     .manual-card h2 {
-      font-family:'Montserrat',sans-serif; font-size:1.22rem; font-weight:900; color:var(--accent); margin-bottom:2px; text-align:center;
+      font-family:'Montserrat',sans-serif; font-size:1.22rem; font-weight:900; color:var(--primary); margin-bottom:2px; text-align:center;
     }
     .manual-card .version {
       display:flex;justify-content:center;
@@ -167,36 +147,32 @@
     .manual-card ul {
       list-style:none;
       text-align:left;
-      margin:14px 0 12px 0;
+      margin:15px 0 14px 0;
       padding:0 0 0 7px;
     }
     .manual-card li{
-      display:flex; align-items:center; gap:9px; font-size:1.01rem; color:var(--gray-dark);
-      padding:5px 0 5px 0;
+      display:flex; align-items:center; gap:9px; font-size:1.05rem; color:var(--gray);
+      padding:5px 0 5px 0; opacity:0; transform:translateX(-9px); transition:all .7s;
     }
+    .manual-card li.visible{opacity:1;transform:translateX(0);}
     .manual-card li:before{
       content:'✔';
       color:var(--accent);
       font-size:1.18rem;
       line-height:.95;
-      margin-right:6px;
+      margin-right:7px;
     }
     .manual-final {
       text-align:center;
-      margin:19px 0 6px 0;
+      margin:23px 0 5px 0;
       font-weight:700;
       color:var(--primary);
+      font-size:1.08rem;
     }
-    .manual-cta{
-      display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:10px;
-    }
-    .manual-cta a{
-      flex:1 1 47%;padding:12px 0;border-radius:33px;font-weight:700;text-decoration:none;text-align:center;font-size:1.01rem;background:linear-gradient(95deg,var(--primary),var(--accent) 80%);color:#fff;box-shadow:0 0 7px #2bb6e634;transition:transform .15s,box-shadow .19s;
-    }
-    .manual-cta a:hover{transform:scale(1.05);box-shadow:0 0 10px #2bb6e6cc;color:var(--primary);}
     .btn-final { display:block; margin:17px auto 0 auto; width:97%;}
-    footer{margin-top:12px;text-align:center;font-size:.92rem;opacity:.54;}
-    @media(max-width:520px){.shell{padding:6px 0;}.card, .manual-card {padding:9px 1vw;}.neon-title{font-size:1.31rem;}}
+    .visitantes {text-align:center;font-size:.93rem;opacity:.75;margin-bottom:3px;}
+    footer{margin-top:15px;text-align:center;font-size:.92rem;opacity:.54;}
+    @media(max-width:520px){.shell{padding:5px 0;}.card, .manual-card {padding:7px 2vw;}.title-main{font-size:1.35rem;}}
   </style>
 </head>
 <body>
@@ -204,58 +180,56 @@
     <div class="shell">
       <!-- TELA 1: Boas-vindas -->
       <div class="card-glass" id="screen-intro">
-        <div class="neon-title">Manual do Aprovado</div>
+        <div class="title-main">Manual do Aprovado</div>
         <span class="iniciante-badge">INICIANTE</span>
-        <div class="intro-blur">Aprenda, revise, avance. Seu caminho para a aprovação começa aqui.</div>
-        <button class="btn-main" id="btnStart">Começar</button>
+        <div class="intro-blur">Parabéns! Você acaba de encurtar seu tempo de estudos para concurso.<br>Se você é iniciante e quer passar rápido, está no lugar certo.</div>
+        <button class="btn-main" id="btnStart">Quero Começar</button>
         <span class="frase-chave">Estudar com estratégia é metade do caminho para a aprovação.</span>
+        <div class="visitantes" id="visitantes"></div>
       </div>
       <!-- TELA 2: Quiz -->
       <div class="card" id="screen-quiz" style="display:none;">
         <div class="progress-bar"><div class="progress" id="progressBar" style="width:0%"></div></div>
         <div class="typewriter" id="qtext"></div>
+        <div id="motiva" class="motiva"></div>
         <div class="btn-group" id="qbtns" style="display:none;">
           <button class="btn-opt" onclick="quizReply('sim')">Sim</button>
           <button class="btn-opt" onclick="quizReply('nao')">Não</button>
           <button class="btn-back" onclick="quizBack()">Voltar</button>
         </div>
-        <!-- Depoimentos -->
-        <div class="depoimentos-bloco">
-          <div class="dep-titulo">O que outros iniciantes disseram:</div>
-          <div class="dep-list">
-            <div class="dep">
-              <span class="dep-nome">Lucas</span>
-              <span class="dep-msg">“Não sabia nem por onde começar. O Manual me deu o mapa!”</span>
-            </div>
-            <div class="dep">
-              <span class="dep-nome">Júlia</span>
-              <span class="dep-msg">“Nunca consegui revisar direito. Agora já tenho rotina!”</span>
-            </div>
-            <div class="dep">
-              <span class="dep-nome">Mateus</span>
-              <span class="dep-msg">“Passei a estudar do jeito certo e parei de perder tempo.”</span>
-            </div>
-          </div>
+      </div>
+      <!-- TELA 3: Resumo dos desafios -->
+      <div class="card-dor" id="screen-dor" style="display:none;">
+        <div class="titulo">Você não está sozinho. Veja o que a maioria dos iniciantes sente:</div>
+        <ul>
+          <li>Falta de direção e por onde começar.</li>
+          <li>Dificuldade para revisar e não esquecer o conteúdo.</li>
+          <li>Não sabe como estudar a lei seca.</li>
+          <li>Medo de perder tempo com métodos errados.</li>
+        </ul>
+        <div style="text-align:center;">
+          <button class="btn-main" onclick="showManual()">Ver a Solução</button>
+          <button class="btn-back" onclick="restart()">Voltar</button>
         </div>
       </div>
-      <!-- TELA 3: Manual -->
+      <!-- TELA 4: Manual -->
       <div class="manual-card" id="screen-manual" style="display:none;">
         <div class="manual-capa">
-          <!-- Simulação da capa do manual -->
-          <svg class="manual-capa-svg" viewBox="0 0 140 188" fill="none">
-            <rect width="140" height="188" rx="15" fill="#2bb6e6"/>
-            <rect x="11" y="19" width="118" height="150" rx="9" fill="#fff"/>
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-              font-size="21" font-family="Montserrat" font-weight="900" fill="#2a6bba" letter-spacing="1">INICIANTE</text>
-            <text x="50%" y="67%" dominant-baseline="middle" text-anchor="middle"
-              font-size="14" font-family="Montserrat" font-weight="600" fill="#2bb6e6" letter-spacing=".5">
+          <!-- Simulação de capa minimalista -->
+          <svg class="manual-capa-svg" viewBox="0 0 142 192" fill="none">
+            <rect width="142" height="192" rx="15" fill="#34cdf7"/>
+            <rect x="13" y="25" width="116" height="142" rx="9" fill="#fff"/>
+            <text x="50%" y="55" dominant-baseline="middle" text-anchor="middle"
+              font-size="22" font-family="Montserrat" font-weight="900" fill="#2473b7" letter-spacing="1">INICIANTE</text>
+            <text x="50%" y="90" dominant-baseline="middle" text-anchor="middle"
+              font-size="14" font-family="Montserrat" font-weight="600" fill="#34cdf7" letter-spacing=".6">
               Manual do Aprovado
             </text>
           </svg>
         </div>
         <h2>Manual do Aprovado</h2>
-        <div class="version"><span class="iniciante-badge" style="font-size:1.02rem;">INICIANTE</span></div>
-        <ul>
+        <div class="version"><span class="iniciante-badge" style="font-size:1.03rem;">INICIANTE</span></div>
+        <ul id="featureList">
           <li>Como montar um ciclo de estudos estratégico e flexível.</li>
           <li>Como revisar de forma simples e eficiente.</li>
           <li>Como controlar seu tempo e evoluir de verdade.</li>
@@ -267,19 +241,9 @@
         <div class="manual-final">
           Seu tempo de estudo vai finalmente render! Baixe uma amostra gratuita ou garanta já o seu.
         </div>
-        <div class="manual-cta">
-          <a class="cta-sample" href="BAIXAR_AMOSTRA_LINK" target="_blank">📥 Baixar Amostra</a>
-          <a class="cta-buy" href="ADQUIRIR_AGORA_LINK" target="_blank">💳 Adquirir Agora</a>
-        </div>
-        <!-- Depoimento -->
-        <div class="depoimentos-bloco" style="margin:23px 0 0 0;">
-          <div class="dep-titulo">Depoimento de aprovada:</div>
-          <div class="dep-list">
-            <div class="dep">
-              <span class="dep-nome">Marina</span>
-              <span class="dep-msg">“Estudar nunca foi tão simples. Com o Manual, finalmente entendi como estudar de verdade!”</span>
-            </div>
-          </div>
+        <div class="btn-duplo">
+          <a href="LINK_DA_AMOSTRA" target="_blank">Baixar Amostra</a>
+          <a href="LINK_DE_AQUISICAO" target="_blank">Adquirir Agora</a>
         </div>
         <button class="btn-final" onclick="restart()">Voltar ao início</button>
       </div>
@@ -287,15 +251,30 @@
     </div>
   </div>
   <script>
+    // VISITOR COUNTER - countapi.xyz (gratuito)
+    const visitorsBox = document.getElementById('visitantes');
+    fetch('https://api.countapi.xyz/hit/manualdoaprovado/iniciante')
+      .then(res=>res.json())
+      .then(data=>{
+        visitorsBox.innerHTML = "👀 Visitantes neste site: <b>"+data.value+"</b>";
+      });
+
+    // Fluxo do quiz
     const perguntas = [
       "Você já tentou estudar para concurso e ficou sem saber por onde começar?",
-      "Você sente que se perde com tantas matérias e métodos diferentes?",
       "Tem dificuldade para revisar e acaba esquecendo o que estudou?",
-      "Sabe como transformar teoria em resultado usando questões e revisões inteligentes?"
+      "Sabe como transformar teoria em resultado usando questões e revisões inteligentes?",
+      "Você se sente sozinho (a) estudando para concurso?"
     ];
-    let perguntaIdx = 0, quizStarted = false;
+    const motivas = [
+      "Fica tranquilo, a maioria começa sem direção. Mas existe um caminho!",
+      "É comum esquecer, mas revisão certa resolve isso.",
+      "A maioria aprende na prática — não se cobre tanto!",
+      "Ninguém chega lá sozinho. Eu vou te mostrar o próximo passo!"
+    ];
+    let perguntaIdx = 0, quizStarted = false, ultimaRespostaNao = false;
     function hideAll() {
-      ["screen-intro","screen-quiz","screen-manual"].forEach(id=>{
+      ["screen-intro","screen-quiz","screen-dor","screen-manual"].forEach(id=>{
         let el = document.getElementById(id); if(el) el.style.display = "none";
       });
     }
@@ -306,16 +285,19 @@
       quizStarted = true;
       showPergunta();
       updateProgress();
+      document.getElementById('motiva').innerText = "";
     };
     function quizBack(){
       if(perguntaIdx>0) {
         perguntaIdx--;
         showPergunta();
         updateProgress();
+        document.getElementById('motiva').innerText = "";
       } else {
         hideAll();
         document.getElementById("screen-intro").style.display = "block";
         quizStarted = false;
+        document.getElementById('motiva').innerText = "";
       }
     }
     function restart() {
@@ -338,14 +320,30 @@
       typing();
     }
     window.quizReply = function(resp) {
-      perguntaIdx++;
-      if(perguntaIdx < perguntas.length) {
-        showPergunta();
-        updateProgress();
+      const motiva = document.getElementById('motiva');
+      if(resp === "nao") {
+        motiva.innerText = motivas[perguntaIdx] || "";
+        ultimaRespostaNao = true;
       } else {
-        hideAll();
-        document.getElementById("screen-manual").style.display = "block";
+        motiva.innerText = "";
+        perguntaIdx++;
+        if(perguntaIdx < perguntas.length) {
+          showPergunta();
+          updateProgress();
+        } else {
+          hideAll();
+          document.getElementById("screen-dor").style.display = "block";
+        }
       }
+      // Se ele clicar em não, não avança até clicar sim ou voltar.
+      // Se ele clicar sim depois do não, avança normalmente.
+    }
+    function showManual(){
+      hideAll();
+      document.getElementById("screen-manual").style.display = "block";
+      // Anima os benefícios
+      document.querySelectorAll('#featureList li')
+        .forEach((li,i)=>{li.classList.remove('visible'); setTimeout(()=>li.classList.add('visible'), i*140);});
     }
     function updateProgress() {
       let pct = ((perguntaIdx)/(perguntas.length))*100;
