@@ -63,8 +63,8 @@ header {
 main { width:100vw; margin-top:83px; min-height:85vh; display:flex;flex-direction:column;align-items:center;}
 .quiz-box {
   margin:45px auto 0 auto; background:var(--glass); border-radius:var(--radius);box-shadow:var(--shadow);
-  max-width:var(--max-card); width:96vw; min-height:410px;display:flex;flex-direction:column;align-items:center;position:relative;border:2px solid #2576f74a;
-  padding:3.2rem 2.7rem 2.3rem 2.7rem;z-index:1;animation:glassin .9s cubic-bezier(.7,0,.31,1);
+  max-width:var(--max-card); width:96vw; min-height:420px;display:flex;flex-direction:column;align-items:center;position:relative;border:2px solid #2576f74a;
+  padding:3.2rem 2.7rem 2.5rem 2.7rem;z-index:1;animation:glassin .9s cubic-bezier(.7,0,.31,1);
 }
 @keyframes glassin {
   from { opacity:0; transform:translateY(42px) scale(.98);}
@@ -111,7 +111,7 @@ ul.itens-manu {font-size:1.13rem;color:#f8fafd;background:#1e2e42;border-radius:
   width:90%;max-width:380px; letter-spacing:.01em;
 }
 .depoimento {
-  color:#fff; background:#13244c; border-radius:1.1rem; font-size:1.1rem; margin:1.6rem auto 0 auto; padding:1.15rem 1.35rem 1.09rem 1.35rem; text-align:center; max-width:430px; font-weight:700; box-shadow:0 2px 12px #49c2fa14;
+  color:#7bf7f7; background:#13244c; border-radius:1.1rem; font-size:1.18rem; margin:1.7rem auto 0 auto; padding:1.15rem 1.35rem 1.09rem 1.35rem; text-align:center; max-width:430px; font-weight:900; box-shadow:0 2px 12px #49c2fa14;
   border-left:6px solid #49c2fa; border-right:6px solid #2576f7;
   animation: fadein .7s;
 }
@@ -195,7 +195,7 @@ footer {
     }
     atualizaContador();
 
-    // Fluxo
+    // Fluxo ajustado e mais longo
     const steps = [
       { id: 0, prof: "Parabéns por estar aqui! Você já está um passo à frente, buscando o caminho certo para estudar e ser aprovado.<br><br>Me diz seu nome para eu te ajudar do jeito mais personalizado possível.", input:true, placeholder:"Digite seu nome", next: 1, digitando:true },
       { id: 1, prof: (s)=>`Muito bom, ${s.nome || ""}! Qual o seu maior desafio para começar a estudar?`, op:[
@@ -203,9 +203,9 @@ footer {
         {t:"Fico perdido(a) com tanta matéria",n:2},
         {t:"Não consigo ter rotina/organização",n:2}
       ]},
-      { id: 2, prof:"Você já tentou estudar antes, ou está começando do zero mesmo?", op:[
-        {t:"É minha primeira vez",n:3},
-        {t:"Já tentei, mas não consegui manter",n:3}
+      { id: 2, prof:"Não tem problema, todo mundo começa assim! O importante é não desistir.<br><br>Eu vou te mostrar a solução para você avançar do jeito certo.<br><br>Você quer aprender como estudar de verdade e evitar perder tempo?", op:[
+        {t:"Quero aprender do jeito certo!",n:3},
+        {t:"Sim, quero um método pra mim!",n:3}
       ]},
       // FINAL
       { id: 3, prof:`<span style="font-weight:900;color:#2576f7;display:block;margin-bottom:7px;">Manual do Aprovado – Versão Iniciante</span>
@@ -347,9 +347,7 @@ footer {
             <a href="LINK_AMOSTRA" class="cta-final-btn" style="background:#13244c;color:#7bf7f7;border:2px solid #7bf7f7;">Ver Amostra</a>
           </div>
           <div class="depoimento">
-            <span style="font-size:1.25rem; color:#7bf7f7; font-weight:900;">Já são centenas de alunos aprovados!</span><br>
-            "Eu não sabia nem por onde começar. Depois do Manual, consegui montar uma rotina e finalmente comecei a acertar nas provas!"<br>
-            <span style="color:#49c2fa; font-weight:700;">— Novo Concurseiro, 2025</span>
+            Já são centenas de alunos aprovados!
           </div>
           ${history.length?`<button class="btn-quiz" style="background:none;color:#7bf7f7;font-weight:900;margin-top:22px;" id="voltar">← Voltar</button>`:""}
         `;
